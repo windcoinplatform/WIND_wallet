@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" media="screen" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" media="screen" href="{{ url_for('static', filename='bootstrap/css/login.css') }}">
+    <title>Python Wallet</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+{% block body %}
+    {% if current_user.is_authenticated %}
+
+        You're logged in already!
+
+    {% else %}
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <form action="/login" method="POST">
+                    <input type="seed" name="seed" class="fadeIn first" placeholder="seed">
+<!--                    <input type="password" name="password" class="fadeIn second" placeholder="Password"> --->
+                    <input type="submit" class="btn btn-primary  fadeIn third" value="Log in">
+                </form>
+
+                <div id="formFooter">
+                    <a class="underlineHover" href="https://www.turtlenetwork.eu">Turtle Network</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+</html>
