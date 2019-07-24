@@ -55,6 +55,7 @@ def home():
                            balance=float(current_user.wallet.balance()) / 10 ** 8,
                            gateways=gateways)
 
+
 @app.route('/gw/send/tn', methods=['POST'], strict_slashes=False)
 @login_required
 def send_tn():
@@ -62,9 +63,10 @@ def send_tn():
     dataJ = json.loads(data.decode())
     dest = dataJ['addr']
     amount = float(dataJ['amount']) * (10 ** 8)
-    gateway = py.Address(address=get_addr_gateway('gateway',dest))
+    gateway = py.Address(address=get_addr_gateway('gateway', dest))
     result = current_user.wallet.sendWaves(gateway, int(amount), txFee=2000000)
     return jsonify(result)
+
 
 @app.route('/gw/send/<gateway>', methods=['POST'], strict_slashes=False)
 @login_required
@@ -100,10 +102,40 @@ def do_admin_login():
     login_user(User(seed))
     gateways.append(
         Gateway(get_addr_gateway("wavesgateway", current_user.wallet.address), '3JbpUeiV6BN9k2cMccKE5LZrrQ8wN44pxWy',
-                0.01, 'waves', 'EzwaF58ssALcUCZ9FbyeD1GTSteoZAQZEDTqBAXHfq8y'))
+                0.01, 'waves', 'EzwaF58ssALcUCZ9FbyeD1GTSteoZAQZEDTqBAXHfq8y'),
+    )
+    gateways.append(
+        Gateway(get_addr_gateway("litecoingw", current_user.wallet.address), '3JnNnw91XQr3pDmpGWud9xGfz9hEF1hSTfG',
+                0.006, 'litecoin', '3vB9hXHTCYbPiQNuyxCQgXF6AvFg51ozGKL9QkwoCwaS')
+    )
+    gateways.append(
+        Gateway(get_addr_gateway("bitcoingw", current_user.wallet.address), '3JeW3F1kEWxLsf8zg1uAZRPb7g5z6fuqEfF',
+                0.001, 'bitcoin', '5Asy9P3xjcvBAgbeyiitZhBRJZJ2TPGSZJz9ihDTnB3d'))
+    gateways.append(
+        Gateway(get_addr_gateway("dashgw", current_user.wallet.address), '3JbigZzoGyFWksZ5RLuh9K5ntyGZuXKTVas',
+                0.01, 'dash', 'A62sRG58HFbWUNvFoEEjX4U3txXKcLm11MXWWS429qpN'))
+    gateways.append(
+        Gateway(get_addr_gateway("wagerrgw", current_user.wallet.address), '3JsshGBTUXXqShXGQeNdtzw1EuQZFqxN4E3',
+                0.03, 'wagerr', '91NnG9iyUs3ZT3tqK1oQ3ddpgAkE7v5Kbcgp2hhnDhqd'))
+    gateways.append(
+        Gateway(get_addr_gateway("syscoingw", current_user.wallet.address), '3JiEjoFbgVKLVxdJYFD1HL9HYDN3RupVNHd',
+                0.003, 'syscoin', 'HBxBjymrCC8TuL8rwCLr2vakDEq4obqkMwYYPEZtTauA'))
+    gateways.append(
+        Gateway(get_addr_gateway("bchgw", current_user.wallet.address), '3JsenfjhSNRQsRZMXrkAtJMfjyzxrzSeCKr',
+                0.0003, 'bitcoin cash', 'Fr2kNhe7XR3E16W7Mfh7NhNcsQWLXx3hSLjoFgpbFsNj'))
+    gateways.append(
+        Gateway(get_addr_gateway("dogegw", current_user.wallet.address), '3Jve26ckLkBivDbryLzpvoLyoRfxUaAE7tE',
+                9, 'dogecoin', 'HDeemVktm2Z68RMkyA7AexhpaCqot1By7adBzaN9j5Xg'))
+    gateways.append(
+        Gateway(get_addr_gateway("ethgw", current_user.wallet.address), '3Jbrk85BjtVtEyrVLVVF7yWjKcnGPA6Rk5C',
+                0.00041, 'ethereum', '6Mh41byVWPg8JVCfuwG5CAPCh9Q7gnuaAVxjDfVNDmcD'))
+    gateways.append(
+        Gateway(get_addr_gateway("afingw", current_user.wallet.address), '33JgUZ2ytQicRQ1k38Y2nHeR9NxHK5fqEqbu',
+                1, 'afin', 'A8jSBb33GztWpuCypUW9hJYPnTtJGZ7SDuSZfHCaeV49'))
+
     return redirect(url_for('home'))
 
 
 if __name__ == '__main__':
     print("start app")
-    init_gui(app,window_title="Turtle Network Wallet",)
+    init_gui(app, window_title="Turtle Network Wallet", )
