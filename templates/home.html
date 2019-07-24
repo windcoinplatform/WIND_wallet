@@ -9,33 +9,33 @@
     {% for gw in gateways %}
         <form id="tn_gateway_form">
           <div>
-                <p>Gateway: TN</p>
-                <p>Fees: 0.09 TN</p>
-                <h2>Send TN  from Waves to Turtle Network:</h2>
-                <p>Send amount bigger then 0.09 TN towards 3PJ33ZasLyhLaFuK4gHGTFSQbpFBP5Entor with attachment: {{ address }}</p>
-                <h2>Send TN from Turtle Network to Waves:</h2>
-                <p>Amount of TN to send: <input required id="tn_amount" type="number" min="0.01">
+                <p>Gateway: $TN</p>
+                <p>Fees: 0.09 $TN</p>
+                <h2>Send $TN  from Waves Network to Turtle Network:</h2>
+                <p>Send amount bigger then 0.09 $TN to 3PJ33ZasLyhLaFuK4gHGTFSQbpFBP5Entor with attachment: {{ address }}</p>
+                <h2>Send $TN from Turtle Network to Waves Network:</h2>
+                <p>Amount of $TN to send: <input required id="tn_amount" type="number" min="0.01">
                 </p>
-                <p>Waves destination addr: <input required id="tn_addr" maxlength="35"
+                <p>Waves Network destination addr: <input required id="tn_addr" maxlength="35"
                                                           minlength="35"></p>
                 <p>
-                    <button id="tn_gw_send" type="button">Send TN</button>
+                    <button id="tn_gw_send" type="button">Send $TN</button>
                 </p>
             </div>
         </form>
         <form id="{{ gw.name }}_gateway_form">
             <div>
-                <p>Gateway: {{ gw.name }}</p>
-                <p>Fees: {{ gw.fee }} {{ gw.name }}</p>
-                <h2>Send {{ gw.name }} from {{ gw.name }} to Turtle Network:</h2>
-                <p>Send amount bigger then {{ gw.fee }} {{ gw.name }} towards {{ gw.personal_addr }}</p>
-                <h2>Send {{ gw.name }} from Turtle Network to {{ gw.name }}:</h2>
-                <p>Amount of {{ gw.name }} to send: <input required id="{{ gw.name }}_amount" type="number" min="0.01">
+                <p>Gateway: ${{ gw.name }}</p>
+                <p>Fees: {{ gw.fee }} ${{ gw.name }}</p>
+                <h2>Send ${{ gw.name }} from {{ gw.name }} Network to Turtle Network:</h2>
+                <p>Send amount bigger then {{ gw.fee }} ${{ gw.name }} to {{ gw.personal_addr }}</p>
+                <h2>Send ${{ gw.name }} from Turtle Network to {{ gw.name }} Network:</h2>
+                <p>Amount of ${{ gw.name }} to send: <input required id="{{ gw.name }}_amount" type="number" min="0.01">
                 </p>
-                <p>{{ gw.name }} destination addr: <input required id="{{ gw.name }}_addr" maxlength="35"
+                <p>{{ gw.name }} Network destination addr: <input required id="{{ gw.name }}_addr" maxlength="35"
                                                           minlength="35"></p>
                 <p>
-                    <button id="{{ gw.name }}_gw_send" type="button">Send {{ gw.name }}</button>
+                    <button id="{{ gw.name }}_gw_send" type="button">Send ${{ gw.name }}</button>
                 </p>
             </div>
         </form>
