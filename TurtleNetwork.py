@@ -113,7 +113,7 @@ def do_admin_login():
                 0.001, 'bitcoin', '5Asy9P3xjcvBAgbeyiitZhBRJZJ2TPGSZJz9ihDTnB3d'))
     gateways.append(
         Gateway(get_addr_gateway("dashgw", current_user.wallet.address), '3JbigZzoGyFWksZ5RLuh9K5ntyGZuXKTVas',
-                0.01, 'dash', 'A62sRG58HFbWUNvFoEEjX4U3txXKcLm11MXWWS429qpN'))
+                0.001, 'dash', 'A62sRG58HFbWUNvFoEEjX4U3txXKcLm11MXWWS429qpN'))
     gateways.append(
         Gateway(get_addr_gateway("wagerrgw", current_user.wallet.address), '3JsshGBTUXXqShXGQeNdtzw1EuQZFqxN4E3',
                 0.03, 'wagerr', '91NnG9iyUs3ZT3tqK1oQ3ddpgAkE7v5Kbcgp2hhnDhqd'))
