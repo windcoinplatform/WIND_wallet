@@ -1,3 +1,6 @@
+import os
+import sys
+
 import pywaves as py
 ##hypercorn app:app -b 0.0.0.0:4000 -w 3
 # import quart.flask_patch
@@ -7,8 +10,20 @@ from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from pyfladesk import init_gui
 
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+
 PORT = 4000
-app = Flask(__name__)
+if getattr(sys, 'frozen', False):
+    template_folder = resource_path('templates')
+    static_folder = resource_path('static')
+    app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
+else:
+    app = Flask(__name__)
 app.secret_key = "TurtleNetwork"
 
 login_manager = LoginManager()
@@ -21,12 +36,18 @@ gateways = []
 
 
 class User(UserMixin):
-    def __init__(self, seed):
-        self.id = seed
+    def __init__(self, pk='', seed=''):
+        self.id = pk
+        self.seed = seed
+        if pk == '' and seed != '':
+            self.id = self.get_wallet_by_seed().privateKey
         self.wallet = self.get_wallet()
 
-    def get_wallet(self):
-        return py.Address(seed=self.id)
+    def get_wallet(self) -> py.Address:
+        return py.Address(privateKey=self.id)
+
+    def get_wallet_by_seed(self) -> py.Address:
+        return py.Address(seed=self.seed)
 
 
 class Gateway():
@@ -99,7 +120,8 @@ def login():
 def do_admin_login():
     data = request.form
     seed = data['seed']
-    login_user(User(seed))
+    pk = data['pk']
+    login_user(User(pk, seed))
     gateways.append(
         Gateway(get_addr_gateway("wavesgateway", current_user.wallet.address), '3JbpUeiV6BN9k2cMccKE5LZrrQ8wN44pxWy',
                 0.01, 'waves', 'EzwaF58ssALcUCZ9FbyeD1GTSteoZAQZEDTqBAXHfq8y'),
