@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="table table-hover table-dark">
+        <thead>
+        <tr>
+            <th scope="col">AssetId</th>
+            <th scope="col">Name</th>
+            <th scope="col">Balance</th>
+            <th scope="col">Decimals</th>
+            <th scope="col">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for asset in portfolio %}
+            <tr>
+                <th scope="row">{{ asset['id'] }}</th>
+                <td>{{ asset['name'] }}</td>
+                <td>{{ asset['normalized'] }}</td>
+                <td>{{ asset['decimals'] }}</td>
+                <td>---</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+

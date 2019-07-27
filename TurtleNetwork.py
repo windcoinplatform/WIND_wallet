@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 
@@ -5,7 +6,6 @@ import pywaves as py
 ##hypercorn app:app -b 0.0.0.0:4000 -w 3
 # import quart.flask_patch
 import requests
-import json
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from pyfladesk import init_gui
@@ -29,8 +29,8 @@ app.secret_key = "TurtleNetwork"
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
-
-py.setNode('https://privatenode.blackturtle.eu', 'TN', 'L')
+node = 'https://privatenode.blackturtle.eu'
+py.setNode(node, 'TN', 'L')
 py.setMatcher('https://privatematcher.blackturtle.eu')
 gateways = []
 
@@ -41,13 +41,24 @@ class User(UserMixin):
         self.seed = seed
         if pk == '' and seed != '':
             self.id = self.get_wallet_by_seed().privateKey
-        self.wallet = self.get_wallet()
+        self.wallet: py.Address = self.get_wallet()
 
     def get_wallet(self) -> py.Address:
         return py.Address(privateKey=self.id)
 
     def get_wallet_by_seed(self) -> py.Address:
         return py.Address(seed=self.seed)
+
+
+class Token():
+    def __init__(self, id, decimals, amount, issuer, name, description):
+        self.id = id
+        self.decimals = decimals
+        self.amount = amount
+        self.issuer = issuer
+        self.name = name
+        self.description = description
+        self.normalized = amount / pow(10, decimals)
 
 
 class Gateway():
@@ -67,6 +78,20 @@ def get_addr_gateway(url, addr):
 @login_manager.user_loader
 def load_user(seed):
     return User(seed)
+
+
+@app.route('/portfolio')
+@login_required
+def portfolio():
+    result = requests.get(node + '/assets/balance/' + current_user.wallet.address)
+    balances = json.loads(result.content)['balances']
+    portfolio = []
+    for balance in balances:
+        asset = Token(balance['issueTransaction']['id'], balance['issueTransaction']['decimals'],
+                      balance['balance'], balance['issueTransaction']['sender'],
+                      balance['issueTransaction']['name'], balance['issueTransaction']['description'])
+        portfolio.append(asset)
+    return render_template('portfolio.html', portfolio=portfolio)
 
 
 @app.route('/')
