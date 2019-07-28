@@ -1,26 +1,31 @@
 {% extends 'base.html' %}
+{% block head %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/gateway_addr_generation.js') }}"></script>
+{% endblock %}
 {% block content %}
     <p>Hello, {{ address }}!</p>
     <p>
         Balance : {{ balance }}
     </p>
-        <form id="tn_gateway_form">
-          <div>
-                <p>Gateway: $TN</p>
-                <p>Fees: 0.09 $TN</p>
-                <h2>To Send $TN to Turtle Network, using Waves Network wallet:</h2>
-                <p>Send amount bigger then 0.09 $TN to 3PJ33ZasLyhLaFuK4gHGTFSQbpFBP5Entor with attachment: {{ address }}</p>
-                <h2>To Send $TN to Waves Network, using Turtle Network wallet:</h2>
-                <p>Amount of $TN to send: <input required id="tn_amount" type="number" min="0.01">
-                </p>
-                <p>Waves Network destination addr: <input required id="tn_addr" maxlength="35"
-                                                          minlength="35"></p>
-                <p>
-                    <button id="tn_gw_send" type="button">Send $TN</button>
-                </p>
-            </div>
-        </form>
+    <form id="tn_gateway_form">
+        <div>
+            <p>Gateway: $TN</p>
+            <p>Fees: 0.09 $TN</p>
+            <h2>To Send $TN to Turtle Network, using Waves Network wallet:</h2>
+            <p>Send amount bigger then 0.09 $TN to 3PJ33ZasLyhLaFuK4gHGTFSQbpFBP5Entor with
+                attachment: {{ address }}</p>
+            <h2>To Send $TN to Waves Network, using Turtle Network wallet:</h2>
+            <p>Amount of $TN to send: <input required id="tn_amount" type="number" min="0.01">
+            </p>
+            <p>Waves Network destination addr: <input required id="tn_addr" maxlength="35"
+                                                      minlength="35"></p>
+            <p>
+                <button id="tn_gw_send" type="button">Send $TN</button>
+            </p>
+        </div>
+    </form>
     {% for gw in gateways %}
 
         <form id="{{ gw.name }}_gateway_form">
@@ -30,10 +35,11 @@
                 <h2>To Send ${{ gw.name|upper }} to Turtle Network, using {{ gw.name|title }} Network Wallet :</h2>
                 <p>Send amount bigger then {{ gw.fee }} ${{ gw.name|upper }} to {{ gw.personal_addr }}</p>
                 <h2>To Send ${{ gw.name|upper }} to {{ gw.name|title }} Network, using Turtle Network Wallet:</h2>
-                <p>Amount of ${{ gw.name|upper }} to send: <input required id="{{ gw.name }}_amount" type="number" min="0.01">
+                <p>Amount of ${{ gw.name|upper }} to send: <input required id="{{ gw.name }}_amount" type="number"
+                                                                  min="0.01">
                 </p>
                 <p>{{ gw.name }} Network destination addr: <input required id="{{ gw.name }}_addr" maxlength="35"
-                                                          minlength="35"></p>
+                                                                  minlength="35"></p>
                 <p>
                     <button id="{{ gw.name }}_gw_send" type="button">Send ${{ gw.name|upper }}</button>
                 </p>
@@ -42,8 +48,4 @@
     {% endfor %}
 
 {% endblock %}
-{% block script %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <script type="text/javascript" src="{{ url_for('static', filename = 'js/gateway_addr_generation.js') }}"></script>
-{% endblock %}
