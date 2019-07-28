@@ -3,8 +3,6 @@ import os
 import sys
 
 import pywaves as py
-##hypercorn app:app -b 0.0.0.0:4000 -w 3
-# import quart.flask_patch
 import requests
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
