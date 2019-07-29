@@ -15,6 +15,8 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 
+FEE = 2000000
+
 PORT = 4000
 if getattr(sys, 'frozen', False):
     template_folder = resource_path('templates')
@@ -108,7 +110,7 @@ def send_tn():
     dest = dataJ['addr']
     amount = float(dataJ['amount']) * (10 ** 8)
     gateway = py.Address(address=get_addr_gateway('gateway', dest))
-    result = current_user.wallet.sendWaves(gateway, int(amount), txFee=2000000)
+    result = current_user.wallet.sendWaves(gateway, int(amount), txFee=FEE)
     return jsonify(result)
 
 
@@ -122,7 +124,7 @@ def send_currencie(gateway):
     print(dataJ)
     dest = dataJ['addr']
     amount = float(dataJ['amount']) * (10 ** 8)
-    result = current_user.wallet.sendAsset(gateway, py.Asset(gw.assetId), int(amount), txFee=2000000, attachment=dest)
+    result = current_user.wallet.sendAsset(gateway, py.Asset(gw.assetId), int(amount), txFee=FEE, attachment=dest)
     return jsonify(result)
 
 
@@ -137,6 +139,40 @@ def do_logout():
 @app.route('/login', methods=['GET'], strict_slashes=False)
 def login():
     return render_template('login.html')
+
+
+@app.route('/assets/burn/<asset>')
+@login_required
+def burn_asset(asset):
+    data = request.form
+    amount = data['amount']
+    pyAsset = py.Asset(assetId=asset)
+    burn = current_user.wallet.burnAsset(pyAsset, amount * (10** pyAsset.decimals), txFee=FEE)
+    return jsonify(burn)
+
+
+@app.route('/assets/send/<asset>')
+@login_required
+def send_asset(asset):
+    pyAsset = py.Asset(assetId=asset)
+    data = json.loads(request.form.decode())
+    addr = data['addr']
+    amount = float(data['amount']) * (10 ** pyAsset.decimals)
+    send = current_user.wallet.sendAsset(addr, pyAsset, int(amount), txFee=FEE)
+    return jsonify(send)
+
+
+@app.route('/details/<assetid>', strict_slashes=False)
+@login_required
+def details_asset(assetid):
+    asset_details = py.Asset(assetId=assetid)
+    if asset_details.decimals == 0:
+        asset_balance = current_user.wallet.balance(assetId=assetid)
+    else:
+        asset_balance = current_user.wallet.balance(assetId=assetid) / asset_details.decimals
+    asset_smart = asset_details.isSmart()
+    return render_template('details.html', asset_details=asset_details, asset_balance=asset_balance,
+                           asset_smart=asset_smart)
 
 
 @app.route('/login', methods=['POST'], strict_slashes=False)

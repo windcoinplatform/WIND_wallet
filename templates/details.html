@@ -1,5 +1,48 @@
 {% extends 'base.html' %}
+{% block head %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/details.js') }}"></script>
+{% endblock %}
 {% block content %}
-
+    <div><h2>Balance:</h2>
+        {{ asset_balance }}
+    </div>
+    <div>
+        <h2>Asset Details:</h2>
+        AssetId: {{ asset_details['assetId'] }}<br>
+        Issuer: {{ asset_details['issuer'] }}<br>
+        Name: {{ asset_details['name'] }}<br>
+        Description: {{ asset_details['description'] }}<br>
+        Quantity: {{ asset_details['quantity'] }}<br>
+        Decimals: {{ asset_details['decimals'] }}<br>
+        Reissuable: {{ asset_details['reissuable'] }}<br>
+        Smart Asset: {{ asset_smart }}<br>
+    </div>
+    <div>
+        <form id="send_form"><h2>Send:</h2>
+            <p>Amount of ${{ asset_details['assetId'] }} to send: <input required id="amount" type="number"
+                                                                         max="{{ asset_balance }}">
+            </p>
+            <p>Destination addr: <input required id="addr" maxlength="35"
+                                        minlength="35"></p>
+            <p>
+                <button id="send" type="button" data-asset="{{ asset_details['assetId'] }}">Send ${{ asset_details['assetId'] }}</button>
+            </p>
+        </form>
+    </div>
+    <div>
+        <form id="burn_form"><h2>Burn:</h2>
+            <p>Amount of ${{ asset_details['assetId'] }} to burn: <input required id="amount" type="number"
+                                                                         max="{{ asset_balance }}">
+            </p>
+            <p>
+                <button id="burn" type="button" data-asset="{{ asset_details['assetId'] }}" >Burn ${{ asset_details['assetId'] }}</button>
+            </p>
+        </form>
+    </div>
+    <div><h2>Mass Transfer:</h2>
+    </div>
+    <div><h2>Reissue:</h2>
+    </div>
 {% endblock %}

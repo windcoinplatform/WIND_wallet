@@ -1,9 +1,4 @@
 {% extends 'base.html' %}
-{% block head %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <script type="text/javascript" src="{{  url_for('static', filename='js/portfolio.js') }}"></script>
-{% endblock %}
 {% block content %}
     <table class="table table-hover table-dark">
         <thead>
@@ -23,7 +18,7 @@
                 <td>{{ asset['normalized'] }}</td>
                 <td>{{ asset['decimals'] }}</td>
                 <td>
-                    <button type="button" class="details_btn" data-asset="{{ asset['id']}}">Send-Details-More</button>
+                    <a href="/details/{{ asset['id']}}" class="btn btn-info" role="button">Send-Details-More</a>
                 </td>
             </tr>
         {% endfor %}
