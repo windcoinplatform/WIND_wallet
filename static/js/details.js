@@ -1,30 +1,39 @@
 $(document).ready(function () {
 
     $("#send").click(function () {
-            var amount = $("#amount").val();
-            var addr = $("#waddr").val();
+            const amount = $("#send_amount").val();
+            const addr = $("#send_addr").val();
+            const asset = $(this).data("asset");
 
             const data = {amount: parseFloat(amount), addr: addr};
-            alert("in future it will send with params "+JSON.stringify(data))
+            send_tx(data,asset);
 
         }
     );
     $("#burn").click(function () {
-            var amount = $("#amount").val();
-
+            const amount = $("#burn_amount").val();
+            const asset = $(this).data("asset");
             const data = {amount: parseFloat(amount)};
-             alert("in future it will burn with params "+JSON.stringify(data))
+            send_burn(data,asset);
 
         }
     );
 
-    function gw_tx(gw, sendData) {
+    function send_tx(sendData, asset) {
+        tx(sendData, '/assets/send/'+asset)
+    }
+
+    function send_burn(sendData, asset) {
+        tx(sendData, '/assets/burn/'+asset)
+    }
+
+    function tx(sendData, url) {
         $.ajax({
             type: "POST",
             data: JSON.stringify(sendData),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            url: '/gw/send/' + gw,
+            url: url,
 
         }).done(function (data) { //same as .success (depricated as of 1.8)
             alert("Data: " + JSON.stringify(data))

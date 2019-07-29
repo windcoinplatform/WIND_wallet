@@ -21,10 +21,10 @@
     </div>
     <div>
         <form id="send_form"><h2>Send:</h2>
-            <p>Amount of ${{ asset_details['assetId'] }} to send: <input required id="amount" type="number"
+            <p>Amount of ${{ asset_details['assetId'] }} to send: <input required id="send_amount" type="number"
                                                                          max="{{ asset_balance }}">
             </p>
-            <p>Destination addr: <input required id="addr" maxlength="35"
+            <p>Destination addr: <input required id="send_addr" maxlength="35"
                                         minlength="35"></p>
             <p>
                 <button id="send" type="button" data-asset="{{ asset_details['assetId'] }}">Send ${{ asset_details['assetId'] }}</button>
@@ -33,7 +33,7 @@
     </div>
     <div>
         <form id="burn_form"><h2>Burn:</h2>
-            <p>Amount of ${{ asset_details['assetId'] }} to burn: <input required id="amount" type="number"
+            <p>Amount of ${{ asset_details['assetId'] }} to burn: <input required id="burn_amount" type="number"
                                                                          max="{{ asset_balance }}">
             </p>
             <p>

@@ -141,24 +141,24 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/assets/burn/<asset>')
+@app.route('/assets/burn/<asset>', methods=['POST'], strict_slashes=False)
 @login_required
 def burn_asset(asset):
-    data = request.form
-    amount = data['amount']
     pyAsset = py.Asset(assetId=asset)
-    burn = current_user.wallet.burnAsset(pyAsset, amount * (10** pyAsset.decimals), txFee=FEE)
+    data = json.loads(request.data.decode())
+    amount = float(data['amount']) * (10 ** pyAsset.decimals)
+    burn = current_user.wallet.burnAsset(pyAsset, int(amount), txFee=FEE)
     return jsonify(burn)
 
 
-@app.route('/assets/send/<asset>')
+@app.route('/assets/send/<asset>', methods=['POST'], strict_slashes=False)
 @login_required
 def send_asset(asset):
     pyAsset = py.Asset(assetId=asset)
-    data = json.loads(request.form.decode())
+    data = json.loads(request.data.decode())
     addr = data['addr']
     amount = float(data['amount']) * (10 ** pyAsset.decimals)
-    send = current_user.wallet.sendAsset(addr, pyAsset, int(amount), txFee=FEE)
+    send = current_user.wallet.sendAsset(py.Address(addr), pyAsset, int(amount), txFee=FEE)
     return jsonify(send)
 
 
