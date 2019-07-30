@@ -3,12 +3,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/gateway_addr_generation.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/transactions.js') }}"></script>
 {% endblock %}
 {% block content %}
     <h2>Hello, {{ address }}!</h2>
     <h3>
         Balance : {{ balance }}
     </h3>
+    <h3>Transactions History</h3>
+    <button data-addr={{ address }} id="tx_load">Show tx history</button>
 
+    <div class="collapse" id="tx_collapse_div">
+
+    </div>
 {% endblock %}
 

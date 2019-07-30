@@ -181,6 +181,12 @@ def send_asset(asset):
     return jsonify(send)
 
 
+@app.route('/state/transactions/<addr>/<amount>')
+def history_tx(addr, amount):
+    r = requests.get(node + "/transactions/address/" + addr + "/limit/" + amount)
+    return r.content.decode()
+
+
 @app.route('/details/<assetid>', strict_slashes=False)
 @login_required
 def details_asset(assetid):
