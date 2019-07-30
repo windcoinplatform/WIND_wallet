@@ -187,6 +187,12 @@ def history_tx(addr, amount):
     return r.content.decode()
 
 
+@app.route('/state/leases/<addr>')
+def active_leasing(addr):
+    r = requests.get(node + "/leasing/active/" + addr)
+    return r.content.decode()
+
+
 @app.route('/details/<assetid>', strict_slashes=False)
 @login_required
 def details_asset(assetid):
