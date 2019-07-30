@@ -23,7 +23,7 @@ $(document).ready(function () {
 
                 tablecontents += "<tr class='tr'>";
                 tablecontents += "<td>" + value["type"] + "</td>";
-                tablecontents += "<td>" + value["id"]  + "</td>";
+                tablecontents += "<td><a href='https://explorer.turtlenetwork.eu/tx/"+value["id"]+"'>" + value["id"]  + "</a></td>";
                 tablecontents += "<td>" + value["sender"] + "</td>";
                 tablecontents += "<td>" + value["amount"]  + "</td>";
                 tablecontents += "<td>" + value["assetId"] + "</td>";
