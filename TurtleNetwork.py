@@ -62,12 +62,16 @@ class Token():
 
 
 class Gateway():
-    def __init__(self, personal_addr, general_addr, fee, name, assetId):
+    def __init__(self, personal_addr, general_addr, fee, name, assetId, url):
         self.personal_addr = personal_addr
         self.general_addr = general_addr
         self.fee = fee
         self.name = name
         self.assetId = assetId
+        self.url = url
+
+    def set_personal_wallet(self, personal_addr):
+        self.personal_addr = personal_addr
 
 
 def get_addr_gateway(url, addr):
@@ -98,8 +102,23 @@ def portfolio():
 @login_required
 def home():
     return render_template('home.html', address=current_user.wallet.address,
-                           balance=float(current_user.wallet.balance()) / 10 ** 8,
-                           gateways=gateways)
+                           balance=float(current_user.wallet.balance()) / 10 ** 8)
+
+
+@app.route('/gateway/overview')
+@login_required
+def gateways_overview():
+    return render_template('gateways.html', gateways=gateways)
+
+
+@app.route('/gateway/<gateway>')
+@login_required
+def gateways_detail(gateway):
+    gw: Gateway = next((x for x in gateways if x.name == gateway), None)
+    index = gateways.index(gw)
+    gw.set_personal_wallet(get_addr_gateway(gw.url, current_user.wallet.address))
+    gateways[index] = gw
+    return json.dumps(gw.__dict__)
 
 
 @app.route('/gw/send/tn', methods=['POST'], strict_slashes=False)
@@ -182,37 +201,37 @@ def do_admin_login():
     pk = data['pk']
     login_user(User(pk, seed))
     gateways.append(
-        Gateway(get_addr_gateway("wavesgateway", current_user.wallet.address), '3JbpUeiV6BN9k2cMccKE5LZrrQ8wN44pxWy',
-                0.01, 'waves', 'EzwaF58ssALcUCZ9FbyeD1GTSteoZAQZEDTqBAXHfq8y'),
+        Gateway('----------', '3JbpUeiV6BN9k2cMccKE5LZrrQ8wN44pxWy',
+                0.01, 'waves', 'EzwaF58ssALcUCZ9FbyeD1GTSteoZAQZEDTqBAXHfq8y', 'wavesgateway'),
     )
     gateways.append(
-        Gateway(get_addr_gateway("litecoingw", current_user.wallet.address), '3JnNnw91XQr3pDmpGWud9xGfz9hEF1hSTfG',
-                0.006, 'litecoin', '3vB9hXHTCYbPiQNuyxCQgXF6AvFg51ozGKL9QkwoCwaS')
+        Gateway('----------', '3JnNnw91XQr3pDmpGWud9xGfz9hEF1hSTfG',
+                0.006, 'litecoin', '3vB9hXHTCYbPiQNuyxCQgXF6AvFg51ozGKL9QkwoCwaS', 'litecoingw')
     )
     gateways.append(
-        Gateway(get_addr_gateway("bitcoingw", current_user.wallet.address), '3JeW3F1kEWxLsf8zg1uAZRPb7g5z6fuqEfF',
-                0.001, 'bitcoin', '5Asy9P3xjcvBAgbeyiitZhBRJZJ2TPGSZJz9ihDTnB3d'))
+        Gateway('----------', '3JeW3F1kEWxLsf8zg1uAZRPb7g5z6fuqEfF',
+                0.001, 'bitcoin', '5Asy9P3xjcvBAgbeyiitZhBRJZJ2TPGSZJz9ihDTnB3d', 'bitcoingw'))
     gateways.append(
-        Gateway(get_addr_gateway("dashgw", current_user.wallet.address), '3JbigZzoGyFWksZ5RLuh9K5ntyGZuXKTVas',
-                0.001, 'dash', 'A62sRG58HFbWUNvFoEEjX4U3txXKcLm11MXWWS429qpN'))
+        Gateway('----------', '3JbigZzoGyFWksZ5RLuh9K5ntyGZuXKTVas',
+                0.001, 'dash', 'A62sRG58HFbWUNvFoEEjX4U3txXKcLm11MXWWS429qpN', 'dashgw'))
     gateways.append(
-        Gateway(get_addr_gateway("wagerrgw", current_user.wallet.address), '3JsshGBTUXXqShXGQeNdtzw1EuQZFqxN4E3',
-                0.03, 'wagerr', '91NnG9iyUs3ZT3tqK1oQ3ddpgAkE7v5Kbcgp2hhnDhqd'))
+        Gateway('----------', '3JsshGBTUXXqShXGQeNdtzw1EuQZFqxN4E3',
+                0.03, 'wagerr', '91NnG9iyUs3ZT3tqK1oQ3ddpgAkE7v5Kbcgp2hhnDhqd', 'wagerrgw'))
     gateways.append(
-        Gateway(get_addr_gateway("syscoingw", current_user.wallet.address), '3JiEjoFbgVKLVxdJYFD1HL9HYDN3RupVNHd',
-                0.003, 'syscoin', 'HBxBjymrCC8TuL8rwCLr2vakDEq4obqkMwYYPEZtTauA'))
+        Gateway('----------', '3JiEjoFbgVKLVxdJYFD1HL9HYDN3RupVNHd',
+                0.003, 'syscoin', 'HBxBjymrCC8TuL8rwCLr2vakDEq4obqkMwYYPEZtTauA', 'syscoingw'))
     gateways.append(
-        Gateway(get_addr_gateway("bchgw", current_user.wallet.address), '3JsenfjhSNRQsRZMXrkAtJMfjyzxrzSeCKr',
-                0.0003, 'bitcoin cash', 'Fr2kNhe7XR3E16W7Mfh7NhNcsQWLXx3hSLjoFgpbFsNj'))
+        Gateway('----------', '3JsenfjhSNRQsRZMXrkAtJMfjyzxrzSeCKr',
+                0.0003, 'bitcoin cash', 'Fr2kNhe7XR3E16W7Mfh7NhNcsQWLXx3hSLjoFgpbFsNj', 'bchgw'))
     gateways.append(
-        Gateway(get_addr_gateway("dogegw", current_user.wallet.address), '3Jve26ckLkBivDbryLzpvoLyoRfxUaAE7tE',
-                9, 'dogecoin', 'HDeemVktm2Z68RMkyA7AexhpaCqot1By7adBzaN9j5Xg'))
+        Gateway('----------', '3Jve26ckLkBivDbryLzpvoLyoRfxUaAE7tE',
+                9, 'dogecoin', 'HDeemVktm2Z68RMkyA7AexhpaCqot1By7adBzaN9j5Xg', 'dogegw'))
     gateways.append(
-        Gateway(get_addr_gateway("ethgw", current_user.wallet.address), '3Jbrk85BjtVtEyrVLVVF7yWjKcnGPA6Rk5C',
-                0.00041, 'ethereum', '6Mh41byVWPg8JVCfuwG5CAPCh9Q7gnuaAVxjDfVNDmcD'))
+        Gateway('----------', '3Jbrk85BjtVtEyrVLVVF7yWjKcnGPA6Rk5C',
+                0.00041, 'ethereum', '6Mh41byVWPg8JVCfuwG5CAPCh9Q7gnuaAVxjDfVNDmcD', 'ethgw'))
     gateways.append(
-        Gateway(get_addr_gateway("afingw", current_user.wallet.address), '33JgUZ2ytQicRQ1k38Y2nHeR9NxHK5fqEqbu',
-                1, 'afin', 'A8jSBb33GztWpuCypUW9hJYPnTtJGZ7SDuSZfHCaeV49'))
+        Gateway('----------', '33JgUZ2ytQicRQ1k38Y2nHeR9NxHK5fqEqbu',
+                1, 'afin', 'A8jSBb33GztWpuCypUW9hJYPnTtJGZ7SDuSZfHCaeV49', 'afingw'))
 
     return redirect(url_for('home'))
 
