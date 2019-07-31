@@ -123,7 +123,7 @@ def gateways_detail(gateway):
 
 @app.route('/gw/send/tn', methods=['POST'], strict_slashes=False)
 @login_required
-def send_tn():
+def gw_send_tn():
     data = request.data
     dataJ = json.loads(data.decode())
     dest = dataJ['addr']
@@ -135,7 +135,7 @@ def send_tn():
 
 @app.route('/gw/send/<gateway>', methods=['POST'], strict_slashes=False)
 @login_required
-def send_currencie(gateway):
+def gw_send_currencie(gateway):
     gw: Gateway = next((x for x in gateways if x.name == gateway), None)
     data = request.data
     gateway = py.Address(address=gw.general_addr)
@@ -169,6 +169,16 @@ def burn_asset(asset):
     burn = current_user.wallet.burnAsset(pyAsset, int(amount), txFee=FEE)
     return jsonify(burn)
 
+
+@app.route('/tn/send/', methods=['POST'], strict_slashes=False)
+@login_required
+def send_tn():
+    data = json.loads(request.data.decode())
+    amount = float(data['amount']) * (10 ** 8)
+    recipient = data['addr']
+    attachment = data['attachment']
+    send = current_user.wallet.sendWaves(py.Address(address=recipient), int(amount), attachment=attachment, txFee=FEE)
+    return jsonify(send)
 
 @app.route('/assets/send/<asset>', methods=['POST'], strict_slashes=False)
 @login_required
