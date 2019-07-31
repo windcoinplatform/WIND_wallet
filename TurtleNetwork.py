@@ -260,4 +260,4 @@ def do_admin_login():
 
 if __name__ == '__main__':
     print("start app")
-    init_gui(app, window_title="Turtle Network Wallet", icon="favicon.ico")
+    init_gui(app, window_title="Turtle Network Wallet", icon="static/favicon.ico")
