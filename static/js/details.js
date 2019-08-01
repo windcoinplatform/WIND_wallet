@@ -7,6 +7,14 @@ $(document).ready(function () {
 
         }
     );
+    $("#lease_tn").click(function () {
+            const amount = $("#lease_amount_tn").val();
+            const addr = $("#lease_addr_tn").val();
+            const data = {amount: parseFloat(amount), addr: addr};
+            lease_tn(data);
+
+        }
+    );
     $("#send").click(function () {
             const amount = $("#send_amount").val();
             const addr = $("#send_addr").val();
@@ -25,6 +33,15 @@ $(document).ready(function () {
 
         }
     );
+    $(".cancel_lease").click(function () {
+        const id = $(this).data("id");
+        get('/state/leases/cancel/' + id)
+
+    });
+
+    function lease_tn(sendData) {
+        tx(sendData, '/state/leases/start')
+    }
 
     function send_tn(sendData) {
         tx(sendData, '/tn/send/')
@@ -42,6 +59,22 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             data: JSON.stringify(sendData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            url: url,
+
+        }).done(function (data) { //same as .success (depricated as of 1.8)
+            alert("Data: " + JSON.stringify(data))
+        })
+            .fail(function (jqXHR, textStatus, errorThrown) { //replaces .error
+                console.log("error");
+                console.dir(arguments);
+            })
+    }
+
+    function get(url) {
+        $.ajax({
+            type: "GET",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             url: url,

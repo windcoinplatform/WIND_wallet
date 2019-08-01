@@ -2,7 +2,7 @@ from threading import Thread, Lock
 import logging
 import webview
 from time import sleep
-from TurtleNetwork import run_server
+from TurtleNetwork import run_server, PORT
 
 server_lock = Lock()
 
@@ -30,10 +30,11 @@ if __name__ == '__main__':
     t.start()
     logger.debug('Checking server')
 
-    while not url_ok('127.0.0.1', 22568):
+    while not url_ok('127.0.0.1', PORT):
         sleep(1)
 
     logger.debug('Server started')
-    window = webview.create_window('T3-linux.sh - Turtle Network Wallet', 'http://127.0.0.1:22568', text_select=True,
+    logger.debug('Binding on port '+str(PORT))
+    window = webview.create_window('T3-linux.sh - Turtle Network Wallet', 'http://127.0.0.1:'+str(PORT), text_select=True,
                                    confirm_close=True)
     webview.start(debug=True, gui='qt')

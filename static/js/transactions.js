@@ -59,7 +59,7 @@ $(document).ready(function () {
         }).done(function (data) {
             let tablecontents = "";
             tablecontents = '<table>';
-            tablecontents += '<tr><th>Type</th><th>Id</th><th>Sender</th><th>Amount</th><th>Recipient</th><th>Height</th></tr>';
+            tablecontents += '<tr><th>Type</th><th>Id</th><th>Sender</th><th>Amount</th><th>Recipient</th><th>Height</th><th>Cancel</th></tr>';
             $.each(data, function (index, value) {
 
                 tablecontents += "<tr class='tr'>";
@@ -69,6 +69,7 @@ $(document).ready(function () {
                 tablecontents += "<td>" + value["amount"] + "</td>";
                 tablecontents += "<td>" + value["recipient"] + "</td>";
                 tablecontents += "<td>" + value["height"] + "</td>";
+                tablecontents += "<td> <button class='cancel_lease' data-id='"+value["id"]+"'>Cancel Lease</button></td>";
                 tablecontents += "</tr>";
             });
             tablecontents += '</table>';

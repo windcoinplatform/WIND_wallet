@@ -76,6 +76,12 @@ def gateways_overview():
     return render_template('gateways.html', gateways=gateways)
 
 
+@app.route('/lease/overview')
+@login_required
+def lease_overview():
+    return render_template('lease.html', address=current_user.wallet.address)
+
+
 @app.route('/gateway/<gateway>')
 @login_required
 def gateways_detail(gateway):
@@ -176,6 +182,16 @@ def cancel_active_leasing(id):
     return jsonify(send)
 
 
+@app.route('/state/leases/start', methods=['POST'], strict_slashes=False)
+@login_required
+def start_leasing():
+    data = json.loads(request.data.decode())
+    amount = float(data['amount']) * (10 ** 8)
+    recipient = data['addr']
+    send = current_user.wallet.lease(py.Address(address=recipient), int(amount), txFee=FEE)
+    return jsonify(send)
+
+
 @app.route('/details/<assetid>', strict_slashes=False)
 @login_required
 def details_asset(assetid):
@@ -231,8 +247,20 @@ def do_admin_login():
     return redirect(url_for('home'))
 
 
+def get_free_port():
+    import socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind(("", 0))
+    free_port = s.getsockname()[1]
+    s.close()
+    return free_port
+
+
+PORT = get_free_port()
+
+
 def run_server():
-    app.run(host='127.0.0.1', port=22568, threaded=True)
+    app.run(host='127.0.0.1', port=PORT, threaded=True)
 
 
 if __name__ == '__main__':
