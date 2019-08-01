@@ -1,4 +1,5 @@
 from flask_login import UserMixin
+import pywaves as py
 
 
 class User(UserMixin):

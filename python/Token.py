@@ -1,4 +1,4 @@
-class Token():
+class Token:
     def __init__(self, id, decimals, amount, issuer, name, description):
         self.id = id
         self.decimals = decimals

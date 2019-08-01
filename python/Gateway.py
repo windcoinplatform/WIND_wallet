@@ -1,4 +1,4 @@
-class Gateway():
+class Gateway:
     def __init__(self, personal_addr, general_addr, fee, name, assetId, url):
         self.personal_addr = personal_addr
         self.general_addr = general_addr
