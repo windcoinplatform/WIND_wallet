@@ -1,12 +1,10 @@
 import json
 import os
 import sys
-
 import pywaves as py
 import requests
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from pyfladesk import init_gui
 
 
 def resource_path(relative_path):
@@ -18,12 +16,23 @@ def resource_path(relative_path):
 FEE = 2000000
 
 PORT = 4000
+
+#****PYWEBVIEW BUILDING****#
+# gui_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'gui')  # development path
+#
+# if not os.path.exists(gui_dir):  # frozen executable path
+#     gui_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'gui')
+
+# app = Flask(__name__, static_folder=gui_dir, template_folder=gui_dir)
+
+#****PYFLADESK BUILDING****#
 if getattr(sys, 'frozen', False):
     template_folder = resource_path('templates')
     static_folder = resource_path('static')
     app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
 else:
     app = Flask(__name__)
+
 app.secret_key = "TurtleNetwork"
 
 login_manager = LoginManager()
@@ -180,6 +189,7 @@ def send_tn():
     send = current_user.wallet.sendWaves(py.Address(address=recipient), int(amount), attachment=attachment, txFee=FEE)
     return jsonify(send)
 
+
 @app.route('/assets/send/<asset>', methods=['POST'], strict_slashes=False)
 @login_required
 def send_asset(asset):
@@ -258,6 +268,15 @@ def do_admin_login():
     return redirect(url_for('home'))
 
 
+def start_server():
+    app.run()
+
+
+def run_server():
+    app.run(host='127.0.0.1', port=22568, threaded=True)
+
+
 if __name__ == '__main__':
-    print("start app")
-    init_gui(app, window_title="Turtle Network Wallet", icon="static/favicon.ico")
+    run_server()
+
+    # init_gui(app, window_title="Turtle Network Wallet", icon="static/favicon.ico")

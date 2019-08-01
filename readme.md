@@ -1,5 +1,5 @@
 To build the app:
- pyinstaller -w -F --add-data "templates:templates" --add-data "static:static" TurtleNetwork.py
+pyinstaller -w -F --add-data "templates:templates" --add-data "static:static" T3.py
 
 Windows:
 pip install --upgrade PyQt5==5.12.2
