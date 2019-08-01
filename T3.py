@@ -34,5 +34,6 @@ if __name__ == '__main__':
         sleep(1)
 
     logger.debug('Server started')
-    window = webview.create_window('T3 - Turtle Network Wallet', 'http://127.0.0.1:22568',text_select=True, confirm_close=True)
+    window = webview.create_window('T3-linux.sh - Turtle Network Wallet', 'http://127.0.0.1:22568', text_select=True,
+                                   confirm_close=True)
     webview.start(debug=True, gui='qt')

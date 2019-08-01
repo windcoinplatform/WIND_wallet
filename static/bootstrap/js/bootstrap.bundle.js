@@ -3854,10 +3854,10 @@
      * structure of the `options` object, as the 3rd argument. For example:
      * ```
      * new Popper(ref, pop, {
-   *   modifiers: {
-   *     preventOverflow: { enabled: false }
-   *   }
-   * })
+     *   modifiers: {
+     *     preventOverflow: { enabled: false }
+     *   }
+     * })
      * ```
      * @type {Object}
      * @static

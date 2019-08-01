@@ -27,7 +27,7 @@ $(document).ready(function () {
     );
 
     function send_tn(sendData) {
-        tx(sendData, '/tn/send/' )
+        tx(sendData, '/tn/send/')
     }
 
     function send_tx(sendData, asset) {

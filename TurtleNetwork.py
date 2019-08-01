@@ -6,6 +6,10 @@ import requests
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
+from python.Gateway import Gateway
+from python.Token import Token
+from python.User import User
+
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -17,15 +21,6 @@ FEE = 2000000
 
 PORT = 4000
 
-#****PYWEBVIEW BUILDING****#
-# gui_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'gui')  # development path
-#
-# if not os.path.exists(gui_dir):  # frozen executable path
-#     gui_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'gui')
-
-# app = Flask(__name__, static_folder=gui_dir, template_folder=gui_dir)
-
-#****PYFLADESK BUILDING****#
 if getattr(sys, 'frozen', False):
     template_folder = resource_path('templates')
     static_folder = resource_path('static')
@@ -42,45 +37,6 @@ node = 'https://privatenode.blackturtle.eu'
 py.setNode(node, 'TN', 'L')
 py.setMatcher('https://privatematcher.blackturtle.eu')
 gateways = []
-
-
-class User(UserMixin):
-    def __init__(self, pk='', seed=''):
-        self.id = pk
-        self.seed = seed
-        if pk == '' and seed != '':
-            self.id = self.get_wallet_by_seed().privateKey
-        self.wallet: py.Address = self.get_wallet()
-
-    def get_wallet(self) -> py.Address:
-        return py.Address(privateKey=self.id)
-
-    def get_wallet_by_seed(self) -> py.Address:
-        return py.Address(seed=self.seed)
-
-
-class Token():
-    def __init__(self, id, decimals, amount, issuer, name, description):
-        self.id = id
-        self.decimals = decimals
-        self.amount = amount
-        self.issuer = issuer
-        self.name = name
-        self.description = description
-        self.normalized = amount / pow(10, decimals)
-
-
-class Gateway():
-    def __init__(self, personal_addr, general_addr, fee, name, assetId, url):
-        self.personal_addr = personal_addr
-        self.general_addr = general_addr
-        self.fee = fee
-        self.name = name
-        self.assetId = assetId
-        self.url = url
-
-    def set_personal_wallet(self, personal_addr):
-        self.personal_addr = personal_addr
 
 
 def get_addr_gateway(url, addr):
@@ -213,6 +169,13 @@ def active_leasing(addr):
     return r.content.decode()
 
 
+@app.route('/state/leases/cancel/<id>')
+@login_required
+def cancel_active_leasing(id):
+    send = current_user.wallet.leaseCancel(leaseId=id, txFee=FEE)
+    return jsonify(send)
+
+
 @app.route('/details/<assetid>', strict_slashes=False)
 @login_required
 def details_asset(assetid):
@@ -266,10 +229,6 @@ def do_admin_login():
                 1, 'afin', 'A8jSBb33GztWpuCypUW9hJYPnTtJGZ7SDuSZfHCaeV49', 'afingw'))
 
     return redirect(url_for('home'))
-
-
-def start_server():
-    app.run()
 
 
 def run_server():

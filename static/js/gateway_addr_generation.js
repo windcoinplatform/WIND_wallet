@@ -24,8 +24,8 @@ $(document).ready(function () {
             const gwname = $(this).data("gwname");
             const fee = $(this).data("fee");
 
-            var amount = $("#"+gwname+"_amount").val();
-            var addr = $("#"+gwname+"_addr").val();
+            var amount = $("#" + gwname + "_amount").val();
+            var addr = $("#" + gwname + "_addr").val();
 
 
             const data = {amount: parseFloat(amount) + parseFloat(fee), addr: addr};
