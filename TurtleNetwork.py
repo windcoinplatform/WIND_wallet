@@ -1,10 +1,11 @@
 import json
 import os
 import sys
+
 import pywaves as py
 import requests
 from flask import Flask, render_template, request, url_for, redirect, jsonify
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 from python.Gateway import Gateway
 from python.Token import Token
@@ -33,8 +34,8 @@ app.secret_key = "TurtleNetwork"
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
-node = 'https://privatenode.blackturtle.eu'
-py.setNode(node, 'TN', 'L')
+NODE = 'https://privatenode.blackturtle.eu'
+py.setNode(NODE, 'TN', 'L')
 py.setMatcher('https://privatematcher.blackturtle.eu')
 gateways = []
 
@@ -52,7 +53,7 @@ def load_user(seed):
 @app.route('/portfolio')
 @login_required
 def portfolio():
-    result = requests.get(node + '/assets/balance/' + current_user.wallet.address)
+    result = requests.get(NODE + '/assets/balance/' + current_user.wallet.address)
     balances = json.loads(result.content)['balances']
     portfolio = []
     for balance in balances:
@@ -67,7 +68,7 @@ def portfolio():
 @login_required
 def home():
     return render_template('home.html', address=current_user.wallet.address,
-                           balance=float(current_user.wallet.balance()) / 10 ** 8)
+                           balance=float(current_user.wallet.balance()) / 10 ** 8, extra_fees=current_user.extra_fees/ 10 ** 8)
 
 
 @app.route('/gateway/overview')
@@ -165,13 +166,13 @@ def send_asset(asset):
 
 @app.route('/state/transactions/<addr>/<amount>')
 def history_tx(addr, amount):
-    r = requests.get(node + "/transactions/address/" + addr + "/limit/" + amount)
+    r = requests.get(NODE + "/transactions/address/" + addr + "/limit/" + amount)
     return r.content.decode()
 
 
 @app.route('/state/leases/<addr>')
 def active_leasing(addr):
-    r = requests.get(node + "/leasing/active/" + addr)
+    r = requests.get(NODE + "/leasing/active/" + addr)
     return r.content.decode()
 
 

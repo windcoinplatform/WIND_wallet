@@ -1722,11 +1722,11 @@
     }
 
     /**
-     * Finds the root node (document, shadowDOM root) of the given element
+     * Finds the root NODE (document, shadowDOM root) of the given element
      * @method
      * @memberof Popper.Utils
-     * @argument {Element} node
-     * @returns {Element} root node
+     * @argument {Element} NODE
+     * @returns {Element} root NODE
      */
     function getRoot(node) {
         if (node.parentNode !== null) {
@@ -2293,7 +2293,7 @@
     function getPopperOffsets(popper, referenceOffsets, placement) {
         placement = placement.split('-')[0];
 
-        // Get popper node sizes
+        // Get popper NODE sizes
         var popperRect = getOuterSizes(popper);
 
         // Add position, width and height to our offsets object
@@ -2912,7 +2912,7 @@
             }
         } else {
             // if the arrowElement isn't a query selector we must check that the
-            // provided DOM node is child of its popper node
+            // provided DOM NODE is child of its popper NODE
             if (!data.instance.popper.contains(arrowElement)) {
                 console.warn('WARNING: `arrow.element` must be child of its popper element!');
                 return data;
@@ -3660,7 +3660,7 @@
         /**
          * This modifier is used to move the `arrowElement` of the popper to make
          * sure it is positioned between the reference element and its popper element.
-         * It will read the outer size of the `arrowElement` node to detect how many
+         * It will read the outer size of the `arrowElement` NODE to detect how many
          * pixels of conjunction are needed.
          *
          * It has no effect if no `arrowElement` is provided.
@@ -3674,7 +3674,7 @@
             enabled: true,
             /** @prop {ModifierFn} */
             fn: arrow,
-            /** @prop {String|HTMLElement} element='[x-arrow]' - Selector or node used as arrow */
+            /** @prop {String|HTMLElement} element='[x-arrow]' - Selector or NODE used as arrow */
             element: '[x-arrow]'
         },
 
@@ -4059,9 +4059,9 @@
 
     /**
      * The `referenceObject` is an object that provides an interface compatible with Popper.js
-     * and lets you use it as replacement of a real DOM node.<br />
+     * and lets you use it as replacement of a real DOM NODE.<br />
      * You can use this method to position a popper relatively to a set of coordinates
-     * in case you don't have a DOM node to use as reference.
+     * in case you don't have a DOM NODE to use as reference.
      *
      * ```
      * new Popper(referenceObject, popperNode);
@@ -5682,7 +5682,7 @@
 
             _proto.setElementContent = function setElementContent($element, content) {
                 if (typeof content === 'object' && (content.nodeType || content.jquery)) {
-                    // Content is a DOM node or a jQuery
+                    // Content is a DOM NODE or a jQuery
                     if (this.config.html) {
                         if (!$(content).parent().is($element)) {
                             $element.empty().append(content);

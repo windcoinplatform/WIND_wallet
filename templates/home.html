@@ -7,10 +7,12 @@
 
 {% endblock %}
 {% block content %}
-    <h2>Hello, {{ address }}!</h2>
+    <h2>Hello, {{ address }}</h2>
     <h3>
-        Balance : {{ balance }}
+        Balance: {{ balance }}
     </h3>
+    <h2>Extra fees: {{ extra_fees }} </h2>
+    <p>When your account is scripted, extra fees will need to be paid. When this isn't scripted, nothing will be added.</p>
     <h3>Transfer $TN:</h3>
     <form id="send_form"><h2>Send:</h2>
         <p>Amount of $TN to send: <input required id="send_amount_tn" type="number"
