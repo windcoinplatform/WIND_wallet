@@ -1,3 +1,20 @@
+    function get(url) {
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            url: url,
+
+        }).done(function (data) { //same as .success (depricated as of 1.8)
+            alert("Data: " + JSON.stringify(data))
+        })
+            .fail(function (jqXHR, textStatus, errorThrown) { //replaces .error
+                console.log("error");
+                console.dir(arguments);
+            })
+    }
+
+
 $(document).ready(function () {
     $("#send_tn").click(function () {
             const amount = $("#send_amount_tn").val();
@@ -72,22 +89,12 @@ $(document).ready(function () {
             })
     }
 
-    function get(url) {
-        $.ajax({
-            type: "GET",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            url: url,
-
-        }).done(function (data) { //same as .success (depricated as of 1.8)
-            alert("Data: " + JSON.stringify(data))
-        })
-            .fail(function (jqXHR, textStatus, errorThrown) { //replaces .error
-                console.log("error");
-                console.dir(arguments);
-            })
-    }
 
 
 })
 ;
+$(document).on("click", "button.cancel_lease", function () {
+        const id = $(this).data("id");
+        get('/state/leases/cancel/' + id)
+
+});

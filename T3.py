@@ -35,6 +35,6 @@ if __name__ == '__main__':
 
     logger.debug('Server started')
     logger.debug('Binding on port '+str(PORT))
-    window = webview.create_window('T3-linux.sh - Turtle Network Wallet', 'http://127.0.0.1:'+str(PORT), text_select=True,
+    window = webview.create_window('T3-ALPHA(NON PRODUCTION) - Turtle Network Wallet', 'http://127.0.0.1:'+str(PORT), text_select=True,
                                    confirm_close=True)
     webview.start(debug=True, gui='qt')
