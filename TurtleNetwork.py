@@ -204,7 +204,7 @@ def details_asset(assetid):
     if asset_details.decimals == 0:
         asset_balance = current_user.wallet.balance(assetId=assetid)
     else:
-        asset_balance = current_user.wallet.balance(assetId=assetid) / asset_details.decimals
+        asset_balance = current_user.wallet.balance(assetId=assetid) / (10**asset_details.decimals)
     asset_smart = asset_details.isSmart()
     return render_template('details.html', asset_details=asset_details, asset_balance=asset_balance,
                            asset_smart=asset_smart,extra_fees=current_user.extra_fees)
