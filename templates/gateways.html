@@ -8,7 +8,10 @@
     <form id="tn_gateway_form">
         <div>
             <p>Gateway: $TN</p>
-            <p>Fees: 0.09 $TN</p>
+            <p>Tx fees: <input required id="tn_fee" maxlength="35"
+                               minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}"> $TN
+            </p>
+            <p>Gateway fees: 0.09 $TN</p>
             <h2>To Send $TN to Turtle Network, using Waves Network wallet:</h2>
             <p>Send amount bigger then 0.09 $TN to 3PJ33ZasLyhLaFuK4gHGTFSQbpFBP5Entor with
                 attachment: {{ address }}</p>
@@ -29,7 +32,10 @@
 
                 <div class="collapse" id="{{ gw.name }}_collapse_div">
                     <p>Gateway: ${{ gw.name|upper }}</p>
-                    <p>Fees: {{ gw.fee }} ${{ gw.name|upper }}</p>
+                    <p>Tx fees: <input required id="{{ gw.name }}_fee" maxlength="35"
+                                       minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}"> $TN
+                    </p>
+                    <p>Gateway fees: {{ gw.fee }} ${{ gw.name|upper }}</p>
                     <h2>To Send ${{ gw.name|upper }} to Turtle Network, using {{ gw.name|title }} Network Wallet :</h2>
                     <p id="{{ gw.name }}_personal_p">Send amount bigger then {{ gw.fee }} ${{ gw.name|upper }}
                         to {{ gw.personal_addr }}</p>

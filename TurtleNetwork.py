@@ -74,13 +74,13 @@ def home():
 @app.route('/gateway/overview')
 @login_required
 def gateways_overview():
-    return render_template('gateways.html', gateways=gateways)
+    return render_template('gateways.html', gateways=gateways,extra_fees=current_user.extra_fees)
 
 
 @app.route('/lease/overview')
 @login_required
 def lease_overview():
-    return render_template('lease.html', address=current_user.wallet.address)
+    return render_template('lease.html', address=current_user.wallet.address,extra_fees=current_user.extra_fees)
 
 
 @app.route('/gateway/<gateway>')
@@ -100,8 +100,9 @@ def gw_send_tn():
     dataJ = json.loads(data.decode())
     dest = dataJ['addr']
     amount = float(dataJ['amount']) * (10 ** 8)
+    fee = float(dataJ['fee']) * (10 ** 8)
     gateway = py.Address(address=get_addr_gateway('gateway', dest))
-    result = current_user.wallet.sendWaves(gateway, int(amount), txFee=FEE)
+    result = current_user.wallet.sendWaves(gateway, int(amount), txFee=int(fee))
     return jsonify(result)
 
 
@@ -112,10 +113,10 @@ def gw_send_currencie(gateway):
     data = request.data
     gateway = py.Address(address=gw.general_addr)
     dataJ = json.loads(data.decode())
-    print(dataJ)
     dest = dataJ['addr']
     amount = float(dataJ['amount']) * (10 ** 8)
-    result = current_user.wallet.sendAsset(gateway, py.Asset(gw.assetId), int(amount), txFee=FEE, attachment=dest)
+    fee = float(dataJ['fee']) * (10 ** 8)
+    result = current_user.wallet.sendAsset(gateway, py.Asset(gw.assetId), int(amount), txFee=int(fee), attachment=dest)
     return jsonify(result)
 
 
@@ -138,7 +139,8 @@ def burn_asset(asset):
     pyAsset = py.Asset(assetId=asset)
     data = json.loads(request.data.decode())
     amount = float(data['amount']) * (10 ** pyAsset.decimals)
-    burn = current_user.wallet.burnAsset(pyAsset, int(amount), txFee=FEE)
+    fee = float(data['fee']) * (10 ** 8)
+    burn = current_user.wallet.burnAsset(pyAsset, int(amount), txFee=int(fee))
     return jsonify(burn)
 
 
@@ -149,7 +151,8 @@ def send_tn():
     amount = float(data['amount']) * (10 ** 8)
     recipient = data['addr']
     attachment = data['attachment']
-    send = current_user.wallet.sendWaves(py.Address(address=recipient), int(amount), attachment=attachment, txFee=FEE)
+    fee = float(data['fee']) * (10 ** 8)
+    send = current_user.wallet.sendWaves(py.Address(address=recipient), int(amount), attachment=attachment, txFee=int(fee))
     return jsonify(send)
 
 
@@ -160,7 +163,8 @@ def send_asset(asset):
     data = json.loads(request.data.decode())
     addr = data['addr']
     amount = float(data['amount']) * (10 ** pyAsset.decimals)
-    send = current_user.wallet.sendAsset(py.Address(addr), pyAsset, int(amount), txFee=FEE)
+    fee = float(data['fee']) * (10 ** 8)
+    send = current_user.wallet.sendAsset(py.Address(addr), pyAsset, int(amount), txFee=int(fee))
     return jsonify(send)
 
 
@@ -200,10 +204,10 @@ def details_asset(assetid):
     if asset_details.decimals == 0:
         asset_balance = current_user.wallet.balance(assetId=assetid)
     else:
-        asset_balance = current_user.wallet.balance(assetId=assetid) / asset_details.decimals
+        asset_balance = current_user.wallet.balance(assetId=assetid) / (10**asset_details.decimals)
     asset_smart = asset_details.isSmart()
     return render_template('details.html', asset_details=asset_details, asset_balance=asset_balance,
-                           asset_smart=asset_smart)
+                           asset_smart=asset_smart,extra_fees=current_user.extra_fees)
 
 
 @app.route('/login', methods=['POST'], strict_slashes=False)

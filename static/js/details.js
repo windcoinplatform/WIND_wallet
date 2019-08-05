@@ -1,25 +1,26 @@
-    function get(url) {
-        $.ajax({
-            type: "GET",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            url: url,
+function get(url) {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        url: url,
 
-        }).done(function (data) { //same as .success (depricated as of 1.8)
-            alert("Data: " + JSON.stringify(data))
+    }).done(function (data) { //same as .success (depricated as of 1.8)
+        alert("Data: " + JSON.stringify(data))
+    })
+        .fail(function (jqXHR, textStatus, errorThrown) { //replaces .error
+            console.log("error");
+            console.dir(arguments);
         })
-            .fail(function (jqXHR, textStatus, errorThrown) { //replaces .error
-                console.log("error");
-                console.dir(arguments);
-            })
-    }
+}
 
 
 $(document).ready(function () {
     $("#send_tn").click(function () {
             const amount = $("#send_amount_tn").val();
             const addr = $("#send_addr_tn").val();
-            const data = {amount: parseFloat(amount), addr: addr, attachment: ''};
+            const fee = $("#send_fee_tn").val();
+            const data = {amount: parseFloat(amount), addr: addr, attachment: '', fee: parseFloat(fee)};
             send_tn(data);
 
         }
@@ -27,7 +28,8 @@ $(document).ready(function () {
     $("#lease_tn").click(function () {
             const amount = $("#lease_amount_tn").val();
             const addr = $("#lease_addr_tn").val();
-            const data = {amount: parseFloat(amount), addr: addr};
+            const fee = $("#lease_fee_tn").val();
+            const data = {amount: parseFloat(amount), addr: addr, fee: parseFloat(fee)};
             lease_tn(data);
 
         }
@@ -35,9 +37,10 @@ $(document).ready(function () {
     $("#send").click(function () {
             const amount = $("#send_amount").val();
             const addr = $("#send_addr").val();
+            const fee = $("#send_fee").val();
             const asset = $(this).data("asset");
 
-            const data = {amount: parseFloat(amount), addr: addr};
+            const data = {amount: parseFloat(amount), addr: addr, fee: parseFloat(fee)};
             send_tx(data, asset);
 
         }
@@ -45,7 +48,10 @@ $(document).ready(function () {
     $("#burn").click(function () {
             const amount = $("#burn_amount").val();
             const asset = $(this).data("asset");
-            const data = {amount: parseFloat(amount)};
+            const fee = $("#burn_fee").val();
+            const data = {amount: parseFloat(amount), fee: parseFloat(fee)};
+
+
             send_burn(data, asset);
 
         }
@@ -90,11 +96,10 @@ $(document).ready(function () {
     }
 
 
-
 })
 ;
 $(document).on("click", "button.cancel_lease", function () {
-        const id = $(this).data("id");
-        get('/state/leases/cancel/' + id)
+    const id = $(this).data("id");
+    get('/state/leases/cancel/' + id)
 
 });
