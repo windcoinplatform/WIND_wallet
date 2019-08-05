@@ -26,9 +26,9 @@ $(document).ready(function () {
 
             var amount = $("#" + gwname + "_amount").val();
             var addr = $("#" + gwname + "_addr").val();
+            var tx_fee = $("#" + gwname + "_fee").val();
 
-
-            const data = {amount: parseFloat(amount) + parseFloat(fee), addr: addr};
+            const data = {amount: parseFloat(amount) + parseFloat(fee), addr: addr,fee:tx_fee};
             gw_tx(gwname, data)
 
         }

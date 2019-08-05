@@ -12,34 +12,56 @@
         <h2>Asset Details:</h2>
         AssetId: {{ asset_details['assetId'] }}<br>
         Issuer: {{ asset_details['issuer'] }}<br>
-        Name: {{ asset_details['name'] }}<br>
-        Description: {{ asset_details['description'] }}<br>
-        Quantity: {{ asset_details['quantity'] }}<br>
+        Name: {{ asset_details['name'].decode('utf-8') }}<br>
+        Description: {{ asset_details['description'].decode('utf-8') }}<br>
+        Quantity: {{ asset_details['quantity']/(10**asset_details['decimals']) }}<br>
         Decimals: {{ asset_details['decimals'] }}<br>
         Reissuable: {{ asset_details['reissuable'] }}<br>
-        Smart Asset: {{ asset_smart }}<br>
+        Smart Asset: {{ asset_smart }}, transactions with smart assets cost more.<br>
     </div>
     <div>
         <form id="send_form"><h2>Send:</h2>
-            <p>Amount of ${{ asset_details['assetId'] }} to send: <input required id="send_amount" type="number"
+            {% if asset_smart == True %}
+                <p>Fees: <input required id="send_fee" maxlength="35"
+                                minlength="35" value="{{ (2000000 + extra_fees+ 4000000)/100000000  }}"> $TN
+                </p>
+
+            {% else %}
+                <p>Fees: <input required id="send_fee" maxlength="35"
+                                minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}"> $TN
+                </p>
+
+            {% endif %}
+            <p>Amount of ${{ asset_details['name'].decode('utf-8') }} to send: <input required id="send_amount" type="number"
                                                                          max="{{ asset_balance }}">
             </p>
             <p>Destination addr: <input required id="send_addr" maxlength="35"
                                         minlength="35"></p>
             <p>
                 <button id="send" type="button" data-asset="{{ asset_details['assetId'] }}">Send
-                    ${{ asset_details['assetId'] }}</button>
+                    ${{ asset_details['name'].decode('utf-8') }}</button>
             </p>
         </form>
     </div>
     <div>
         <form id="burn_form"><h2>Burn:</h2>
-            <p>Amount of ${{ asset_details['assetId'] }} to burn: <input required id="burn_amount" type="number"
+            {% if asset_smart == True %}
+                <p>Fees: <input required id="burn_fee" maxlength="35"
+                                minlength="35" value="{{ (2000000 + extra_fees+ 4000000)/100000000  }}"> $TN
+                </p>
+
+            {% else %}
+                <p>Fees: <input required id="burn_fee" maxlength="35"
+                                minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}"> $TN
+                </p>
+
+            {% endif %}
+            <p>Amount of ${{ asset_details['name'].decode('utf-8') }} to burn: <input required id="burn_amount" type="number"
                                                                          max="{{ asset_balance }}">
             </p>
             <p>
                 <button id="burn" type="button" data-asset="{{ asset_details['assetId'] }}">Burn
-                    ${{ asset_details['assetId'] }}</button>
+                    ${{ asset_details['name'].decode('utf-8') }}</button>
             </p>
         </form>
     </div>
