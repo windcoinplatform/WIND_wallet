@@ -1,0 +1,52 @@
+.navbar-nav {
+background-color: green;}
+
+.container {
+  background-color: green;
+  border-radius: 5px 5px 5px 5px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 2px;
+  
+}
+
+.row {
+    padding: 100px;
+    background-color: #d3d3d3;
+    border-radius: 15px;
+    margin-left: -15px;
+}
+
+.row-height {
+    height: 200px;
+    text-align: center;
+    padding-top: 25px;
+}
+
+.col-md-4 {
+    border-radius: 15px 15px 15px 15px;
+    background-color: #f2f2f2;
+    width: 960px;
+    border-radius: 5px 5px 5px 5px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding: 2px;
+}
+
+.col-md-2 {
+    border-radius: 0 15px 15px 0;
+}
+
+.col-sm-8 {
+    background-color: #f5f3f3;
+     text-align: right;
+}
+
+.card-deck {
+margin-left: 10px
+margin-right: 10px;;
+}
