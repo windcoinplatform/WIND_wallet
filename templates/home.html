@@ -13,7 +13,7 @@
    
 <div class="container">
  
-	<h2>MYWALLET <span class="badge badge-secondary">{{ address }}</span></h2></div>
+	<p>MYWALLET</p><h2><span class="badge badge-secondary">{{ address }}</span></h2></div>
 	<div class="col-6 col-md-4"><span>Balance: {{ balance }}</span></div></div>
 	<div class="col-12 col-md-8">.col-12 .col-md-8</div>
 </div>
@@ -21,7 +21,7 @@
 
 <div class="container">
   
-    <div class="col-6 col-md-4"><span>TRANSFER $TN</span>
+    <div class="col-7 col-md-6"><span><h5>TRANSFER $TN<h5></span>
  
  <form id="send_form">
   
@@ -42,33 +42,46 @@
 </form>      
     </div>
     
+        
+    <div class="col-6 col-md-4"><span><h2>Extra fees: {{ extra_fees }} </h2></span></div>
+    
+
+    <div class="col-6 col-md-4"><span><p>When your account is scripted, extra fees will need to be paid. When this isn't scripted, nothing will be added.</p></span></div>
     
     
-    <div class="col-6 col-md-4"><span>col-6 col-md-4</span></div>
-    <div class="col-6 col-md-4"><span>col-6 col-md-4</span></div>
-    <div class="col-6 col-md-4"><span>col-6 col-md-4</span></div>
+    
+    <div class="col-6 col-md-4"><span>StayConnected</span>
+    
+    <div class="modal-media">
+      <a href="https://t.me/TurtleNetwork" target="_blank"><img class="modal-media-img" src="static/img/telegram_icon.png" /></a>
+      <a href="https://twitter.com/TurtleNetworkTN" target="_blank"><img class="modal-media-img" src="static/img/twitter_icon.png" /></a>
+      <a href="https://www.facebook.com/TurtleNetworkTN/" target="_blank"><img class="modal-media-img" src="static/img/facebook_icon.png" /></a>
+      <a href="https://www.youtube.com/channel/UCzbSukzGRKxpNov6yp4275w" target="_blank"><img class="modal-media-img" src="static/img/youtube_icon.png" /></a>
+      <a href="https://www.instagram.com/turtlenetworktn/" target="_blank"><img class="modal-media-img" src="static/img/instagram_icon.png" /></a>
+      <a href="https://www.reddit.com/r/TurtleNetwork/" target="_blank"><img class="modal-media-img" src="static/img/reddit_icon.png" /></a>
+      <a href="https://github.com/BlackTurtle123/TurtleNetwork" target="_blank"><img class="modal-media-img" src="static/img/github_icon.png" /></a>
+      <a href="https://github.com/BlackTurtle123/TurtleNetwork/wiki" target="_blank"><img class="modal-media-img" src="static/img/git-wiki_icon.png" /></a>
+      <a href="https://bitcointalk.org/index.php?topic=5138663" target="_blank"><img class="modal-media-img" src="static/img/bitcointalk_icon.png" /></a>
+      <a href="https://www.linkedin.com/company/blackturtle-bvba" target="_blank"><img class="modal-media-img" src="static/img/in_icon.png" /></a>
+    </div>
+    
+    </div>
  
 </div>
 
-   
-      
-   
-    <h2>Extra fees: {{ extra_fees }} </h2>
-    <p>When your account is scripted, extra fees will need to be paid. When this isn't scripted, nothing will be added.</p>
-
-    
-
+       
     
 <div class="container">
   
     <div class="card-deck">
   <div class="card">
-    <img src="..." class="card-img-top" alt="...">
+    <img src="static/img/tabs-iconset-history.png" class="img-fluid" alt="Responsive image">
     <div class="card-body">
       <h5 class="card-title">Transactions History</h5>
       <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
     <button href="#" class="btn btn-primary" data-addr={{ address }} id="tx_load">Show tx history</button>
->>>>>>> 82b5c11daa9430dad9301e6fb2d8b45fb6757b72
+    
+     <!--82b5c11daa9430dad9301e6fb2d8b45fb6757b72-->
 
     <div class="collapse" id="tx_collapse_div"></div>
     </div>
@@ -78,7 +91,7 @@
       
       
   <div class="card">
-    <img src="..." class="card-img-top" alt="...">
+    <img src="static/img/tabs-iconset-leasing.png" class="img-fluid" alt="Responsive image">
     <div class="card-body">
       <h5 class="card-title">Active Leases</h5>
       <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
