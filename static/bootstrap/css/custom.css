@@ -76,11 +76,18 @@
 	background-color: #f5f3f3;
 }
 
-.img-fluid {
-	max-width: 50%;
-	margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    float: right; 
+.img-card {
+	max-width: 60px;
+	height: auto;
+	margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px; 
 }
+
+.socialmedia {
+	max-width: 25px;
+	height: auto;
+	text-align:center;	
+}
+
