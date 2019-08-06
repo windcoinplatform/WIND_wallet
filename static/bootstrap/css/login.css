@@ -22,7 +22,7 @@ h2 {
     font-weight: 600;
     text-transform: uppercase;
     display: inline-block;
-    margin: 40px 8px 10px 8px;
+    margin: 10px 8px 10px 8px;
     color: #cccccc;
 }
 
@@ -35,30 +35,31 @@ h2 {
     justify-content: center;
     width: 100%;
     min-height: 100%;
-    padding: 20px;
+    padding: 15px;
 }
 
 #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
+    border: 1px solid #d3d3d3;
     background: #fff;
-    padding: 30px;
+    padding: 15px;
     width: 90%;
     max-width: 450px;
     position: relative;
-    padding: 0px;
-    -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
-    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
     text-align: center;
+    margin-top: 20px;
 }
 
 #formFooter {
     background-color: #f6f6f6;
-    border-top: 1px solid #dce8f1;
-    padding: 25px;
+    border-bottom: 1px solid #dce8f1;
+    padding: 5px;
     text-align: center;
     -webkit-border-radius: 0 0 10px 10px;
-    border-radius: 0 0 10px 10px;
+    border-radius: 5px 5px 5px 5px;
 }
 
 /* TABS */
@@ -75,7 +76,7 @@ h2.active {
 /* FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset] {
-    background-color: #56baed;
+    background-color: #8bcf00;
     border: none;
     color: white;
     padding: 15px 80px;
@@ -84,11 +85,11 @@ input[type=button], input[type=submit], input[type=reset] {
     display: inline-block;
     text-transform: uppercase;
     font-size: 13px;
-    -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
-    box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    /*webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);*/
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
-    margin: 5px 20px 40px 20px;
+    margin: 20px 20px 40px 20px;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
@@ -97,7 +98,8 @@ input[type=button], input[type=submit], input[type=reset] {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
-    background-color: #39ace7;
+    background-color: #fff;
+    color: black;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active {
@@ -135,7 +137,7 @@ input[type=text]:focus {
 }
 
 input[type=text]:placeholder {
-    color: #cccccc;
+    color: #cccccc; 
 }
 
 /* ANIMATIONS */
