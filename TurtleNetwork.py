@@ -121,7 +121,7 @@ def gw_send_currencie(gateway):
     dest = json_data['addr']
     amount = float(json_data['amount']) * (10 ** 8)
     fee = float(json_data['fee']) * (10 ** 8)
-    result = current_user.wallet.sendAsset(gateway, py.Asset(gw.assetId), int(amount), txFee=int(fee), attachment=dest)
+    result = current_user.wallet.sendAsset(gateway, py.Asset(gw.asset_id), int(amount), txFee=int(fee), attachment=dest)
     return jsonify(result)
 
 
