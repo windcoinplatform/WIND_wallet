@@ -32,7 +32,7 @@ class BasicTests(unittest.TestCase):
         pass
 
     ###############
-    #### tests ####
+    #### test ####
     ###############
 
     def test_main_login_page(self):
