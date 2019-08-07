@@ -41,6 +41,10 @@ steps:
     testResultsFiles: '**/test-*.xml'
     testRunTitle: 'Publish test results for Python $(python.version)'
 
+- task: CmdLine@2
+  inputs:
+    script: 'sed -i ''s/4.5.1/1/g'' coverage.xml'
+    
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'test'
