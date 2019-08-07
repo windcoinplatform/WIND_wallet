@@ -1,5 +1,5 @@
 import unittest
-from TurtleNetwork import app
+from TurtleNetwork import app, get_free_port
 
 
 class BasicTests(unittest.TestCase):
@@ -34,6 +34,10 @@ class BasicTests(unittest.TestCase):
     ###############
     #### tests ####
     ###############
+
+    def test_get_free_port(self):
+        port = get_free_port()
+        self.assertGreater(port,0)
 
     def test_login(self):
         response = self.app.get('/', follow_redirects=True)

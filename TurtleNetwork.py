@@ -20,8 +20,6 @@ def resource_path(relative_path):
 
 FEE = 2000000
 
-PORT = 4000
-
 if getattr(sys, 'frozen', False):
     template_folder = resource_path('templates')
     static_folder = resource_path('static')
