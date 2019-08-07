@@ -96,10 +96,10 @@ def gateways_detail(gateway):
 @login_required
 def gw_send_tn():
     data = request.data
-    dataJ = json.loads(data.decode())
-    dest = dataJ['addr']
-    amount = float(dataJ['amount']) * (10 ** 8)
-    fee = float(dataJ['fee']) * (10 ** 8)
+    json_data = json.loads(data.decode())
+    dest = json_data['addr']
+    amount = float(json_data['amount']) * (10 ** 8)
+    fee = float(json_data['fee']) * (10 ** 8)
     gateway = py.Address(address=get_addr_gateway('gateway', dest))
     result = current_user.wallet.sendWaves(gateway, int(amount), txFee=int(fee))
     return jsonify(result)
@@ -111,10 +111,10 @@ def gw_send_currencie(gateway):
     gw: Gateway = next((x for x in gateways if x.name == gateway), None)
     data = request.data
     gateway = py.Address(address=gw.general_addr)
-    dataJ = json.loads(data.decode())
-    dest = dataJ['addr']
-    amount = float(dataJ['amount']) * (10 ** 8)
-    fee = float(dataJ['fee']) * (10 ** 8)
+    json_data = json.loads(data.decode())
+    dest = json_data['addr']
+    amount = float(json_data['amount']) * (10 ** 8)
+    fee = float(json_data['fee']) * (10 ** 8)
     result = current_user.wallet.sendAsset(gateway, py.Asset(gw.assetId), int(amount), txFee=int(fee), attachment=dest)
     return jsonify(result)
 
@@ -135,11 +135,11 @@ def login():
 @app.route('/assets/burn/<asset>', methods=['POST'], strict_slashes=False)
 @login_required
 def burn_asset(asset):
-    pyAsset = py.Asset(assetId=asset)
+    py_asset = py.Asset(assetId=asset)
     data = json.loads(request.data.decode())
-    amount = float(data['amount']) * (10 ** pyAsset.decimals)
+    amount = float(data['amount']) * (10 ** py_asset.decimals)
     fee = float(data['fee']) * (10 ** 8)
-    burn = current_user.wallet.burnAsset(pyAsset, int(amount), txFee=int(fee))
+    burn = current_user.wallet.burnAsset(py_asset, int(amount), txFee=int(fee))
     return jsonify(burn)
 
 
@@ -159,12 +159,12 @@ def send_tn():
 @app.route('/assets/send/<asset>', methods=['POST'], strict_slashes=False)
 @login_required
 def send_asset(asset):
-    pyAsset = py.Asset(assetId=asset)
+    py_asset = py.Asset(assetId=asset)
     data = json.loads(request.data.decode())
     addr = data['addr']
-    amount = float(data['amount']) * (10 ** pyAsset.decimals)
+    amount = float(data['amount']) * (10 ** py_asset.decimals)
     fee = float(data['fee']) * (10 ** 8)
-    send = current_user.wallet.sendAsset(py.Address(addr), pyAsset, int(amount), txFee=int(fee))
+    send = current_user.wallet.sendAsset(py.Address(addr), py_asset, int(amount), txFee=int(fee))
     return jsonify(send)
 
 
