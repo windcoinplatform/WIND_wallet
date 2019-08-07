@@ -32,15 +32,15 @@ class BasicTests(unittest.TestCase):
         pass
 
     ###############
-    #### test ####
+    #### tests ####
     ###############
 
-    def test_main_login_page(self):
+    def test_main_page(self):
         response = self.app.get('/', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Log in', response.data)
 
-    def test_login_with_seed(self):
+    def test_valid_user_registration(self):
         response = self.login('a', '',)
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Leasing', response.data)
