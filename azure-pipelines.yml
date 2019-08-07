@@ -46,3 +46,10 @@ steps:
     codeCoverageTool: Cobertura
     summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.xml'
     reportDirectory: '$(System.DefaultWorkingDirectory)/**/htmlcov'
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'azuredevops'
+    organization: 'blackturtle123'
+    scannerMode: 'CLI'
+    configMode: 'file'
