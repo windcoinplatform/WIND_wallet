@@ -76,6 +76,12 @@ def gateways_overview():
     return render_template('gateways.html', gateways=gateways, extra_fees=current_user.extra_fees)
 
 
+@app.route('/dex')
+@login_required
+def dex_overview():
+    return render_template('dex.html')
+
+
 @app.route('/lease/overview')
 @login_required
 def lease_overview():
