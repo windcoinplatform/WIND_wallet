@@ -244,7 +244,7 @@ def do_admin_login():
                 0.003, 'syscoin', 'HBxBjymrCC8TuL8rwCLr2vakDEq4obqkMwYYPEZtTauA', 'syscoingw'))
     gateways.append(
         Gateway('----------', '3JsenfjhSNRQsRZMXrkAtJMfjyzxrzSeCKr',
-                0.0003, 'bitcoin cash', 'Fr2kNhe7XR3E16W7Mfh7NhNcsQWLXx3hSLjoFgpbFsNj', 'bchgw'))
+                0.0003, 'BCH', 'Fr2kNhe7XR3E16W7Mfh7NhNcsQWLXx3hSLjoFgpbFsNj', 'bchgw'))
     gateways.append(
         Gateway('----------', '3Jve26ckLkBivDbryLzpvoLyoRfxUaAE7tE',
                 9, 'dogecoin', 'HDeemVktm2Z68RMkyA7AexhpaCqot1By7adBzaN9j5Xg', 'dogegw'))
