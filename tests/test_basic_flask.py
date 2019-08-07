@@ -69,6 +69,3 @@ class BasicTests(unittest.TestCase):
         self.assertIn(b'Gateways', response.data)
         self.assertIn(b'Logout', response.data)
 
-
-if __name__ == "__main__":
-    unittest.main()
