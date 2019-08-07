@@ -4,3 +4,8 @@ build/
 *.spec
 __pycache__/
 .DS_Store
+.coverage
+junit/
+htmlcov/
+.coverage
+coverage.xml
