@@ -1,4 +1,4 @@
-*
+/*
     DEMO STYLE
 */
 
@@ -63,7 +63,7 @@ span {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
+    background: #8bcf00;
     color: #fff;
     transition: all 0.3s;
 }
@@ -280,13 +280,15 @@ a.article:hover {
 
 
 
-/*-------------------------------------------------------------------*/
+/*-------------------------------------------------------------------
 
 .navbar-nav {
 	background-color: #8bcf00;
 	border-radius: 5px 5px 5px 5px;
 	padding: 10px;
 }
+
+------------*/
 
 .container {
 	background-color: #8bcf00;
