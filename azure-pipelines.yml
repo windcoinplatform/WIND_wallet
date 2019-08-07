@@ -43,7 +43,7 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'sed -i ''s/4.5.1/1/g'' coverage.xml'
+    script: 'sed -i ''s/4.5.4/1/g'' coverage.xml'
     
 - task: SonarCloudPrepare@1
   inputs:
