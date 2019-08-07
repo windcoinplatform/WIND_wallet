@@ -39,11 +39,24 @@ class BasicTests(unittest.TestCase):
         response = self.app.get('/', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Log in', response.data)
+        self.assertIn(b'Seed', response.data)
+        self.assertIn(b'Private', response.data)
 
-    def test_valid_user_registration(self):
-        response = self.login('a', '',)
+    def test_valid_user_seed(self):
+        response = self.login('a', '', )
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Leasing', response.data)
+        self.assertIn(b'Portfolio', response.data)
+        self.assertIn(b'Gateways', response.data)
+        self.assertIn(b'Logout', response.data)
+
+    def test_valid_user_pk(self):
+        response = self.login('', '5LQ9aPY7St9Aw2igohPcesvWzBNkiN9BRn6UXW14nqvn')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Leasing', response.data)
+        self.assertIn(b'Portfolio', response.data)
+        self.assertIn(b'Gateways', response.data)
+        self.assertIn(b'Logout', response.data)
 
 
 if __name__ == "__main__":
