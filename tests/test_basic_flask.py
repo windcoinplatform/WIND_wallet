@@ -35,8 +35,15 @@ class BasicTests(unittest.TestCase):
     #### tests ####
     ###############
 
-    def test_main_page(self):
+    def test_login(self):
         response = self.app.get('/', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Log in', response.data)
+        self.assertIn(b'Seed', response.data)
+        self.assertIn(b'Private', response.data)
+
+    def test_logout(self):
+        response = self.app.get('/logout', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Log in', response.data)
         self.assertIn(b'Seed', response.data)
