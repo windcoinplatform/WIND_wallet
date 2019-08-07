@@ -29,7 +29,7 @@ steps:
 - script: |
     pip install pytest pytest-azurepipelines
     pip install pytest-cov
-    pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+    pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=TurtleNetwork --cov-report=xml --cov-report=html
   displayName: 'pytest'
 
 - task: PublishTestResults@2
