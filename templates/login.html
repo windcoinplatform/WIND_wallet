@@ -14,10 +14,13 @@
 
     {% else %}
         <div class="wrapper fadeInDown">
+        
+       <div> <img src="static/img/logo_Turtle2.png"  class="login_logo" style="max-width: 30%" alt="..."></div>
+        
             <div id="formContent">
                 <form action="/login" method="POST">
-                    <input type="seed" name="seed" class="fadeIn first" placeholder="Seed" value="">
-                    OR
+                
+                    <input type="seed" name="seed" class="fadeIn first" placeholder="Seed" value=""><br><h2>OR</h2></br>
                     <!--                    <input type="password" name="password" class="fadeIn second" placeholder="Password"> --->
                     <input type="pk" name="pk" class="fadeIn first" placeholder="Private Key" value="">
                     <!--                    <input type="password" name="password" class="fadeIn second" placeholder="Password"> --->
