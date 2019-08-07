@@ -41,6 +41,12 @@ steps:
     testResultsFiles: '**/test-*.xml'
     testRunTitle: 'Publish test results for Python $(python.version)'
 
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: 'coverage.xml'
+    reportDirectory: 'htmlcov'
+
 - task: CmdLine@2
   inputs:
     script: 'sed -i ''s/4.5.4/1/g'' coverage.xml'
