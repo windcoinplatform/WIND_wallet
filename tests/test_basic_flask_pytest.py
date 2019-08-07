@@ -38,11 +38,12 @@ def test_main_login_page(test_client):
 
 
 def test_login_with_seed(test_client):
-    response = login(test_client,'a', '')
+    response = login(test_client, 'a', '')
     assert response.status_code == 200
     assert b'Leasing' in response.data
 
+
 def test_login_with_pk(test_client):
-    response = login(test_client,'', '5LQ9aPY7St9Aw2igohPcesvWzBNkiN9BRn6UXW14nqvn')
+    response = login(test_client, '', '5LQ9aPY7St9Aw2igohPcesvWzBNkiN9BRn6UXW14nqvn')
     assert response.status_code == 200
     assert b'Leasing' in response.data
