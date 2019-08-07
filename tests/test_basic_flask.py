@@ -19,7 +19,7 @@ class BasicTests(unittest.TestCase):
     #### setup and teardown ####
     ############################
 
-    # executed prior to each test
+    # executed prior to each tests
     def setUp(self):
         app.config['TESTING'] = True
         app.config['WTF_CSRF_ENABLED'] = False
@@ -27,7 +27,7 @@ class BasicTests(unittest.TestCase):
         self.app = app.test_client()
         self.assertEqual(app.debug, False)
 
-    # executed after each test
+    # executed after each tests
     def tearDown(self):
         pass
 
