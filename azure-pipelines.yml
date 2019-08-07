@@ -46,10 +46,6 @@ steps:
     codeCoverageTool: 'Cobertura'
     summaryFileLocation: 'coverage.xml'
     reportDirectory: 'htmlcov'
-
-- task: CmdLine@2
-  inputs:
-    script: 'sed -i ''s/4.5.4/1/g'' coverage.xml'
     
 - task: SonarCloudPrepare@1
   inputs:
