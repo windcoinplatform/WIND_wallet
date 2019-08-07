@@ -1,15 +1,15 @@
 import json
-import os
 import sys
+import os
 
 import pywaves as py
 import requests
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
-from python.Gateway import Gateway
-from python.Token import Token
-from python.User import User
+from app.models.Gateway import Gateway
+from app.models.Token import Token
+from app.models.User import User
 
 
 def resource_path(relative_path):
@@ -17,8 +17,6 @@ def resource_path(relative_path):
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_path, relative_path)
 
-
-FEE = 2000000
 
 if getattr(sys, 'frozen', False):
     template_folder = resource_path('templates')
@@ -29,13 +27,15 @@ else:
 
 app.secret_key = "TurtleNetwork"
 
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
+FEE = 2000000
+
 NODE = 'https://privatenode.blackturtle.eu'
 py.setNode(NODE, 'TN', 'L')
 py.setMatcher('https://privatematcher.blackturtle.eu')
 gateways = []
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
 
 def get_addr_gateway(url, addr):
@@ -66,19 +66,20 @@ def portfolio():
 @login_required
 def home():
     return render_template('home.html', address=current_user.wallet.address,
-                           balance=float(current_user.wallet.balance()) / 10 ** 8, extra_fees=current_user.extra_fees/ 10 ** 8)
+                           balance=float(current_user.wallet.balance()) / 10 ** 8,
+                           extra_fees=current_user.extra_fees / 10 ** 8)
 
 
 @app.route('/gateway/overview')
 @login_required
 def gateways_overview():
-    return render_template('gateways.html', gateways=gateways,extra_fees=current_user.extra_fees)
+    return render_template('gateways.html', gateways=gateways, extra_fees=current_user.extra_fees)
 
 
 @app.route('/lease/overview')
 @login_required
 def lease_overview():
-    return render_template('lease.html', address=current_user.wallet.address,extra_fees=current_user.extra_fees)
+    return render_template('lease.html', address=current_user.wallet.address, extra_fees=current_user.extra_fees)
 
 
 @app.route('/gateway/<gateway>')
@@ -150,7 +151,8 @@ def send_tn():
     recipient = data['addr']
     attachment = data['attachment']
     fee = float(data['fee']) * (10 ** 8)
-    send = current_user.wallet.sendWaves(py.Address(address=recipient), int(amount), attachment=attachment, txFee=int(fee))
+    send = current_user.wallet.sendWaves(py.Address(address=recipient), int(amount), attachment=attachment,
+                                         txFee=int(fee))
     return jsonify(send)
 
 
@@ -202,10 +204,10 @@ def details_asset(assetid):
     if asset_details.decimals == 0:
         asset_balance = current_user.wallet.balance(assetId=assetid)
     else:
-        asset_balance = current_user.wallet.balance(assetId=assetid) / (10**asset_details.decimals)
+        asset_balance = current_user.wallet.balance(assetId=assetid) / (10 ** asset_details.decimals)
     asset_smart = asset_details.isSmart()
     return render_template('details.html', asset_details=asset_details, asset_balance=asset_balance,
-                           asset_smart=asset_smart,extra_fees=current_user.extra_fees)
+                           asset_smart=asset_smart, extra_fees=current_user.extra_fees)
 
 
 @app.route('/login', methods=['POST'], strict_slashes=False)
