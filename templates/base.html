@@ -19,6 +19,9 @@
     {% block head %}{% endblock %}
 </head>
 <body>
+
+<!--
+
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <ul class="navbar-nav">
         <a class="navbar-brand" href="#">Turtle Network</a>
@@ -42,6 +45,8 @@
     </ul>
 </nav>
 
+-->
+
 <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" id="darkSwitch">
             <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
@@ -54,75 +59,61 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Bootstrap Sidebar</h3>
-                <strong>BS</strong>
+                <h3>TURTLE NETWORK</h3>
+                <strong>TN</strong>
             </div>
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <li>
+                    <a href="/">
                         <i class="fas fa-home"></i>
                         Home
                     </a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
-                    </ul>
                 </li>
-                <li>
-                    <a href="#">
+                    <li>
+                    <a href="/portfolio">
                         <i class="fas fa-briefcase"></i>
-                        About
-                    </a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-copy"></i>
-                        Pages
-                    </a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-image"></i>
                         Portfolio
                     </a>
+                    </li>
+                    <li>
+                    <a href="/gateway/overview">
+                        <i class="fas fa-copy"></i>
+                        Gateways
+                    </a>
+               </li>
+                    <li>
+                    <a href="/lease/overview">
+                        <i class="fas fa-copy"></i>
+                        Leasing
+                    </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-question"></i>
-                        FAQ
+                    <li>
+                    <a href="/dex">
+                        <i class="fas fa-image"></i>
+                        Dex
                     </a>
                 </li>
                 <li>
+                    <a href="/logout">
+                        <i class="fas fa-question"></i>
+                        logout
+                    </a>
+                 </li>
+                 <li>
                     <a href="#">
                         <i class="fas fa-paper-plane"></i>
                         Contact
                     </a>
                 </li>
-            </ul>
-
+            </li>
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                    <a href="#" class="download">Download or link?</a>
                 </li>
                 <li>
-                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                    <a href="#" class="download">Download or link?</a>
                 </li>
             </ul>
         </nav>
@@ -135,11 +126,31 @@
 
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-left"></i>
-                        <span>Toggle Sidebar</span>
+                        <span></span>
                     </button>
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
+
+
+
+                    <div>
+ 
+      <a href="https://t.me/TurtleNetwork" target="_blank"><img class="socialmedia" src="static/img/telegram_icon.png" /></a>
+      <a href="https://twitter.com/TurtleNetworkTN" target="_blank"><img class="socialmedia" src="static/img/twitter_icon.png" /></a>
+      <a href="https://www.facebook.com/TurtleNetworkTN/" target="_blank"><img class="socialmedia" src="static/img/facebook_icon.png" /></a>
+      <a href="https://www.youtube.com/channel/UCzbSukzGRKxpNov6yp4275w" target="_blank"><img class="socialmedia" src="static/img/youtube_icon.png" /></a>
+      <a href="https://www.instagram.com/turtlenetworktn/" target="_blank"><img class="socialmedia" src="static/img/instagram_icon.png" /></a>
+      <a href="https://www.reddit.com/r/TurtleNetwork/" target="_blank"><img class="socialmedia" src="static/img/reddit_icon.png" /></a>
+      <a href="https://github.com/BlackTurtle123/TurtleNetwork" target="_blank"><img class="socialmedia" src="static/img/github_icon.png" /></a>
+      <a href="https://github.com/BlackTurtle123/TurtleNetwork/wiki" target="_blank"><img class="socialmedia" src="static/img/git-wiki_icon.png" /></a>
+      <a href="https://bitcointalk.org/index.php?topic=5138663" target="_blank"><img class="socialmedia" src="static/img/bitcointalk_icon.png" /></a>
+      <a href="https://www.linkedin.com/company/blackturtle-bvba" target="_blank"><img class="socialmedia" src="static/img/in_icon.png" /></a>
+    
+    </div>
+
+
+                <!--
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
@@ -157,6 +168,8 @@
                             </li>
                         </ul>
                     </div>
+                -->
+
                 </div>
             </nav>
 
