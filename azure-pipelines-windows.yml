@@ -12,13 +12,13 @@ trigger:
 pool:
   name: Hosted VS2017
 variables:
-  python.version: '3.6, 3.7'
+  python.version: '2.7, 3.5, 3.6, 3.7'
 
 steps:
 - task: UsePythonVersion@0
+  displayName: 'Use Python $(python.version)'
   inputs:
     versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
 
 - script: |
     python -m pip install --upgrade pip
