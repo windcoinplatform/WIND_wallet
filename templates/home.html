@@ -20,7 +20,9 @@
 
 <div class="row">
 <div class="col-md-4"><span><h5>TRANSFER $TN</h5></span></div>
+
   <div class="col-md-4 offset-md-4"><span><h5>BALANCE: {{ balance }}</h5></span></div>
+
  </div>
 
  <form id="send_form">
@@ -32,7 +34,9 @@
       <input required id="send_addr_tn" maxlength="35" minlength="35" class="form-control" placeholder="Destination Address">
     </div>
     
+
     <div class="row">
+
     <div class="col-7 col-md-4">
      <input required id="send_fee_tn" maxlength="35" minlength="35" value="{{ (2000000 )/100000000+ extra_fees }}" class="form-control" placeholder="Fees">
     </div>
@@ -49,6 +53,7 @@
     </div>
     
 
+
 <!--    ----------------------------------------------------------------------------------------------------------------------------> 
 
 
@@ -64,6 +69,7 @@
      <div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div>
   </div>
 </div>
+   
 
 
 <div class="card border-light mb-3" style="max-width: 60rem;">
@@ -78,7 +84,9 @@
 </div>
 
 </div>
+
 <!--    ----------------------------------------------------------------------------------------------------------------------------> 
+
     
     
 {% endblock %}
