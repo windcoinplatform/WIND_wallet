@@ -240,14 +240,9 @@ a.article:hover {
         font-size: 1.3em;
     }
     #sidebar ul ul a {
-        padding: 10px !important;
-        
+        padding: 10px !important;    
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> upstream/master
     /*
     #sidebar {
         margin-left: 0;
@@ -298,19 +293,12 @@ a.article:hover {
 .container {
 	background-color: #fff;
 	border-radius: 5px 5px 5px 5px;
-<<<<<<< HEAD
     border-right: 2px solid #f6f6f6;
-=======
->>>>>>> upstream/master
 	margin-top: 20px;	
 	margin-bottom: 20px;
 	padding: 5px;
 	-webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.3);
-<<<<<<< HEAD
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.5);
-=======
-    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
->>>>>>> upstream/master
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -382,7 +370,6 @@ a.article:hover {
     border-radius: 0 15px 15px 0;
 }
 */
-<<<<<<< HEAD
 
 .col-9 {
     background-color: #f5f3f3;
@@ -396,21 +383,6 @@ a.article:hover {
     padding: 10px;
 }
 
-=======
-
-.col-9 {
-    background-color: #f5f3f3;
-    text-align: center;
-    width: 960px;
-    border-radius: 5px 5px 5px 5px;
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    padding: 10px;
-}
-
->>>>>>> upstream/master
 /*
 .col-md-8 {
     background-color: #f5f3f3;
