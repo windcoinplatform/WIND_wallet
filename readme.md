@@ -1,6 +1,8 @@
 Azure DevOps pipeline:
 
-[![Build Status](https://dev.azure.com/BlackTurtleBVBA/TurtleNetwork/_apis/build/status/BlackTurtle123.PythonTNWallet?branchName=master)](https://dev.azure.com/BlackTurtleBVBA/TurtleNetwork/_build/latest?definitionId=3&branchName=master)
+Linux build status: [![Build Status](https://dev.azure.com/BlackTurtleBVBA/TurtleNetwork/_apis/build/status/BlackTurtle123.PythonTNWallet?branchName=master)](https://dev.azure.com/BlackTurtleBVBA/TurtleNetwork/_build/latest?definitionId=3&branchName=master)
+Windows build status: [![Build Status](https://dev.azure.com/BlackTurtleBVBA/TurtleNetwork/_apis/build/status/BlackTurtle123.PythonTNWallet.Windows?branchName=master)](https://dev.azure.com/BlackTurtleBVBA/TurtleNetwork/_build/latest?definitionId=6&branchName=master)
+
 
 To run tests:
 pytest test --doctest-modules --junitxml=junit/test-results.xml
