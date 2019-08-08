@@ -23,7 +23,13 @@ def url_ok(url, port):
         return False
 
 
-if __name__ == '__main__':
+def create_webview():
+    return webview.create_window('T3-ALPHA(NON PRODUCTION) - Turtle Network Wallet', 'http://127.0.0.1:' + str(PORT),
+                                 text_select=True,
+                                 confirm_close=True, min_size=(1500, 600))
+
+
+def set_up():
     logger.debug('Starting server')
     t = Thread(target=run_server)
     t.daemon = True
@@ -34,7 +40,10 @@ if __name__ == '__main__':
         sleep(1)
 
     logger.debug('Server started')
-    logger.debug('Binding on port '+str(PORT))
-    window = webview.create_window('T3-ALPHA(NON PRODUCTION) - Turtle Network Wallet', 'http://127.0.0.1:'+str(PORT), text_select=True,
-                                   confirm_close=True, min_size=(1500, 600))
+    logger.debug('Binding on port ' + str(PORT))
+    create_webview()
     webview.start(debug=True, gui='qt')
+
+
+if __name__ == '__main__':
+    set_up()
