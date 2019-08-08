@@ -41,7 +41,7 @@ def set_up():
 
     logger.debug('Server started')
     logger.debug('Binding on port ' + str(PORT))
-    window = create_webview()
+    create_webview()
     webview.start(debug=True, gui='qt')
 
 
