@@ -14,6 +14,13 @@ $(document).ready(function () {
 
         }
     );
+    $("#data_load").click(function () {
+            const addr = $(this).data("addr");
+            $("#data_collapse_div").toggle();
+            load_data(addr);
+
+        }
+    );
 
     function load_tx(addr, amount) {
         $.ajax({
@@ -83,6 +90,36 @@ $(document).ready(function () {
             })
     }
 
+    function load_data(addr) {
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            url: '/address/data/' + addr,
 
+        }).done(function (data) {
+            let tablecontents = "";
+            tablecontents = '<table>';
+            tablecontents += '<tr><th>Key</th><th>Type</th><th>Value</th><th>Edit value</th></tr>';
+            $.each(data, function (index, value) {
+
+                tablecontents += "<tr class='tr'>";
+                tablecontents += "<td>" + value["key"] + "</td>";
+                tablecontents += "<td>" + value["type"] + "</td>";
+                tablecontents += "<td>" + value["value"] + "</td>";
+
+                tablecontents += "<td> <button >----</button></td>";
+                tablecontents += "</tr>";
+            });
+            tablecontents += '</table>';
+
+            $("#data_collapse_div").html(tablecontents);
+
+        })
+            .fail(function (jqXHR, textStatus, errorThrown) { //replaces .error
+                console.log("error");
+                console.dir(arguments);
+            })
+    }
 })
 ;

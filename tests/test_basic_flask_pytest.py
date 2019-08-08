@@ -103,6 +103,32 @@ def test_login_lease_overview_info_logout(test_client):
     assert b'Log in' in response.data
 
 
+def test_login_data_overview_info_logout(test_client):
+    response = login(test_client, 'a', '')
+    assert response.status_code == 200
+    assert b'Leasing' in response.data
+
+    response = test_client.get("/data", follow_redirects=True)
+    assert response.status_code == 200
+
+    response = logout(test_client)
+    assert response.status_code == 200
+    assert b'Log in' in response.data
+
+
+def test_login_asset_create_info_logout(test_client):
+    response = login(test_client, 'a', '')
+    assert response.status_code == 200
+    assert b'Leasing' in response.data
+
+    response = test_client.get("/asset/create", follow_redirects=True)
+    assert response.status_code == 200
+
+    response = logout(test_client)
+    assert response.status_code == 200
+    assert b'Log in' in response.data
+
+
 def test_login_gateway_tn_info_logout(test_client):
     response = login(test_client, 'a', '')
     assert response.status_code == 200
@@ -116,6 +142,7 @@ def test_login_gateway_tn_info_logout(test_client):
     assert response.status_code == 200
     assert b'Log in' in response.data
 
+
 def test_login_dex_logout(test_client):
     response = login(test_client, 'a', '')
     assert response.status_code == 200
@@ -128,6 +155,7 @@ def test_login_dex_logout(test_client):
     assert response.status_code == 200
     assert b'Log in' in response.data
 
+
 def test_state_transactions(test_client):
     addr = '3JrTHZ7wmfpHUscK5ENXTGgmrrfYgCbXfN2'
     amount = '50'
@@ -135,6 +163,15 @@ def test_state_transactions(test_client):
     assert response.status_code == 200
     assert b'amount' in response.data
     assert b'sender' in response.data
+
+
+def test_state_data(test_client):
+    addr = '3JfmNT4duu54DrFX33rDM3mAJXGVnUSQLMF'
+    response = test_client.get("/address/data/" + addr)
+    assert response.status_code == 200
+    assert b'key' in response.data
+    assert b'type' in response.data
+    assert b'value' in response.data
 
 
 def test_state_leases(test_client):
