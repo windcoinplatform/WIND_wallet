@@ -15,8 +15,8 @@
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-     <!-- You must load 'dark-mode-switch.js' after the dark-mode switch -->
-    <script src="{{ url_for('static', filename = 'js/dark-mode-switch.min.js') }}"></script>
+     <!-- You must load 'dark-mode-switch.js' after the dark-mode switch 
+    <script src="{{ url_for('static', filename = 'js/dark-mode-switch.min.js') }}"></script> -->
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
@@ -173,10 +173,6 @@
             <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
           </div>
           
-          <!-- You must load 'dark-mode-switch.js' after the dark-mode switch
-          <script src="dark-mode-switch.min.js"></script>  -->
-                
-
                 </div>
             </nav>
 
@@ -186,6 +182,9 @@
 </body>
 {% block script %}
 
+     <!-- You must load 'dark-mode-switch.js' after the dark-mode switch -->
+          <script src="static/js/dark-mode-switch.min.js"></script>  
+                
 
     <script type="text/javascript">
         $(document).ready(function () {
