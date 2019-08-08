@@ -1,4 +1,5 @@
 import unittest
+
 from TurtleNetwork import app, get_free_port
 import T3
 
@@ -36,8 +37,15 @@ class BasicTests(unittest.TestCase):
     #### tests ####
     ###############
 
-    def test_t3_start(self):
-        self.assertNotEqual(T3.logger,None)
+    def test_t3_logger(self):
+        self.assertNotEqual(T3.logger, None)
+
+    def test_t3_create_webview(self):
+        webview = T3.create_webview()
+        self.assertNotEqual(webview, None)
+        self.assertEqual(webview.confirm_close, True)
+        self.assertEqual(webview.text_select, True)
+        self.assertIn("T3", webview.title)
 
     def test_get_free_port(self):
         port = get_free_port()
