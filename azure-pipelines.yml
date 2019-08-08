@@ -63,3 +63,7 @@ steps:
 - task: sonarcloud-buildbreaker@1
   inputs:
     SonarCloud: 'test'
+
+- task: CmdLine@2
+  inputs:
+    script: 'pyinstaller -w -F --add-data "templates:templates" --add-data "static:static" T3.py'
