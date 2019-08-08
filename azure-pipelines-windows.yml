@@ -10,21 +10,17 @@ trigger:
     - master
 
 pool:
-  vmImage: 'ubuntu-latest'
-strategy:
-  matrix:
-    Python37:
-      python.version: '3.7'
+  name: Hosted VS2017
+variables:
+  python.version: '3.7.4'
 
 steps:
 - task: UsePythonVersion@0
+  displayName: 'Use Python $(python.version)'
   inputs:
     versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
 
 - script: |
-    sudo apt install libgtk-3-dev
-    sudo apt install libwebkit2gtk-4.0-dev
     python -m pip install --upgrade pip
     pip install -r requirements.txt
     pip install --upgrade requests
@@ -67,12 +63,15 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'pyinstaller -w -F --add-data "templates:templates" --add-data "static:static" T3.py'
+    script: |
+      pip install --upgrade PyQt5==5.12.2
+      pip install git+https://github.com/pyinstaller/pyinstaller.git
+      pyinstaller --onedir --add-data "templates;templates" --add-data "static;static" -i static/favicon.ico --hidden-import PyQt5  T3.py
   displayName: 'Build with pyinstaller'
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: 'dist/T3'
-    ArtifactName: 'T3-Alpha-Linux'
+    ArtifactName: 'T3-Alpha-Windows'
     publishLocation: 'Container'
   displayName: 'Upload artifact'

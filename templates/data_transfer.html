@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block head %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/transactions.js') }}"></script>
 
-</body>
-</html>
+{% endblock %}
+{% block content %}
+<h3>Data linked to account</h3>
+    <button data-addr={{ address }} id="data_load">Show Data</button>
+
+    <div class="collapse" id="data_collapse_div"></div>
+{% endblock %}

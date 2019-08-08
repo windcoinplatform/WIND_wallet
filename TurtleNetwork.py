@@ -1,6 +1,6 @@
 import json
-import sys
 import os
+import sys
 
 import pywaves as py
 import requests
@@ -80,6 +80,18 @@ def gateways_overview():
 @login_required
 def dex_overview():
     return render_template('dex.html')
+
+
+@app.route('/data')
+@login_required
+def data_overview():
+    return render_template('data_transfer.html', address=current_user.wallet.address)
+
+
+@app.route('/asset/create')
+@login_required
+def asset_create():
+    return render_template('asset_create.html')
 
 
 @app.route('/lease/overview')
@@ -177,6 +189,12 @@ def send_asset(asset):
 @app.route('/state/transactions/<addr>/<amount>')
 def history_tx(addr, amount):
     r = requests.get(NODE + "/transactions/address/" + addr + "/limit/" + amount)
+    return r.content.decode()
+
+
+@app.route('/address/data/<addr>')
+def address_data(addr):
+    r = requests.get(NODE + "/addresses/data/" + addr)
     return r.content.decode()
 
 
