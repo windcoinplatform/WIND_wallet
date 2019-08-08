@@ -142,6 +142,19 @@ def test_login_gateway_tn_info_logout(test_client):
     assert response.status_code == 200
     assert b'Log in' in response.data
 
+def test_login_details_asset_id_logout(test_client):
+    response = login(test_client, 'a', '')
+    assert response.status_code == 200
+    assert b'Leasing' in response.data
+
+    response = test_client.get("/details/3vB9hXHTCYbPiQNuyxCQgXF6AvFg51ozGKL9QkwoCwaS", follow_redirects=True)
+    assert response.status_code == 200
+    assert b'Balance' in response.data
+
+    response = logout(test_client)
+    assert response.status_code == 200
+    assert b'Log in' in response.data
+
 
 def test_login_dex_logout(test_client):
     response = login(test_client, 'a', '')
