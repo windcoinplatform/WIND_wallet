@@ -67,3 +67,11 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'pyinstaller -w -F --add-data "templates:templates" --add-data "static:static" T3.py'
+  displayName: 'Build with pyinstaller'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'dist/T3'
+    ArtifactName: 'T3-Alpha-Linux'
+    publishLocation: 'Container'
+  displayName: 'Upload artifact'
