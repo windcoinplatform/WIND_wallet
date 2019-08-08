@@ -65,6 +65,7 @@ steps:
   inputs:
     script: |
       pip install --upgrade PyQt5==5.12.2
+      pip install git+https://github.com/pyinstaller/pyinstaller.git
       pyinstaller --onedir --add-data "templates;templates" --add-data "static;static" -i static/favicon.ico --hidden-import PyQt5  T3.py
   displayName: 'Build with pyinstaller'
 
