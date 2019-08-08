@@ -8,6 +8,7 @@
 {% endblock %}
 {% block content %}
    
+<!--    ----------------------------------------------------------------------------------------------------------------------------> 
 
  
 <div class="container">
@@ -19,7 +20,7 @@
 
 <div class="row">
 <div class="col-md-4"><span><h5>TRANSFER $TN</h5></span></div>
-  <div class="col-md-4 offset-md-4"><span>Balance: {{ balance }}</span></div>
+  <div class="col-md-4 offset-md-4"><span><h5>BALANCE: {{ balance }}</h5></span></div>
  </div>
 
  <form id="send_form">
@@ -31,55 +32,53 @@
       <input required id="send_addr_tn" maxlength="35" minlength="35" class="form-control" placeholder="Destination Address">
     </div>
     
+    <div class="row">
     <div class="col-7 col-md-4">
      <input required id="send_fee_tn" maxlength="35" minlength="35" value="{{ (2000000 )/100000000+ extra_fees }}" class="form-control" placeholder="Fees">
     </div>
-    
-  
-  <button id="send_tn" class="btn btn-primary" type="button">Send$TN</button>
-  
+    <div class="col-md-4 offset-md-4"><span><h5>EXTRA FEES: {{ extra_fees }}</h5></span></div>
+  </div>
+
+    <div class="row">
+    <div class="col-7 col-md-4">
+  <button id="send_tn" class="btn btn-outline-dark btn-lg" type="button">SEND$TN</button>
+  </div>
+    <div class="col-md-4 offset-md-4"><span><p style="font-size:12px">When your account is scripted, extra fees will need to be paid. When this isn't scripted, nothing will be added.</p></span></div>
+  </div>
 </form>      
     </div>
     
-        
-    <div class="col-6 col-md-4"><span><h2>Extra fees: {{ extra_fees }} </h2></span></div>
-    
 
-    <div class="col-6 col-md-4"><span><p>When your account is scripted, extra fees will need to be paid. When this isn't scripted, nothing will be added.</p></span></div>
-    
-  
-    <div class="card-deck">
-  <div class="card">
-    <img src="static/img/tabs-iconset-history.png" class="img-card" alt="Responsive image">
-    <div class="card-body">
-      <h5 class="card-title">Transactions History</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <button href="#" class="btn btn-primary" data-addr={{ address }} id="tx_load">Show tx history</button>
-    
-     <!--82b5c11daa9430dad9301e6fb2d8b45fb6757b72-->
+<!--    ----------------------------------------------------------------------------------------------------------------------------> 
 
-    <div class="collapse" id="tx_collapse_div"></div>
-    </div>
-    <div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-        </div>
-      
-      
-  <div class="card">
-    <img src="static/img/tabs-iconset-leasing.png" class="img-card" alt="Responsive image">
-    <div class="card-body">
-      <h5 class="card-title">Active Leases</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-    <button href="#" class="btn btn-primary" data-addr={{ address }} id="lease_load">Show Active Leases</button>
-    <div class="collapse" id="lease_collapse_div"></div>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
+
+<div class=container>
+
+<div class="card border-light mb-3" style="max-width: 60rem;">
+  <div class="card-header"><img src="static/img/tabs-iconset-history.png" class="img-card" alt="Responsive image"></div>
+  <div class="card-body">
+    <h5 class="card-title">TRANSACTION HISTORY</h5>
+    <button href="#" class="btn btn-outline-dark btn-lg" type="button" data-addr={{ address }} id="tx_load">Show tx history</button>
+     <div class="collapse" id="tx_collapse_div"></div>
+     <br></br>
+     <div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div>
   </div>
 </div>
+
+
+<div class="card border-light mb-3" style="max-width: 60rem;">
+  <div class="card-header"><img src="static/img/tabs-iconset-leasing.png" class="img-card" alt="Responsive image"></div>
+  <div class="card-body">
+    <h5 class="card-title">ACTIVE LEASES</h5>
+    <button href="#" class="btn btn-outline-dark btn-lg" type="button" data-addr={{ address }} id="lease_load">Show Active Leases</button>
+     <div class="collapse" id="lease_collapse_div"></div>
+     <br></br>
+     <div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div>
+  </div>
 </div>
+
 </div>
+<!--    ----------------------------------------------------------------------------------------------------------------------------> 
     
     
 {% endblock %}

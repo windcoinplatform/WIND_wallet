@@ -243,7 +243,7 @@ a.article:hover {
         padding: 10px !important;
         
     }
-    
+
     /*
     #sidebar {
         margin-left: 0;
@@ -294,11 +294,12 @@ a.article:hover {
 .container {
 	background-color: #fff;
 	border-radius: 5px 5px 5px 5px;
+    border-right: 2px solid #f6f6f6;
 	margin-top: 20px;	
 	margin-bottom: 20px;
 	padding: 5px;
 	-webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.3);
-    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.5);
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -347,6 +348,19 @@ a.article:hover {
     margin-right: 20px;
     margin-bottom: 20px;
     padding: 10px;
+}
+
+/*
+.card-footer {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+*/
+
+.row {
+    margin-left: 3px;
 }
 
 /*
