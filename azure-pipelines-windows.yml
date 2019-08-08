@@ -72,6 +72,6 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: 'dist/T3'
-    ArtifactName: 'T3-Alpha-Linux'
+    ArtifactName: 'T3-Alpha-Windows'
     publishLocation: 'Container'
   displayName: 'Upload artifact'
