@@ -21,8 +21,6 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
-    sudo apt install libgtk-3-dev
-    sudo apt install libwebkit2gtk-4.0-dev
     python -m pip install --upgrade pip
     pip install -r requirements.txt
     pip install --upgrade requests
