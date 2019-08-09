@@ -288,7 +288,6 @@ a.article:hover {
 	padding: 10px;
 }
 
-------------*/
 
 .container {
 	background-color: #fff;
@@ -303,6 +302,8 @@ a.article:hover {
     margin-left: auto;
     margin-right: auto;
 }
+------------*/
+
 
 .col {
 	margin-top: 20px;
@@ -360,7 +361,7 @@ a.article:hover {
 */
 
 .row {
-    margin-left: 3px;
+    margin-left: 0px;
 }
 
 /*
@@ -374,7 +375,7 @@ a.article:hover {
 .col-9 {
     background-color: #f5f3f3;
     text-align: center;
-    width: 960px;
+    width: 860px;
     border-radius: 5px 5px 5px 5px;
     margin-top: 20px;
     margin-left: 20px;
