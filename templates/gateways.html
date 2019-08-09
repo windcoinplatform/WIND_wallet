@@ -8,88 +8,101 @@
 {% endblock %}
 {% block content %}
 
-<div class="container">
+    <div class="container">
 
-    <form id="tn_gateway_form">
-        
-        <div class="col-md-4"><span><h5>Gateway: $TN</h5></span></div>
+        <form id="tn_gateway_form">
 
-       <!-- <div class="row"> -->
-         <div class="col-9"><span><h5>To Send $TN to Turtle Network, using Waves Network wallet:</h5></span></div>
-        <div class="col-9"><span><h5>Send amount bigger then 0.09 $TN to 3PJ33ZasLyhLaFuK4gHGTFSQbpFBP5Entor with attachment: {{ address }}</h5></span></div>
-   <!-- </div> -->
+            <div class="col-md-4"><span><h5>Gateway: $TN</h5></span></div>
 
-
-        <div class="col-md-4"><span><h5>To Send $TN to Waves Network, using Turtle Network wallet:</h5><br></br>Amount of $TN to send: <input required id="tn_amount" type="number" min="0.01"></h5></span></div>
+            <!-- <div class="row"> -->
+            <div class="col-9"><span><h5>To Send $TN to Turtle Network, using Waves Network wallet:</h5></span></div>
+            <div class="col-9"><span><h5>Send amount bigger then 0.09 $TN to 3PJ33ZasLyhLaFuK4gHGTFSQbpFBP5Entor with attachment: {{ address }}</h5></span>
+            </div>
+            <!-- </div> -->
 
 
-        <div class="col-md-4"><span><h5>Waves Network destination addr: <input required id="tn_addr" maxlength="35" minlength="35"></h5></span>
-        </div>
+            <div class="col-md-4"><span><h5>To Send $TN to Waves Network, using Turtle Network wallet:</h5><br></br>Amount of $TN to send: <input
+                    required id="tn_amount" type="number" min="0.01"></h5></span></div>
 
 
-        <div class="row">
-        <div class="col-md-4"><span><h5>Tx fees: <input required id="tn_fee" maxlength="35" minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}">$TN</h5></span></div>
-        <div class="col-md-4 offset-md-4"><span><h5>Gateway fees: 0.09 $TN</h5></span></div>
-        </div>
-       
+            <div class="col-md-4"><span><h5>Waves Network destination addr: <input required id="tn_addr" maxlength="35"
+                                                                                   minlength="35"></h5></span>
+            </div>
 
 
+            <div class="row">
+                <div class="col-md-4"><span><h5>Tx fees: <input required id="tn_fee" maxlength="35" minlength="35"
+                                                                value="{{ (2000000 + extra_fees)/100000000 }}">$TN</h5></span>
+                </div>
+                <div class="col-md-4 offset-md-4"><span><h5>Gateway fees: 0.09 $TN</h5></span></div>
+            </div>
 
-        <div class="col-md-4">
-        <button class="gw_send" data-gwname="tn" data-fee=0.09 type="button">Send $TN</button>
-        </div>
 
-    </form>
-</div>
+            <div class="col-md-4">
+                <button class="gw_send" data-gwname="tn" data-fee=0.09 type="button">Send $TN</button>
+            </div>
+
+        </form>
+    </div>
 
 
-<br>#####################################GATEWAYS#########################</br>
+    <br>#####################################GATEWAYS#########################</br>
 
     {% for gw in gateways %}
 
         <div class="container">
-
-            <form id="tn_gateway_form">
-
-            <div class="col-md-4" class="collapse" id="{{ gw.name }}_collapse_div"><h5>Gateway: ${{ gw.name|upper }}</h5></div>
-    
-            <div class="col-md-4" class="{{ gw.name }}_gateway_form"></div>
+            <button data-gwname="{{ gw.name }}" class="gw_load">Details ${{ gw.name|upper }}</button>
+            <form class="{{ gw.name }}_gateway_form">
 
 
-            <div class="col-9"><h5>To Send ${{ gw.name|upper }} to Turtle Network, using {{ gw.name|title }} Network Wallet:</h5></div>
+                <div class="col-md-4 collapse" id="{{ gw.name }}_collapse_div">
+                    <h5>Gateway:
+                        ${{ gw.name|upper }}</h5>
+
+                    <div class="col-md-4 {{ gw.name }}_gateway_form"></div>
 
 
-            <div class="col-9"><h5 id="{{ gw.name }}_personal_p">Send amount bigger then {{ gw.fee }} ${{ gw.name|upper }}
+                    <div class="col-9"><h5>To Send ${{ gw.name|upper }} to Turtle Network, using {{ gw.name|title }}
+                        Network Wallet:</h5></div>
+
+
+                    <div class="col-9"><h5 id="{{ gw.name }}_personal_p">Send amount bigger then {{ gw.fee }}
+                        ${{ gw.name|upper }}
                         to {{ gw.personal_addr }}</h5></div>
 
 
-        <div class="row">
-            <div class="col-md-4"><span><h5>Tx fees: <input required id="{{ gw.name }}_fee" maxlength="35"
-                                       minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}"> $TN</h5></span></div>
-            <div class="col-md-4"><h5>Gateway fees: {{ gw.fee }} ${{ gw.name|upper }}</h5></div>
+                    <div class="row">
+                        <div class="col-md-4"><span><h5>Tx fees: <input required id="{{ gw.name }}_fee" maxlength="35"
+                                                                        minlength="35"
+                                                                        value="{{ (2000000 + extra_fees)/100000000 }}"> $TN</h5></span>
+                        </div>
+                        <div class="col-md-4"><h5>Gateway fees: {{ gw.fee }} ${{ gw.name|upper }}</h5></div>
+                    </div>
+
+                    <br>########################################################################</br>
+
+                    <div class="col-9"><h5>To Send ${{ gw.name|upper }} to {{ gw.name|title }} Network, using Turtle
+                        Network Wallet:</h5></div>
+
+                    <div class="col-md-4"><h5>Amount of ${{ gw.name|upper }} to send: <input required
+                                                                                             id="{{ gw.name }}_amount"
+                                                                                             type="number"
+                                                                                             min="0.01"></h5></div>
+
+                    <div class="col-md-4"><h5>{{ gw.name }} Network destination addr: <input required
+                                                                                             id="{{ gw.name }}_addr"
+                                                                                             maxlength="35"
+                                                                                             minlength="35"></h5></div>
+
+
+                    <div class="col-md-4">
+                        <button class="gw_send" data-gwname="{{ gw.name }}" data-fee={{ gw.fee }} type="button">Send
+                            ${{ gw.name|upper }}</button>
+                    </div>
+                </div>
+
+            </form>
         </div>
-
-<br>########################################################################</br>
-            
-            <div class="col-9"><h5>To Send ${{ gw.name|upper }} to {{ gw.name|title }} Network, using Turtle Network Wallet:</h5></div>
-
-            <div class="col-md-4"><h5>Amount of ${{ gw.name|upper }} to send: <input required id="{{ gw.name }}_amount" type="number"
-                                                                      min="0.01"></h5></div>
-
-            <div class="col-md-4"><h5>{{ gw.name }} Network destination addr: <input required id="{{ gw.name }}_addr" maxlength="35"
-                                                                      minlength="35"></h5></div>
-
-            <div class="col-md-4"><span><h5>Details $</h5></span>
-            <button data-gwname="{{ gw.name }}" class="gw_load"{{ gw.name|upper }}></button></div>
-
-            <div class="col-md-4"><button class="gw_send" data-gwname="{{ gw.name }}" data-fee={{ gw.fee }} type="button">Send
-                            ${{ gw.name|upper }}</button></div>
-
-
-            
-
-    </form>
-</div>
 
 
     {% endfor %}
