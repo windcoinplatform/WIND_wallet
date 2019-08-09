@@ -73,8 +73,7 @@ def home():
 @app.route('/gateway/overview')
 @login_required
 def gateways_overview():
-    return render_template('gateways.html', gateways=gateways, extra_fees=current_user.extra_fees)
-
+    return render_template('gateways.html', gateways=gateways, extra_fees=current_user.extra_fees, address=current_user.wallet.address)
 
 @app.route('/dex')
 @login_required
