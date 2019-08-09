@@ -360,7 +360,7 @@ a.article:hover {
 */
 
 .row {
-    margin-left: 3px;
+    margin-left: 0px;
 }
 
 /*
@@ -374,7 +374,7 @@ a.article:hover {
 .col-9 {
     background-color: #f5f3f3;
     text-align: center;
-    width: 960px;
+    width: 860px;
     border-radius: 5px 5px 5px 5px;
     margin-top: 20px;
     margin-left: 20px;
