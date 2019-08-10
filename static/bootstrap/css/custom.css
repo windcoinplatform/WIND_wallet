@@ -5,7 +5,12 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+    /*background: #fafafa;
+    background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 
 p {
@@ -302,6 +307,7 @@ a.article:hover {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 80%;
 }
 
 .col {
