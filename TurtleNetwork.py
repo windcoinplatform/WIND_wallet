@@ -73,7 +73,9 @@ def home():
 @app.route('/gateway/overview')
 @login_required
 def gateways_overview():
-    return render_template('gateways.html', gateways=gateways, extra_fees=current_user.extra_fees, address=current_user.wallet.address)
+    return render_template('gateways.html', gateways=gateways, extra_fees=current_user.extra_fees,
+                           address=current_user.wallet.address)
+
 
 @app.route('/dex')
 @login_required
@@ -241,36 +243,36 @@ def do_admin_login():
     login_user(User(pk, seed))
     gateways.append(
         Gateway('----------', '3JbpUeiV6BN9k2cMccKE5LZrrQ8wN44pxWy',
-                0.01, 'waves', 'EzwaF58ssALcUCZ9FbyeD1GTSteoZAQZEDTqBAXHfq8y', 'wavesgateway'),
+                0.01, 'waves', 'EzwaF58ssALcUCZ9FbyeD1GTSteoZAQZEDTqBAXHfq8y', 'wavesgateway', 'waves.png'),
     )
     gateways.append(
         Gateway('----------', '3JnNnw91XQr3pDmpGWud9xGfz9hEF1hSTfG',
-                0.006, 'litecoin', '3vB9hXHTCYbPiQNuyxCQgXF6AvFg51ozGKL9QkwoCwaS', 'litecoingw')
+                0.006, 'litecoin', '3vB9hXHTCYbPiQNuyxCQgXF6AvFg51ozGKL9QkwoCwaS', 'litecoingw', 'ltc.png')
     )
     gateways.append(
         Gateway('----------', '3JeW3F1kEWxLsf8zg1uAZRPb7g5z6fuqEfF',
-                0.001, 'bitcoin', '5Asy9P3xjcvBAgbeyiitZhBRJZJ2TPGSZJz9ihDTnB3d', 'bitcoingw'))
+                0.001, 'bitcoin', '5Asy9P3xjcvBAgbeyiitZhBRJZJ2TPGSZJz9ihDTnB3d', 'bitcoingw', 'btc.png'))
     gateways.append(
         Gateway('----------', '3JbigZzoGyFWksZ5RLuh9K5ntyGZuXKTVas',
-                0.001, 'dash', 'A62sRG58HFbWUNvFoEEjX4U3txXKcLm11MXWWS429qpN', 'dashgw'))
+                0.001, 'dash', 'A62sRG58HFbWUNvFoEEjX4U3txXKcLm11MXWWS429qpN', 'dashgw', 'dash.png'))
     gateways.append(
         Gateway('----------', '3JsshGBTUXXqShXGQeNdtzw1EuQZFqxN4E3',
-                0.03, 'wagerr', '91NnG9iyUs3ZT3tqK1oQ3ddpgAkE7v5Kbcgp2hhnDhqd', 'wagerrgw'))
+                0.03, 'wagerr', '91NnG9iyUs3ZT3tqK1oQ3ddpgAkE7v5Kbcgp2hhnDhqd', 'wagerrgw', 'wgr.png'))
     gateways.append(
         Gateway('----------', '3JiEjoFbgVKLVxdJYFD1HL9HYDN3RupVNHd',
-                0.003, 'syscoin', 'HBxBjymrCC8TuL8rwCLr2vakDEq4obqkMwYYPEZtTauA', 'syscoingw'))
+                0.003, 'syscoin', 'HBxBjymrCC8TuL8rwCLr2vakDEq4obqkMwYYPEZtTauA', 'syscoingw', 'syscoing.png'))
     gateways.append(
         Gateway('----------', '3JsenfjhSNRQsRZMXrkAtJMfjyzxrzSeCKr',
-                0.0003, 'BCH', 'Fr2kNhe7XR3E16W7Mfh7NhNcsQWLXx3hSLjoFgpbFsNj', 'bchgw'))
+                0.0003, 'BCH', 'Fr2kNhe7XR3E16W7Mfh7NhNcsQWLXx3hSLjoFgpbFsNj', 'bchgw', 'bch.png'))
     gateways.append(
         Gateway('----------', '3Jve26ckLkBivDbryLzpvoLyoRfxUaAE7tE',
-                9, 'dogecoin', 'HDeemVktm2Z68RMkyA7AexhpaCqot1By7adBzaN9j5Xg', 'dogegw'))
+                9, 'dogecoin', 'HDeemVktm2Z68RMkyA7AexhpaCqot1By7adBzaN9j5Xg', 'dogegw', 'doge.png'))
     gateways.append(
         Gateway('----------', '3Jbrk85BjtVtEyrVLVVF7yWjKcnGPA6Rk5C',
-                0.00041, 'ethereum', '6Mh41byVWPg8JVCfuwG5CAPCh9Q7gnuaAVxjDfVNDmcD', 'ethgw'))
+                0.00041, 'ethereum', '6Mh41byVWPg8JVCfuwG5CAPCh9Q7gnuaAVxjDfVNDmcD', 'ethgw', 'eth.png'))
     gateways.append(
         Gateway('----------', '33JgUZ2ytQicRQ1k38Y2nHeR9NxHK5fqEqbu',
-                1, 'afin', 'A8jSBb33GztWpuCypUW9hJYPnTtJGZ7SDuSZfHCaeV49', 'afingw'))
+                1, 'afin', 'A8jSBb33GztWpuCypUW9hJYPnTtJGZ7SDuSZfHCaeV49', 'afingw', 'afin.png'))
 
     return redirect(url_for('home'))
 
