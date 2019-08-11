@@ -214,7 +214,7 @@ def test_state_alias_by_alias(test_client):
     alias = 'blackturtlebvba'
     response = test_client.get("/state/aliases/by-alias/" + alias)
     assert response.status_code == 200
-    assert b'"address": "3JcB4Ux7akWqVHeSjvdqrB151LG812qk4qX"' in response.data
+    assert b'3JcB4Ux7akWqVHeSjvdqrB151LG812qk4qX' in response.data
 
 
 def test_state_leases(test_client):
