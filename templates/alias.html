@@ -2,11 +2,23 @@
 {% block head %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/aliases.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/details.js') }}"></script>
+
 
 {% endblock %}
 {% block content %}
     <h3>Create aliases</h3>
-
+    <form id="alias_form"><h2>Lease:</h2>
+         <p>Fees: <input required id="alias_fee" maxlength="35"
+                        minlength="35" value="{{ (1000000000 + extra_fees)/100000000 }}">  $TN
+        </p>
+        <p>Alias: <input required id="alias_create_input" maxlength="40"
+                                    minlength="4"  ></p>
+        <p>
+            <button id="create_alias_button" type="button">Create Alias
+            </button>
+        </p>
+    </form>
     <h3>Aliases linked to account</h3>
     <button data-addr={{ address }} id="alias_load">Show Aliases</button>
 

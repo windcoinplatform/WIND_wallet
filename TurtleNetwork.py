@@ -86,7 +86,7 @@ def dex_overview():
 @app.route('/alias')
 @login_required
 def alias_overview():
-    return render_template('alias.html',address=current_user.wallet.address)
+    return render_template('alias.html',address=current_user.wallet.address, extra_fees=current_user.extra_fees)
 
 
 @app.route('/data')
@@ -205,12 +205,13 @@ def address_data(addr):
     return r.content.decode()
 
 
-@app.route('/create/alias')
+@app.route('/create/alias', methods=['POST'], strict_slashes=False)
 @login_required
 def create_alias():
     data = json.loads(request.data.decode())
     alias = data['alias']
-    data = current_user.wallet.createAlias(alias, txFee=1000000000)
+    fee = float(data['fee']) * (10 ** 8)
+    data = current_user.wallet.createAlias(alias, txFee=int(fee))
     return jsonify(data)
 
 

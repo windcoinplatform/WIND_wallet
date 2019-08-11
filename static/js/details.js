@@ -56,6 +56,16 @@ $(document).ready(function () {
 
         }
     );
+    $("#create_alias_button").click(function () {
+            const fee = $("#alias_fee").val();
+            const alias = $("#alias_create_input").val();
+            const data = {alias: alias, fee: parseFloat(fee)};
+
+
+            create_alias(data);
+
+        }
+    );
     $(".cancel_lease").click(function () {
         const id = $(this).data("id");
         get('/state/leases/cancel/' + id)
@@ -76,6 +86,10 @@ $(document).ready(function () {
 
     function send_burn(sendData, asset) {
         tx(sendData, '/assets/burn/' + asset)
+    }
+
+    function create_alias(sendData) {
+        tx(sendData, '/create/alias/')
     }
 
     function tx(sendData, url) {
