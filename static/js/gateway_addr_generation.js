@@ -43,7 +43,9 @@ $(document).ready(function () {
             url: '/gw/send/' + gw,
 
         }).done(function (data) { //same as .success (depricated as of 1.8)
-            alert("Data: " + JSON.stringify(data))
+                     $("#getCode").html(JSON.stringify(data));
+                $("#myModalLabel").text("User feedback");
+                $("#getCodeModal").modal('show');
         })
             .fail(function (jqXHR, textStatus, errorThrown) { //replaces .error
                 console.log("error");
