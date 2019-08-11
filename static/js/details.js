@@ -6,7 +6,9 @@ function get(url) {
         url: url,
 
     }).done(function (data) { //same as .success (depricated as of 1.8)
-        alert("Data: " + JSON.stringify(data))
+        $("#Modal-body").html(JSON.stringify(data).replace("null", "Something went wrong.\n"));
+        $("#Modal-vert-center-demo-label").text("User feedback");
+        $("#Modal-vert-center-demo").modal('show');
     })
         .fail(function (jqXHR, textStatus, errorThrown) { //replaces .error
             console.log("error");
@@ -101,9 +103,9 @@ $(document).ready(function () {
             url: url,
 
         }).done(function (data) { //same as .success (depricated as of 1.8)
-                $("#Modal-body").html(JSON.stringify(data).replace("null","Something went wrong.\n"));
-                $("#Modal-vert-center-demo-label").text("User feedback");
-                $("#Modal-vert-center-demo").modal('show');
+            $("#Modal-body").html(JSON.stringify(data).replace("null", "Something went wrong.\n"));
+            $("#Modal-vert-center-demo-label").text("User feedback");
+            $("#Modal-vert-center-demo").modal('show');
         })
             .fail(function (jqXHR, textStatus, errorThrown) { //replaces .error
                 console.log("error");
