@@ -142,6 +142,7 @@ def test_login_gateway_tn_info_logout(test_client):
     assert response.status_code == 200
     assert b'Log in' in response.data
 
+
 def test_login_details_asset_id_logout(test_client):
     response = login(test_client, 'a', '')
     assert response.status_code == 200
@@ -169,6 +170,20 @@ def test_login_dex_logout(test_client):
     assert b'Log in' in response.data
 
 
+def test_login_alias_logout(test_client):
+    response = login(test_client, 'a', '')
+    assert response.status_code == 200
+    assert b'Leasing' in response.data
+
+    response = test_client.get("/alias", follow_redirects=True)
+    assert response.status_code == 200
+    assert b'button' in response.data
+
+    response = logout(test_client)
+    assert response.status_code == 200
+    assert b'Log in' in response.data
+
+
 def test_state_transactions(test_client):
     addr = '3JrTHZ7wmfpHUscK5ENXTGgmrrfYgCbXfN2'
     amount = '50'
@@ -185,6 +200,21 @@ def test_state_data(test_client):
     assert b'key' in response.data
     assert b'type' in response.data
     assert b'value' in response.data
+
+
+def test_state_alias_by_addr(test_client):
+    addr = '3JfmNT4duu54DrFX33rDM3mAJXGVnUSQLMF'
+    response = test_client.get("/state/aliases/by-address/" + addr)
+    assert response.status_code == 200
+    assert b'[' in response.data
+    assert b']' in response.data
+
+
+def test_state_alias_by_alias(test_client):
+    alias = 'blackturtlebvba'
+    response = test_client.get("/state/aliases/by-alias/" + alias)
+    assert response.status_code == 200
+    assert b'"address": "3JcB4Ux7akWqVHeSjvdqrB151LG812qk4qX"' in response.data
 
 
 def test_state_leases(test_client):

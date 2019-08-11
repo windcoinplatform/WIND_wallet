@@ -83,6 +83,12 @@ def dex_overview():
     return render_template('dex.html')
 
 
+@app.route('/alias')
+@login_required
+def alias_overview():
+    return render_template('alias.html',address=current_user.wallet.address)
+
+
 @app.route('/data')
 @login_required
 def data_overview():
@@ -196,6 +202,27 @@ def history_tx(addr, amount):
 @app.route('/address/data/<addr>')
 def address_data(addr):
     r = requests.get(NODE + "/addresses/data/" + addr)
+    return r.content.decode()
+
+
+@app.route('/create/alias')
+@login_required
+def create_alias():
+    data = json.loads(request.data.decode())
+    alias = data['alias']
+    data = current_user.wallet.createAlias(alias, txFee=1000000000)
+    return jsonify(data)
+
+
+@app.route('/state/aliases/by-address/<addr>')
+def active_alias_by_addr(addr):
+    r = requests.get(NODE + "/alias/by-address/" + addr)
+    return r.content.decode()
+
+
+@app.route('/state/aliases/by-alias/<alias>')
+def active_alias(alias):
+    r = requests.get(NODE + "/alias/by-alias/" + alias)
     return r.content.decode()
 
 

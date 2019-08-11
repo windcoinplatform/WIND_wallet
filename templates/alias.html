@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block head %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/aliases.js') }}"></script>
+
+{% endblock %}
+{% block content %}
+    <h3>Create aliases</h3>
+
+    <h3>Aliases linked to account</h3>
+    <button data-addr={{ address }} id="alias_load">Show Aliases</button>
+
+    <div class="collapse" id="alias_collapse_div"></div>
+
+    <h3>Find aliases from address</h3>
+    <label for="alias_other">Address:</label><input required id="alias_other" maxlength="35"
+                                                 minlength="35"/>
+    <button id="alias_load_other">Find Aliases</button>
+        <div class="collapse" id="alias_other_collapse_div"></div>
+
+{% endblock %}

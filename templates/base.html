@@ -13,13 +13,21 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-    
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            crossorigin="anonymous"></script>
+
     <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
 
     {% block head %}{% endblock %}
 </head>
@@ -49,69 +57,75 @@
 -->
 
 <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>TURTLE NETWORK</h3>
-                <strong>TN</strong>
-            </div>
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>TURTLE NETWORK</h3>
+            <strong>TN</strong>
+        </div>
 
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <li>
-                    <a href="/">
-                        <em class="fas fa-wallet"></em>
-                        Wallet
-                    </a>
-                </li>
-                    <li>
-                    <a href="/portfolio">
-                        <em class="fas fa-money-check-alt"></em>
-                        Portfolio
-                    </a>
-                    </li>
-                    <li>
-                    <a href="/gateway/overview">
-                       <em class="fas fa-expand-arrows-alt"></em>
-                        Gateways
-                    </a>
-               </li>
-                    <li>
-                    <a href="/lease/overview">
-                        <em class="fas fa-chart-pie"></em>
-                        Leasing
-                    </a>
-                </li>
-                    <li>
-                    <a href="/dex">
-                       <em class="fas fa-chart-line"></em>
-                        Dex
-                    </a>
-                </li>
-                <li>
-                    <a href="/data">
-                        <em class="fas fa-code"></em>
-                        Data
-                    </a>
-                </li>
-                <li>
-                    <a href="/asset/create">
-                        <em class="fas fa-code-branch"></em>
-                        Create Asset
-                    </a>
-                </li>
-                <li>
-                    <a href="/logout">
-                        <em class="fas fa-question"></em>
-                        logout
-                    </a>
-                 </li>
-                 <li>
-                    <a href="#">
-                        <em class="fas fa-paper-plane"></em>
-                        Contact
-                    </a>
-                </li>
+        <ul class="list-unstyled components">
+            <li class="active">
+            <li>
+                <a href="/">
+                    <em class="fas fa-wallet"></em>
+                    Wallet
+                </a>
+            </li>
+            <li>
+                <a href="/portfolio">
+                    <em class="fas fa-money-check-alt"></em>
+                    Portfolio
+                </a>
+            </li>
+            <li>
+                <a href="/gateway/overview">
+                    <em class="fas fa-expand-arrows-alt"></em>
+                    Gateways
+                </a>
+            </li>
+            <li>
+                <a href="/lease/overview">
+                    <em class="fas fa-chart-pie"></em>
+                    Leasing
+                </a>
+            </li>
+            <li>
+                <a href="/dex">
+                    <em class="fas fa-chart-line"></em>
+                    Dex
+                </a>
+            </li>
+            <li>
+                <a href="/data">
+                    <em class="fas fa-code"></em>
+                    Data
+                </a>
+            </li>
+            <li>
+                <a href="/asset/create">
+                    <em class="fas fa-code-branch"></em>
+                    Create Asset
+                </a>
+            </li>
+            <li>
+                <a href="/alias">
+                    <em class="fas fa-code-branch"></em>
+                    Aliasses
+                </a>
+            </li>
+            <li>
+                <a href="/logout">
+                    <em class="fas fa-question"></em>
+                    logout
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <em class="fas fa-paper-plane"></em>
+                    Contact
+                </a>
+            </li>
             </li>
             <ul class="list-unstyled CTAs">
                 <li>
@@ -126,56 +140,67 @@
                 <a class="twitter-timeline" data-width="225" data-height="360" href="https://twitter.com/TurtleNetworkTN?ref_src=twsrc%5Etfw">Tweets by TurtleNetworkTN</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             -->
 
-        </nav>
+    </nav>
 
-        <!-- Page Content  -->
-        <div id="content">
+    <!-- Page Content  -->
+    <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
 
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                        <span></span>
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span></span>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
 
-                    
-                    <div>
- 
-      <a href="https://t.me/TurtleNetwork" target="_blank"><img class="socialmedia" src="{{url_for('static', filename='img/telegram_icon.png')}}" /></a>
-      <a href="https://twitter.com/TurtleNetworkTN" target="_blank"><img class="socialmedia" src="{{url_for('static', filename='img/twitter_icon.png')}}" /></a>
-      <a href="https://www.facebook.com/TurtleNetworkTN/" target="_blank"><img class="socialmedia" src="{{url_for('static', filename='img/facebook_icon.png')}}" /></a>
-      <a href="https://www.youtube.com/channel/UCzbSukzGRKxpNov6yp4275w" target="_blank"><img class="socialmedia" src="{{url_for('static', filename='img/youtube_icon.png')}}" /></a>
-      <a href="https://www.instagram.com/turtlenetworktn/" target="_blank"><img class="socialmedia" src="{{url_for('static', filename='img/instagram_icon.png')}}" /></a>
-      <a href="https://www.reddit.com/r/TurtleNetwork/" target="_blank"><img class="socialmedia" src="{{url_for('static', filename='img/reddit_icon.png')}}" /></a>
-      <a href="https://github.com/BlackTurtle123/TurtleNetwork" target="_blank"><img class="socialmedia" src="{{url_for('static', filename='img/github_icon.png')}}" /></a>
-      <a href="https://github.com/BlackTurtle123/TurtleNetwork/wiki" target="_blank"><img class="socialmedia" src="{{url_for('static', filename='img/git-wiki_icon.png')}}" /></a>
-      <a href="https://bitcointalk.org/index.php?topic=5138663" target="_blank"><img class="socialmedia" src="{{url_for('static', filename='img/bitcointalk_icon.png')}}" /></a>
-      <a href="https://www.linkedin.com/company/blackturtle-bvba" target="_blank"><img class="socialmedia" src="{{url_for('static', filename='img/in_icon.png')}}" /></a>
-    
-    </div>
+
+                <div>
+
+                    <a href="https://t.me/TurtleNetwork" target="_blank"><img class="socialmedia"
+                                                                              src="{{ url_for('static', filename='img/telegram_icon.png') }}"/></a>
+                    <a href="https://twitter.com/TurtleNetworkTN" target="_blank"><img class="socialmedia"
+                                                                                       src="{{ url_for('static', filename='img/twitter_icon.png') }}"/></a>
+                    <a href="https://www.facebook.com/TurtleNetworkTN/" target="_blank"><img class="socialmedia"
+                                                                                             src="{{ url_for('static', filename='img/facebook_icon.png') }}"/></a>
+                    <a href="https://www.youtube.com/channel/UCzbSukzGRKxpNov6yp4275w" target="_blank"><img
+                            class="socialmedia" src="{{ url_for('static', filename='img/youtube_icon.png') }}"/></a>
+                    <a href="https://www.instagram.com/turtlenetworktn/" target="_blank"><img class="socialmedia"
+                                                                                              src="{{ url_for('static', filename='img/instagram_icon.png') }}"/></a>
+                    <a href="https://www.reddit.com/r/TurtleNetwork/" target="_blank"><img class="socialmedia"
+                                                                                           src="{{ url_for('static', filename='img/reddit_icon.png') }}"/></a>
+                    <a href="https://github.com/BlackTurtle123/TurtleNetwork" target="_blank"><img class="socialmedia"
+                                                                                                   src="{{ url_for('static', filename='img/github_icon.png') }}"/></a>
+                    <a href="https://github.com/BlackTurtle123/TurtleNetwork/wiki" target="_blank"><img
+                            class="socialmedia" src="{{ url_for('static', filename='img/git-wiki_icon.png') }}"/></a>
+                    <a href="https://bitcointalk.org/index.php?topic=5138663" target="_blank"><img class="socialmedia"
+                                                                                                   src="{{ url_for('static', filename='img/bitcointalk_icon.png') }}"/></a>
+                    <a href="https://www.linkedin.com/company/blackturtle-bvba" target="_blank"><img class="socialmedia"
+                                                                                                     src="{{ url_for('static', filename='img/in_icon.png') }}"/></a>
+
+                </div>
 
 
                 <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="darkSwitch">
-            <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
-          </div>
-          
+                    <input type="checkbox" class="custom-control-input" id="darkSwitch">
+                    <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
                 </div>
-            </nav>
+
+            </div>
+        </nav>
 
 
-
-{% block content %}{% endblock %}
+        {% block content %}{% endblock %}
 </body>
 {% block script %}
 
-     <!-- You must load 'dark-mode-switch.js' after the dark-mode switch -->
-          <script src="static/js/dark-mode-switch.min.js"></script>  
-                
+    <!-- You must load 'dark-mode-switch.js' after the dark-mode switch -->
+    <script src="static/js/dark-mode-switch.min.js"></script>
+
 
     <script type="text/javascript">
         $(document).ready(function () {
