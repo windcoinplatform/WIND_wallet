@@ -7,17 +7,23 @@
 {% endblock %}
 {% block content %}
 
-    <br></br>
-    <h1 style="text-align: center"><em class="fas fa-expand-arrows-alt"></em>GATEWAYS</h1>
-    <br></br>
 
-    <select id="gateway_select_id" name="gateways">
-        <option value="tn">TN</option>
+<div class="container">
+
+    <h1 style="text-align:center"><em class="fas fa-expand-arrows-alt"></em>GATEWAYS</h1>
+    
+
+    <select class="custom-select" style="width:50%" id="gateway_select_id" name="gateways">
+        <option selected>Open this Gateway selection menu</option>
+       
         {% for gw in gateways %}
             <option value="{{ gw.name }}">{{ gw.name }}</option>
         {% endfor %}
 
     </select>
+    <br></br>
+</div>
+
 
     <div class="container hide" id="tn_container" style="display:none">
 
