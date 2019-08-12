@@ -86,7 +86,7 @@ def dex_overview():
 @app.route('/alias')
 @login_required
 def alias_overview():
-    return render_template('alias.html',address=current_user.wallet.address, extra_fees=current_user.extra_fees)
+    return render_template('alias.html', address=current_user.wallet.address, extra_fees=current_user.extra_fees)
 
 
 @app.route('/data')
@@ -99,6 +99,12 @@ def data_overview():
 @login_required
 def asset_create():
     return render_template('asset_create.html')
+
+
+@app.route('/explorer')
+@login_required
+def explorer():
+    return render_template('explorer.html')
 
 
 @app.route('/lease/overview')
@@ -176,8 +182,13 @@ def send_tn():
     recipient = data['addr']
     attachment = data['attachment']
     fee = float(data['fee']) * (10 ** 8)
-    send = current_user.wallet.sendWaves(py.Address(address=recipient), int(amount), attachment=attachment,
-                                         txFee=int(fee))
+    alias = json.loads(active_alias(recipient))
+    if 'address' not in alias:
+        send = current_user.wallet.sendWaves(py.Address(address=recipient), int(amount), attachment=attachment,
+                                             txFee=int(fee))
+    else:
+        send = current_user.wallet.sendWaves(py.Address(address=alias['address']), int(amount), attachment=attachment,
+                                             txFee=int(fee))
     return jsonify(send)
 
 
@@ -189,7 +200,12 @@ def send_asset(asset):
     addr = data['addr']
     amount = float(data['amount']) * (10 ** py_asset.decimals)
     fee = float(data['fee']) * (10 ** 8)
-    send = current_user.wallet.sendAsset(py.Address(addr), py_asset, int(amount), txFee=int(fee))
+    alias = json.loads(active_alias(addr))
+    if 'address' not in alias:
+        send = current_user.wallet.sendAsset(py.Address(addr), py_asset, int(amount), txFee=int(fee))
+    else:
+        send = current_user.wallet.sendAsset(py.Address(alias['address']), py_asset, int(amount), txFee=int(fee))
+
     return jsonify(send)
 
 
@@ -246,7 +262,11 @@ def start_leasing():
     data = json.loads(request.data.decode())
     amount = float(data['amount']) * (10 ** 8)
     recipient = data['addr']
-    send = current_user.wallet.lease(py.Address(address=recipient), int(amount), txFee=FEE)
+    alias = json.loads(active_alias(recipient))
+    if 'address' not in alias:
+        send = current_user.wallet.lease(py.Address(address=recipient), int(amount), txFee=FEE)
+    else:
+        send = current_user.wallet.lease(py.Address(address=alias['address']), int(amount), txFee=FEE)
     return jsonify(send)
 
 

@@ -170,6 +170,18 @@ def test_login_dex_logout(test_client):
     assert b'Log in' in response.data
 
 
+def test_login_explorer_logout(test_client):
+    response = login(test_client, 'a', '')
+    assert response.status_code == 200
+    assert b'Leasing' in response.data
+
+    response = test_client.get("/explorer", follow_redirects=True)
+    assert response.status_code == 200
+
+    response = logout(test_client)
+    assert response.status_code == 200
+    assert b'Log in' in response.data
+
 def test_login_alias_logout(test_client):
     response = login(test_client, 'a', '')
     assert response.status_code == 200
