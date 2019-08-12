@@ -7,42 +7,58 @@
 {% endblock %}
 {% block content %}
 
-    <div class="container">
+    <br></br>
+    <h1 style="text-align: center"><em class="fas fa-expand-arrows-alt"></em>GATEWAYS</h1>
+    <br></br>
 
-        <img src="{{url_for('static', filename='img/wB-bg-TN.png')}}" alt="TNlogo" style="margin-left: 1%; margin-top: 1%" />
+    <select id="gateway_select_id" name="gateways">
+        <option value="tn">TN</option>
+        {% for gw in gateways %}
+            <option value="{{ gw.name }}">{{ gw.name }}</option>
+        {% endfor %}
+
+    </select>
+
+    <div class="container hide" id="tn_container" style="display:none">
+
+        <img src="{{ url_for('static', filename='img/wB-bg-TN.png') }}" alt="TNlogo"
+             style="margin-left: 1%; margin-top: 1%"/>
 
         <form id="tn_gateway_form">
 
             <div class="col-md-4"><span><h5>Gateway: $TN</h5></span></div>
 
-            
+
             <div class="col-9" style="text-align: left"><span><h5>To Send $TN to The Turtle Network, using Waves Network wallet:</h5>
             <p>Send amount bigger then 0.09 $TN to: </p>
             <h5>3PJ33ZasLyhLaFuK4gHGTFSQbpFBP5Entor</h5><p> With attachment: </p><h5>{{ address }}</h5></span>
             </div>
-        
-            
+
+
             <br></br>
             <h1 style="text-align: center"><em class="fas fa-expand-arrows-alt"></em></h1>
             <br></br>
 
-        <!----------------------------------------------------------------------------->
+            <!----------------------------------------------------------------------------->
 
             <div class="row">
 
 
-            <div class="col-md-4"><span><h5>To Send $TN to Waves Network, using Turtle Network wallet:</h5><br></br>$TN to send: <input
-                    required id="tn_amount" type="number" min="0.01" placeholder=Amount></h5></span></div>
+                <div class="col-md-4"><span><h5>To Send $TN to Waves Network, using Turtle Network wallet:</h5><br></br>$TN to send: <input
+                        required id="tn_amount" type="number" min="0.01" placeholder=Amount></h5></span></div>
 
 
-            <div class="col-md-4 offset-md-4"><span><h5>Waves Network destination<br></br><input required id="tn_addr" maxlength="35"
-                                                                                   minlength="35" placeholder=Address></h5></span>
+                <div class="col-md-4 offset-md-4"><span><h5>Waves Network destination<br></br><input required
+                                                                                                     id="tn_addr"
+                                                                                                     maxlength="35"
+                                                                                                     minlength="35"
+                                                                                                     placeholder=Address></h5></span>
+                </div>
             </div>
-        </div>
 
             <div class="row">
                 <div class="col-md-4"><span><h5>Tx fees $TN:<input required id="tn_fee" maxlength="35" minlength="35"
-                                                                value="{{ (2000000 + extra_fees)/100000000 }}"></h5></span>
+                                                                   value="{{ (2000000 + extra_fees)/100000000 }}"></h5></span>
                 </div>
                 <div class="col-md-4 offset-md-4"><span><h5>Gateway fees: 0.09 $TN</h5></span></div>
             </div>
@@ -55,28 +71,29 @@
         </form>
     </div>
 
-        <!----------------------------------------------------------------------------->
+    <!----------------------------------------------------------------------------->
 
-<br></br>
-        <h1 style="text-align: center"><em class="fas fa-expand-arrows-alt"></em>GATEWAYS</h1>
-<br></br>
 
 
     {% for gw in gateways %}
 
-        <div class="container">
-            <button data-gwname="{{ gw.name }}" class="gw_load btn btn-outline-dark btn-lg" type="button">Details ${{ gw.name|upper }}</button>
+        <div class="container hide" id="{{ gw.name }}_container" style="display:none">
+           <img src="{{ url_for('static', filename=gw.image_name) }}" alt="TNlogo"
+                         style="margin-left: 1%; margin-top: 1%"/>
+
+                    <div class="col-md-4"><h5>GATEWAY ${{ gw.name|upper }}</h5></div>
+            <button data-gwname="{{ gw.name }}" class="gw_load btn btn-outline-dark btn-lg" type="button">Details
+                ${{ gw.name|upper }}</button>
             <form class="{{ gw.name }}_gateway_form">
 
 
                 <div class="collapse" id="{{ gw.name }}_collapse_div">
 
-                    <img src="{{url_for('static', filename=gw.image_name)}}" alt="TNlogo" style="margin-left: 1%; margin-top: 1%" />
-
-                    <div class="col-md-4"><h5>GATEWAY ${{ gw.name|upper }}</h5></div>
 
 
-                    <div class="col-9" style="text-align: left"><h5>To Send ${{ gw.name|upper }} to The Turtle Network, using {{ gw.name|title }}
+
+                    <div class="col-9" style="text-align: left"><h5>To Send ${{ gw.name|upper }} to The Turtle Network,
+                        using {{ gw.name|title }}
                         Network Wallet:</h5>
 
                         <div id="{{ gw.name }}_personal_p"><span><p>Send amount bigger then</p><h5> {{ gw.fee }} </h5><p>
@@ -85,9 +102,10 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4"><span><h5>Tx fees $TN:<input required id="{{ gw.name }}_fee" maxlength="35"
-                                                                        minlength="35"
-                                                                        value="{{ (2000000 + extra_fees)/100000000 }}"></h5></span>
+                        <div class="col-md-4"><span><h5>Tx fees $TN:<input required id="{{ gw.name }}_fee"
+                                                                           maxlength="35"
+                                                                           minlength="35"
+                                                                           value="{{ (2000000 + extra_fees)/100000000 }}"></h5></span>
                         </div>
                         <div class="col-md-4"><h5>Gateway fees: {{ gw.fee }} ${{ gw.name|upper }}</h5></div>
                     </div>
@@ -104,23 +122,26 @@
 
 
                     <div class="row">
-                    <div class="col-md-4"><h5>Amount of ${{ gw.name|upper }} to send: <input required
-                                                                                             id="{{ gw.name }}_amount"
-                                                                                             type="number"
-                                                                                             min="0.01"></h5></div>
+                        <div class="col-md-4"><h5>Amount of ${{ gw.name|upper }} to send: <input required
+                                                                                                 id="{{ gw.name }}_amount"
+                                                                                                 type="number"
+                                                                                                 min="0.01"></h5></div>
 
-                    <div class="col-md-4 offset-md-4"><h5>{{ gw.name }} Network destination<input required
-                                                                                             id="{{ gw.name }}_addr"
-                                                                                             maxlength="35"
-                                                                                             minlength="35" placeholder=Address></h5></div>
+                        <div class="col-md-4 offset-md-4"><h5>{{ gw.name }} Network destination<input required
+                                                                                                      id="{{ gw.name }}_addr"
+                                                                                                      maxlength="35"
+                                                                                                      minlength="35"
+                                                                                                      placeholder=Address>
+                        </h5></div>
                     </div>
 
                     <div class="col-md-4">
-                        <button class="gw_send btn btn-outline-dark btn-lg" type="button" data-gwname="{{ gw.name }}" data-fee={{ gw.fee }} type="button">Send
+                        <button class="gw_send btn btn-outline-dark btn-lg" type="button" data-gwname="{{ gw.name }}"
+                                data-fee={{ gw.fee }} type="button">Send
                             ${{ gw.name|upper }}</button>
                     </div>
                 </div>
-                    <br></br>
+                <br></br>
             </form>
         </div>
 

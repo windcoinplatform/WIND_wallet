@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    $('#gateway_select_id').on('change', function () {
+        $('.hide').hide();
+        $('#' + this.value + '_container').show();
+    });
+
     $(".gw_load").click(function () {
         const gwname = $(this).data("gwname");
         $("#" + gwname + "_collapse_div").toggle();
@@ -28,7 +33,7 @@ $(document).ready(function () {
             var addr = $("#" + gwname + "_addr").val();
             var tx_fee = $("#" + gwname + "_fee").val();
 
-            const data = {amount: parseFloat(amount) + parseFloat(fee), addr: addr,fee:tx_fee};
+            const data = {amount: parseFloat(amount) + parseFloat(fee), addr: addr, fee: tx_fee};
             gw_tx(gwname, data)
 
         }
@@ -43,9 +48,9 @@ $(document).ready(function () {
             url: '/gw/send/' + gw,
 
         }).done(function (data) { //same as .success (depricated as of 1.8)
-                $("#Modal-body").html(JSON.stringify(data).replace("null","Something went wrong.\n"));
-                $("#Modal-vert-center-demo-label").text("User feedback");
-                $("#Modal-vert-center-demo").modal('show');
+            $("#Modal-body").html(JSON.stringify(data).replace("null", "Something went wrong.\n"));
+            $("#Modal-vert-center-demo-label").text("User feedback");
+            $("#Modal-vert-center-demo").modal('show');
         })
             .fail(function (jqXHR, textStatus, errorThrown) { //replaces .error
                 console.log("error");

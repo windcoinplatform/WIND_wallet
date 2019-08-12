@@ -18,6 +18,8 @@ function get(url) {
 
 
 $(document).ready(function () {
+
+
     $("#send_tn").click(function () {
             const amount = $("#send_amount_tn").val();
             const addr = $("#send_addr_tn").val();
