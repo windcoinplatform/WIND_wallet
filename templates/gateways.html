@@ -15,7 +15,7 @@
 
     <select class="custom-select" style="width:50%" id="gateway_select_id" name="gateways">
         <option selected>Open this Gateway selection menu</option>
-       
+            <option value="tn">TN</option>
         {% for gw in gateways %}
             <option value="{{ gw.name }}">{{ gw.name }}</option>
         {% endfor %}
