@@ -110,7 +110,7 @@ def lease_overview():
 @app.route('/gateway/<gateway>')
 @login_required
 def gateways_detail(gateway):
-    gw: Gateway = next((x for x in gateways if x.name == gateway), None)
+    gw: Gateway = next((x for x in gateways if x.name.lower() == gateway.lower()), None)
     index = gateways.index(gw)
     gw.set_personal_wallet(get_addr_gateway(gw.url, current_user.wallet.address))
     gateways[index] = gw
@@ -133,7 +133,7 @@ def gw_send_tn():
 @app.route('/gw/send/<gateway>', methods=['POST'], strict_slashes=False)
 @login_required
 def gw_send_currencie(gateway):
-    gw: Gateway = next((x for x in gateways if x.name == gateway), None)
+    gw: Gateway = next((x for x in gateways if x.name.lower() == gateway.lower()), None)
     data = request.data
     gateway = py.Address(address=gw.general_addr)
     json_data = json.loads(data.decode())
