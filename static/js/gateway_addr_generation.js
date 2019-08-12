@@ -4,26 +4,34 @@ $(document).ready(function () {
         $('#' + this.value + '_container').show();
     });
 
-    $(".gw_load").click(function () {
+    $(".gw_load_dep").click(function () {
         const gwname = $(this).data("gwname");
-        $("#" + gwname + "_collapse_div").toggle();
+        $("#" + gwname + "_collapse_wd_div").hide();
+        $("#" + gwname + "_collapse_dep_div").toggle();
+        if (gwname !== "tn") {
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: '/gateway/' + gwname,
 
-        $.ajax({
-            type: "GET",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            url: '/gateway/' + gwname,
-
-        }).done(function (data) { //same as .success (depricated as of 1.8)
-            $("#" + gwname + "_personal_p").text('Send amount bigger then ' + data['fee'] + ' $' + data['name'] + '\n' +
-                '                        to ' + data['personal_addr'])
-        })
-            .fail(function (jqXHR, textStatus, errorThrown) { //replaces .error
-                console.log("error");
-                console.dir(arguments);
+            }).done(function (data) { //same as .success (depricated as of 1.8)
+                $("#" + gwname + "_personal_p").text('Send amount bigger then ' + data['fee'] + ' $' + data['name'] + '\n' +
+                    '                        to ' + data['personal_addr'])
             })
+                .fail(function (jqXHR, textStatus, errorThrown) { //replaces .error
+                    console.log("error");
+                    console.dir(arguments);
+                })
+        }
     });
 
+    $(".gw_load_wd").click(function () {
+        const gwname = $(this).data("gwname");
+        $("#" + gwname + "_collapse_dep_div").hide();
+        $("#" + gwname + "_collapse_wd_div").toggle();
+
+    });
 
     $(".gw_send").click(function () {
             const gwname = $(this).data("gwname");

@@ -8,70 +8,74 @@
 {% block content %}
 
 
-<div class="container">
+    <div class="container">
 
-    <h1 style="text-align:center"><em class="fas fa-expand-arrows-alt"></em>GATEWAYS</h1>
-    
+        <h1 style="text-align:center"><em class="fas fa-expand-arrows-alt"></em>GATEWAYS</h1>
 
-    <select class="custom-select" style="width:50%" id="gateway_select_id" name="gateways">
-        <option selected>Open this Gateway selection menu</option>
+
+        <select class="custom-select" style="width:50%" id="gateway_select_id" name="gateways">
+            <option selected>Open this Gateway selection menu</option>
             <option value="tn">TN</option>
-        {% for gw in gateways %}
-            <option value="{{ gw.name }}">{{ gw.name }}</option>
-        {% endfor %}
+            {% for gw in gateways %}
+                <option value="{{ gw.name }}">{{ gw.name }}</option>
+            {% endfor %}
 
-    </select>
-    <br></br>
-</div>
+        </select>
+        <br></br>
+    </div>
 
 
     <div class="container hide" id="tn_container" style="display:none">
 
         <img src="{{ url_for('static', filename='img/wB-bg-TN.png') }}" alt="TNlogo"
              style="margin-left: 1%; margin-top: 1%"/>
+                    <div class="col-md-4"><h5>GATEWAY $TN</h5></div>
 
+        <button data-gwname="tn" class="gw_load_wd btn btn-outline-dark btn-lg" type="button">Withdraw
+            $TN
+        </button>
+        <button data-gwname="tn" class="gw_load_dep btn btn-outline-dark btn-lg" type="button">Deposit
+            $TN
+        </button>
         <form id="tn_gateway_form">
+            <div class="collapse" id="tn_collapse_dep_div">
 
-            <div class="col-md-4"><span><h5>Gateway: $TN</h5></span></div>
-
-
-            <div class="col-9" style="text-align: left"><span><h5>To Send $TN to The Turtle Network, using Waves Network wallet:</h5>
+                <div class="col-9" style="text-align: left"><span><h5>To Send $TN to The Turtle Network, using Waves Network wallet:</h5>
             <p>Send amount bigger then 0.09 $TN to: </p>
             <h5>3PJ33ZasLyhLaFuK4gHGTFSQbpFBP5Entor</h5><p> With attachment: </p><h5>{{ address }}</h5></span>
-            </div>
-
-
-            <br></br>
-            <h1 style="text-align: center"><em class="fas fa-expand-arrows-alt"></em></h1>
-            <br></br>
-
-            <!----------------------------------------------------------------------------->
-
-            <div class="row">
-
-
-                <div class="col-md-4"><span><h5>To Send $TN to Waves Network, using Turtle Network wallet:</h5><br></br>$TN to send: <input
-                        required id="tn_amount" type="number" min="0.01" placeholder=Amount></h5></span></div>
-
-
-                <div class="col-md-4 offset-md-4"><span><h5>Waves Network destination<br></br><input required
-                                                                                                     id="tn_addr"
-                                                                                                     maxlength="35"
-                                                                                                     minlength="35"
-                                                                                                     placeholder=Address></h5></span>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-4"><span><h5>Tx fees $TN:<input required id="tn_fee" maxlength="35" minlength="35"
-                                                                   value="{{ (2000000 + extra_fees)/100000000 }}"></h5></span>
+            </div>
+            <div class="collapse" id="tn_collapse_wd_div">
+
+
+                <div class="row">
+
+
+                    <div class="col-md-4"><span><h5>To Send $TN to Waves Network, using Turtle Network wallet:</h5><br></br>$TN to send: <input
+                            required id="tn_amount" type="number" min="0.01" placeholder=Amount></span></div>
+
+
+                    <div class="col-md-4 offset-md-4"><span><h5>Waves Network destination<br></br><input required
+                                                                                                         id="tn_addr"
+                                                                                                         maxlength="35"
+                                                                                                         minlength="35"
+                                                                                                         placeholder=Address></h5></span>
+                    </div>
                 </div>
-                <div class="col-md-4 offset-md-4"><span><h5>Gateway fees: 0.09 $TN</h5></span></div>
-            </div>
+
+                <div class="row">
+                    <div class="col-md-4"><span><h5>Tx fees $TN:<input required id="tn_fee" maxlength="35"
+                                                                       minlength="35"
+                                                                       value="{{ (2000000 + extra_fees)/100000000 }}"></h5></span>
+                    </div>
+                    <div class="col-md-4 offset-md-4"><span><h5>Gateway fees: 0.09 $TN</h5></span></div>
+                </div>
 
 
-            <div class="col-md-4">
-                <button class="gw_send" data-gwname="tn" data-fee=0.09 type="button">Send $TN</button>
+                <div class="col-md-4">
+                    <button class="gw_send" data-gwname="tn" data-fee=0.09 type="button">Send $TN</button>
+                </div>
             </div>
 
         </form>
@@ -84,43 +88,18 @@
     {% for gw in gateways %}
 
         <div class="container hide" id="{{ gw.name }}_container" style="display:none">
-           <img src="{{ url_for('static', filename=gw.image_name) }}" alt="TNlogo"
-                         style="margin-left: 1%; margin-top: 1%"/>
+            <img src="{{ url_for('static', filename=gw.image_name) }}" alt="TNlogo"
+                 style="margin-left: 1%; margin-top: 1%"/>
 
-                    <div class="col-md-4"><h5>GATEWAY ${{ gw.name|upper }}</h5></div>
-            <button data-gwname="{{ gw.name }}" class="gw_load btn btn-outline-dark btn-lg" type="button">Details
+            <div class="col-md-4"><h5>GATEWAY ${{ gw.name|upper }}</h5></div>
+            <button data-gwname="{{ gw.name }}" class="gw_load_wd btn btn-outline-dark btn-lg" type="button">Withdraw
+                ${{ gw.name|upper }}</button>
+            <button data-gwname="{{ gw.name }}" class="gw_load_dep btn btn-outline-dark btn-lg" type="button">Deposit
                 ${{ gw.name|upper }}</button>
             <form class="{{ gw.name }}_gateway_form">
 
 
-                <div class="collapse" id="{{ gw.name }}_collapse_div">
-
-
-
-
-                    <div class="col-9" style="text-align: left"><h5>To Send ${{ gw.name|upper }} to The Turtle Network,
-                        using {{ gw.name|title }}
-                        Network Wallet:</h5>
-
-                        <div id="{{ gw.name }}_personal_p"><span><p>Send amount bigger then</p><h5> {{ gw.fee }} </h5><p>
-                        ${{ gw.name|upper }}
-                        to </p><h5> {{ gw.personal_addr }} </h5></span></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4"><span><h5>Tx fees $TN:<input required id="{{ gw.name }}_fee"
-                                                                           maxlength="35"
-                                                                           minlength="35"
-                                                                           value="{{ (2000000 + extra_fees)/100000000 }}"></h5></span>
-                        </div>
-                        <div class="col-md-4"><h5>Gateway fees: {{ gw.fee }} ${{ gw.name|upper }}</h5></div>
-                    </div>
-
-                    <!----------------------------------------------------------------------------->
-
-                    <br></br>
-                    <h1 style="text-align: center"><em class="fas fa-expand-arrows-alt"></em></h1>
-                    <br></br>
+                <div class="collapse" id="{{ gw.name }}_collapse_wd_div">
 
 
                     <div class="col-9"><h5>To Send ${{ gw.name|upper }} to {{ gw.name|title }} Network, using Turtle
@@ -140,12 +119,34 @@
                                                                                                       placeholder=Address>
                         </h5></div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4"><span><h5>Tx fees $TN:<input required id="{{ gw.name }}_fee"
+                                                                           maxlength="35"
+                                                                           minlength="35"
+                                                                           value="{{ (2000000 + extra_fees)/100000000 }}"></h5></span>
+                        </div>
+                        <div class="col-md-4"><h5>Gateway fees: {{ gw.fee }} ${{ gw.name|upper }}</h5></div>
+                    </div>
 
                     <div class="col-md-4">
                         <button class="gw_send btn btn-outline-dark btn-lg" type="button" data-gwname="{{ gw.name }}"
                                 data-fee={{ gw.fee }} type="button">Send
                             ${{ gw.name|upper }}</button>
                     </div>
+                </div>
+                <div class="collapse" id="{{ gw.name }}_collapse_dep_div">
+
+
+                    <div class="col-9" style="text-align: left"><h5>To Send ${{ gw.name|upper }} to The Turtle Network,
+                        using {{ gw.name|title }}
+                        Network Wallet:</h5>
+
+                        <div id="{{ gw.name }}_personal_p"><span><p>Send amount bigger then</p><h5> {{ gw.fee }} </h5><p>
+                        ${{ gw.name|upper }}
+                        to </p><h5> {{ gw.personal_addr }} </h5></span></div>
+                    </div>
+
+
                 </div>
                 <br></br>
             </form>
