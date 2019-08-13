@@ -6,26 +6,45 @@
 {% endblock %}
 {% block content %}
 
-    <h3>Lease $TN:</h3>
-    <form id="lease_form"><h2>Lease:</h2>
-         <p>Fees: <input required id="lease_fee_tn" maxlength="35"
-                        minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}">  $TN
-        </p>
-        <p>Amount of $TN to lease: <input required id="lease_amount_tn" type="number"
-                                         max="{{ balance }}">
-        </p>
-        <p>Destination addr: <input required id="lease_addr_tn" maxlength="35"
-                                    minlength="35"></p>
-        <p>
-            <button id="lease_tn" type="button">Lease
+
+
+<div class="container-fluid">
+
+   
+    <div class="col-md-4"><span><h1 style="text-align:center"><em class="fas fa-chart-pie"></em>LEASE $TN</h1></span></div>
+
+    <form id="lease_form">
+
+
+<div class="row">
+         <div class="col-md-4"><h5>Fees: <input required id="lease_fee_tn" maxlength="35"
+                        minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}">  $TN</h5></div>
+
+         <div class="col-md-4 offset-md-4"><h5>Amount of $TN to lease: <input required id="lease_amount_tn" type="number"
+                                         max="{{ balance }}"></h5></div>
+</div>
+
+
+        <div class="col-md-4"><h5>Destination addr: <input required id="lease_addr_tn" maxlength="35"
+                                    minlength="35"></h5></div>
+        
+
+            <button class="gw_send btn btn-outline-dark btn-lg" id="lease_tn" type="button">Lease
                 $TN
             </button>
-        </p>
+        
     </form>
-    <h3>Active Leases</h3>
-    <button data-addr={{ address }} id="lease_load">Show Active Leases</button>
 
-    <div class="collapse" id="lease_collapse_div">
+
+     <div class="col-md-4"><span><h5>Active Leases</h5></span></div>
+
+
+    <button class="gw_send btn btn-outline-dark btn-lg" type="button" data-addr={{ address }} id="lease_load">Show Active Leases</button>
+
+   <div class="col-md-4 collapse" id="lease_collapse_div"></div>
+
+
 
     </div>
+</div>
 {% endblock %}

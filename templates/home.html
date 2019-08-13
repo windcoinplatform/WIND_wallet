@@ -12,10 +12,10 @@
  
 <div class="container-fluid">
  
-
- <div class="col-9">
- <em class="fas fa-wallet"></em>
-	<h5>MY WALLET ADDRESS</h5><h2><span class="badge badge-secondary">{{ address }}</span></h2></div>
+ 
+ <div class="col-9"><span><h2 style="text-align:center"><em class="fas fa-wallet"></em>WALLET ADDRESS</h2></span>
+<div class="badge badge-secondary"><span><h2>{{ address }}</span></h2></div>
+</div>
 
 <div class="row">
 <div class="col-md-4"><span><h5>TRANSFER $TN</h5></span></div>
@@ -39,19 +39,15 @@
     <div class="col-7 col-md-4">
      <input required id="send_fee_tn" maxlength="35" minlength="35" value="{{ (2000000 )/100000000+ extra_fees }}" class="form-control" placeholder="Fees">
     </div>
-    <div class="col-md-4 offset-md-4"><span><h5>EXTRA FEES: {{ extra_fees }}</h5></span></div>
+    <div class="col-md-4 offset-md-4"><span><h5>EXTRA FEES: {{ extra_fees }}</h5></span>
+      <button type="button" class="btn btn-sm btn-danger" data-toggle="popover" title="Extra Fees" data-content="When your account is scripted, extra fees will need to be paid. When this isn't scripted, nothing will be added."><h5>i</h5></button>
+    </div>
   </div>
 
     <div class="row">
     <div class="col-7 col-md-4">
   <button id="send_tn" class="btn btn-outline-dark btn-lg" type="button">SEND$TN</button>
   </div>
-
-    <div class="col-md-4 offset-md-4"><span><p style="font-size:12px">When your account is scripted, extra fees will need to be paid. When this isn't scripted, nothing will be added.</p></span>
-
-     <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Extra Fees" data-content="When your account is scripted, extra fees will need to be paid. When this isn't scripted, nothing will be added.">Click to toggle popover</button> 
-
-    </div>
 
   </div>
 </form>      

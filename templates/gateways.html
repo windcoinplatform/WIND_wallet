@@ -10,30 +10,32 @@
 
     <div class="container">
 
-        <h1 style="text-align:center"><em class="fas fa-expand-arrows-alt"></em>GATEWAYS</h1>
+         <div class="col-md-4"><span><h1 style="text-align:center"><em class="fas fa-expand-arrows-alt"></em>GATEWAYS</h1></span></div>
 
-
-        <select class="custom-select" style="width:50%" id="gateway_select_id" name="gateways">
-            <option selected>Open this Gateway selection menu</option>
+    <select class="custom-select" style="width:50%" id="gateway_select_id" name="gateways">
+        <option selected>Open this Gateway selection menu</option>
             <option value="tn">TN</option>
-            {% for gw in gateways %}
-                <option value="{{ gw.name }}">{{ gw.name }}</option>
-            {% endfor %}
+        {% for gw in gateways %}
+            <option value="{{ gw.name }}">{{ gw.name }}</option>
+        {% endfor %}
+        
+		0ea335b01cb73967d6986b2d57f47705b426410a
 
         </select>
         <br></br>
     </div>
 
 
-    <div class="container hide" id="tn_container" style="display:none">
+    <div class="container-fluid hide" id="tn_container" style="display:none">
 
         <img src="{{ url_for('static', filename='img/wB-bg-TN.png') }}" alt="TNlogo"
              style="margin-left: 1%; margin-top: 1%"/>
-                    <div class="col-md-4"><h5>GATEWAY $TN</h5></div>
+              
 
         <button data-gwname="tn" class="gw_load_wd btn btn-outline-dark btn-lg" type="button">Withdraw
             $TN
         </button>
+      
         <button data-gwname="tn" class="gw_load_dep btn btn-outline-dark btn-lg" type="button">Deposit
             $TN
         </button>
@@ -87,11 +89,11 @@
 
     {% for gw in gateways %}
 
-        <div class="container hide" id="{{ gw.name }}_container" style="display:none">
+        <div class="container-fluid hide" id="{{ gw.name }}_container" style="display:none">
             <img src="{{ url_for('static', filename=gw.image_name) }}" alt="TNlogo"
                  style="margin-left: 1%; margin-top: 1%"/>
 
-            <div class="col-md-4"><h5>GATEWAY ${{ gw.name|upper }}</h5></div>
+        
             <button data-gwname="{{ gw.name }}" class="gw_load_wd btn btn-outline-dark btn-lg" type="button">Withdraw
                 ${{ gw.name|upper }}</button>
             <button data-gwname="{{ gw.name }}" class="gw_load_dep btn btn-outline-dark btn-lg" type="button">Deposit
