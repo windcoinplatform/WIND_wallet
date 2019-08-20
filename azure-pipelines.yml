@@ -54,7 +54,8 @@ steps:
     organization: 'blackturtle123'
     scannerMode: 'CLI'
     configMode: 'file'
-
+    extraProperties: |
+      sonar.exclusions="static/bootstrap/*"
 - task: SonarCloudAnalyze@1
 
 - task: SonarCloudPublish@1
