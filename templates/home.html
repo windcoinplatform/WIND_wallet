@@ -3,19 +3,42 @@
 
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/transactions.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/details.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'bootstrap/js/clipboard.min.js') }}"></script>
+
 
 {% endblock %}
 {% block content %}
    
 <!--    ----------------------------------------------------------------------------------------------------------------------------> 
-
  
 <div class="container-fluid">
  
- 
- <div class="col-9"><span><h2 style="text-align:center"><em class="fas fa-wallet"></em>WALLET ADDRESS</h2></span>
-<div class="badge badge-secondary"><span><h2>{{ address }}</span></h2></div>
+ <div class="col-md-4"><span><h2 style="text-align:center"><em class="fas fa-wallet"></em>WALLET ADDRESS</h2></span></div>
+
+ <div class="col-9">
+<div class="badge badge-secondary"><span><h5>{{ address }}</span></h5></div>
+<button class="btn btn-outline-dark" data-clipboard-text="{{ address }}">
+    Copy Address to clipboard
+</button>
 </div>
+
+
+<script>
+    var clipboard = new ClipboardJS('.btn');
+
+clipboard.on('success', function(e) {
+    console.info('Action:', e.action);
+    console.info('Text:', e.text);
+    console.info('Trigger:', e.trigger);
+
+    e.clearSelection();
+});
+
+clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
+});
+    </script>
 
 <div class="row">
 <div class="col-md-4"><span><h5>TRANSFER $TN</h5></span></div>
@@ -40,7 +63,7 @@
      <input required id="send_fee_tn" maxlength="35" minlength="35" value="{{ (2000000 )/100000000+ extra_fees }}" class="form-control" placeholder="Fees">
     </div>
     <div class="col-md-4 offset-md-4"><span><h5>EXTRA FEES: {{ extra_fees }}</h5></span>
-      <button type="button" class="btn btn-sm btn-danger" data-toggle="popover" title="Extra Fees" data-content="When your account is scripted, extra fees will need to be paid. When this isn't scripted, nothing will be added."><h5>i</h5></button>
+      <button type="button" class="btn btn-danger btn-circle" data-toggle="popover" title="Extra Fees" data-content="When your account is scripted, extra fees will need to be paid. When this isn't scripted, nothing will be added."><h5>i</h5></button>
     </div>
   </div>
 
