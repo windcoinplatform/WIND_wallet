@@ -51,7 +51,7 @@ steps:
     scannerMode: 'CLI'
     configMode: 'file'
     extraProperties: |
-      sonar.exclusions="static/bootstrap/*"
+      sonar.exclusions="**/bootstrap/js/*.js"
 
 - task: SonarCloudAnalyze@1
 
