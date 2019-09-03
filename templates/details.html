@@ -4,68 +4,123 @@
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/details.js') }}"></script>
 {% endblock %}
 {% block content %}
-    <div><h2>Balance:</h2>
-        {{ asset_balance }}
+
+<div class="container-fluid">
+ 
+ <div class="col-9"><span><h2 style="text-align:center"><em class="fas fa-cogs"></em>ASSET DETAILS & UTILITIES</h2></span></div>
+
+        <div class="col-md-4"><h5>Balance:</h5>{{ asset_balance }}</div>
+
+<div class="row">
+        <div class="col-md-4"><h5>Asset Details:</h5></div>
+        <div class="col-md-4 offset-md-4"><h5>Name: {{ asset_details['name'].decode('utf-8') }}</h5></div>
+</div>
+
+        <div class="col-9"><h5>AssetId: {{ asset_details['assetId'] }}</h5></div>
+        <div class="col-9"><h5>Issuer: {{ asset_details['issuer'] }}</h5></div>
+        
+        <div class="col-9"><h5>Description: {{ asset_details['description'].decode('utf-8') }}</h5></div>
+        
+
+<div class="row">
+        <div class="col-md-4"><h5>Quantity: {{ asset_details['quantity']/(10**asset_details['decimals']) }}</h5></div>
+        <div class="col-md-4 offset-md-4"><h5>Decimals: {{ asset_details['decimals'] }}</h5></div>
+        </div>
+
+<div class="row">
+        <div class="col-md-4"><h5>Reissuable: {{ asset_details['reissuable'] }}</h5></div>
+        <div class="col-md-4 offset-md-4"><h5>Smart Asset: {{ asset_smart }} </h5>
+        <button type="button" class="btn btn-danger btn-circle" data-toggle="popover" title="Extra Fees" data-content="Transactions with smart assets cost more."><h5>?</h5></button>
+        </div>
     </div>
-    <div>
-        <h2>Asset Details:</h2>
-        AssetId: {{ asset_details['assetId'] }}<br>
-        Issuer: {{ asset_details['issuer'] }}<br>
-        Name: {{ asset_details['name'].decode('utf-8') }}<br>
-        Description: {{ asset_details['description'].decode('utf-8') }}<br>
-        Quantity: {{ asset_details['quantity']/(10**asset_details['decimals']) }}<br>
-        Decimals: {{ asset_details['decimals'] }}<br>
-        Reissuable: {{ asset_details['reissuable'] }}<br>
-        Smart Asset: {{ asset_smart }}, transactions with smart assets cost more.<br>
+
     </div>
-    <div>
-        <form id="send_form"><h2>Send:</h2>
+
+
+<br></br>
+
+
+    <div class="container-fluid">
+
+        <form id="send_form">
+
+        <div class="col-md-4"><h2><em class="fas fa-arrow-alt-circle-right"></em>SEND</h2></div>
             {% if asset_smart == True %}
-                <p>Fees: <input required id="send_fee" maxlength="35"
-                                minlength="35" value="{{ (2000000 + extra_fees+ 4000000)/100000000  }}"> $TN
-                </p>
+                
+                <div class="col-9"><h5>Fees: <input required id="send_fee" maxlength="35"
+                                minlength="35" value="{{ (2000000 + extra_fees+ 4000000)/100000000  }}">$TN</h5>
+            </div>
+
 
             {% else %}
-                <p>Fees: <input required id="send_fee" maxlength="35"
-                                minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}"> $TN
-                </p>
+                <div class="col-9"><h5>Fees: <input required id="send_fee" maxlength="35"
+                                minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}"> $TN</h5>
+            </div>
+
 
             {% endif %}
-            <p>Amount of ${{ asset_details['name'].decode('utf-8') }} to send: <input required id="send_amount" type="number"
-                                                                         max="{{ asset_balance }}">
-            </p>
-            <p>Destination addr: <input required id="send_addr" maxlength="35"
-                                        minlength="35"></p>
-            <p>
-                <button id="send" type="button" data-asset="{{ asset_details['assetId'] }}">Send
-                    ${{ asset_details['name'].decode('utf-8') }}</button>
-            </p>
+            <div class="col-9"><h5>Amount of ${{ asset_details['name'].decode('utf-8') }} <input required id="send_amount"type="number" max="{{ asset_balance }}" placeholder="To Send"></h5>
+        </div>
+
+            <div class="col-9"><h5>Destination <input required id="send_addr" maxlength="35"
+                                        minlength="35" placeholder="Address"></h5>
+            </div>
+
+                <div class="col-md-4">
+
+                    <button id="send" class="btn btn-outline-dark btn-lg" type="button" data-asset="{{ asset_details['assetId'] }}"><h5>Send ${{ asset_details['name'].decode('utf-8') }}</h5></button>
+            </div>
         </form>
     </div>
-    <div>
-        <form id="burn_form"><h2>Burn:</h2>
+
+
+<br></br>
+
+
+<div class="container-fluid">
+
+        <form id="burn_form">
+
+        <div class="col-md-4"><h2><em class="fas fa-burn"></em>BURN</h2></div>
             {% if asset_smart == True %}
-                <p>Fees: <input required id="burn_fee" maxlength="35"
-                                minlength="35" value="{{ (2000000 + extra_fees+ 4000000)/100000000  }}"> $TN
-                </p>
+                
+                <div class="col-9"><h5>Fees: <input required id="burn_fee" maxlength="35"
+                                minlength="35" value="{{ (2000000 + extra_fees+ 4000000)/100000000  }}"> $TN</h5>
+            </div>
+
 
             {% else %}
-                <p>Fees: <input required id="burn_fee" maxlength="35"
-                                minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}"> $TN
-                </p>
+                <div class="col-9"><h5>Fees: <input required id="burn_fee" maxlength="35"
+                            minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}"> $TN</h5>
+            </div>
+
 
             {% endif %}
-            <p>Amount of ${{ asset_details['name'].decode('utf-8') }} to burn: <input required id="burn_amount" type="number"
-                                                                         max="{{ asset_balance }}">
-            </p>
-            <p>
-                <button id="burn" type="button" data-asset="{{ asset_details['assetId'] }}">Burn
-                    ${{ asset_details['name'].decode('utf-8') }}</button>
-            </p>
+            <div class="col-9"><h5>Amount of ${{ asset_details['name'].decode('utf-8') }} <input required id="burn_amount"type="number" max="{{ asset_balance }}" placeholder="To Burn"></h5>
+        </div>
+
+            
+                <div class="col-md-4">
+                    <button id="burn" class="btn btn-outline-dark btn-lg" type="button" data-asset="{{ asset_details['assetId'] }}"><h5>Burn ${{ asset_details['name'].decode('utf-8') }}</h5></button></div>
         </form>
     </div>
-    <div><h2>Mass Transfer:</h2>
-    </div>
-    <div><h2>Reissue:</h2>
-    </div>
+
+
+
+<br></br>
+
+
+    <div class="container-fluid">
+        <div class="col-md-4"><h5>Mass Transfer:</h5></div>
+</div>
+
+
+<br></br>
+
+
+    <div class="container-fluid">
+        <div class="col-md-4"><h5>Reissue:</h5></div>
+</div>
+
+
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block head %}
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/transactions.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename = 'js/details.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/details.js') }}"></script>
 
 {% endblock %}
 {% block content %}
@@ -20,31 +20,31 @@
          <div class="col-md-4"><h5>Fees: <input required id="lease_fee_tn" maxlength="35"
                         minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}">  $TN</h5></div>
 
-         <div class="col-md-4 offset-md-4"><h5>Amount of $TN to lease: <input required id="lease_amount_tn" type="number"
-                                         max="{{ balance }}"></h5></div>
+         <div class="col-md-4 offset-md-4"><h5>Amount of $TN <input required id="lease_amount_tn" type="number"
+                                         max="{{ balance }}" placeholder="To Lease"></h5></div>
 </div>
 
 
-        <div class="col-md-4"><h5>Destination addr: <input required id="lease_addr_tn" maxlength="35"
-                                    minlength="35"></h5></div>
+        <div class="col-md-4"><h5>Destination <input required id="lease_addr_tn" maxlength="35"
+                                    minlength="35" placeholder="Address"></h5></div>
         
-
+        <div class="col-md-4">
             <button class="gw_send btn btn-outline-dark btn-lg" id="lease_tn" type="button">Lease
                 $TN
-            </button>
-        
+            </button> </div>       
     </form>
 
+<br></br>
 
-     <div class="col-md-4"><span><h5>Active Leases</h5></span></div>
-
-
-    <button class="gw_send btn btn-outline-dark btn-lg" type="button" data-addr={{ address }} id="lease_load">Show Active Leases</button>
-
-   <div class="col-md-4 collapse" id="lease_collapse_div"></div>
-
-
-
-    </div>
+     <div class="card border-light mb-3" style="max-width: 55rem;">
+  <div class="card-header" class="img-card" alt="Responsive image"><em class="fas fa-chart-pie"></em><h5>ACTIVE LEASES</h5></div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <button href="#" class="btn btn-outline-dark btn-lg" type="button" data-addr={{ address }} id="lease_load">Show Active Leases</button>
+     <div class="collapse" id="lease_collapse_div"></div>
+     </div>
 </div>
+</div>
+
+
 {% endblock %}

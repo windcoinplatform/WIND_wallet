@@ -17,8 +17,8 @@
 
  <div class="col-9">
 <div class="badge badge-secondary"><span><h5>{{ address }}</span></h5></div>
-<button class="btn btn-outline-dark" data-clipboard-text="{{ address }}">
-    Copy Address to clipboard
+<button class="btn btn-outline-dark" data-clipboard-text="{{ address }}"><em class="fas fa-copy"></em>
+    Copy Address
 </button>
 </div>
 
@@ -63,7 +63,7 @@ clipboard.on('error', function(e) {
      <input required id="send_fee_tn" maxlength="35" minlength="35" value="{{ (2000000 )/100000000+ extra_fees }}" class="form-control" placeholder="Fees">
     </div>
     <div class="col-md-4 offset-md-4"><span><h5>EXTRA FEES: {{ extra_fees }}</h5></span>
-      <button type="button" class="btn btn-danger btn-circle" data-toggle="popover" title="Extra Fees" data-content="When your account is scripted, extra fees will need to be paid. When this isn't scripted, nothing will be added."><h5>i</h5></button>
+      <button type="button" class="btn btn-danger btn-circle" data-toggle="popover" title="Extra Fees" data-content="When your account is scripted, extra fees will need to be paid. When this isn't scripted, nothing will be added."><h5>?</h5></button>
     </div>
   </div>
 
@@ -87,29 +87,15 @@ clipboard.on('error', function(e) {
 
 <div class=container-fluid>
 
-<div class="card border-light mb-3" style="max-width: 33rem">
-  <div class="card-header"><img src="static/img/tabs-iconset-history.png" class="img-card" alt="Responsive image"></div>
+<div class="card border-light mb-3" style="max-width: 55rem">
+  <div class="card-header" class="img-card" alt="Responsive image"><em class="fas fa-history"></em><h5>TRANSACTION HISTORY</h5></div>
   <div class="card-body">
-    <h5 class="card-title">TRANSACTION HISTORY</h5>
+    <h5 class="card-title"></h5>
     <button href="#" class="btn btn-outline-dark btn-lg" type="button" data-addr={{ address }} id="tx_load">Show tx history</button>
      <div class="collapse" id="tx_collapse_div"></div>
-     <br></br>
-     <div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div>
-  </div>
+      </div>
 </div>
    
-
-
-<div class="card border-light mb-3" style="max-width: 33rem;">
-  <div class="card-header"><img src="static/img/tabs-iconset-leasing.png" class="img-card" alt="Responsive image"></div>
-  <div class="card-body">
-    <h5 class="card-title">ACTIVE LEASES</h5>
-    <button href="#" class="btn btn-outline-dark btn-lg" type="button" data-addr={{ address }} id="lease_load">Show Active Leases</button>
-     <div class="collapse" id="lease_collapse_div"></div>
-     <br></br>
-     <div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div>
-  </div>
-</div>
 
 </div>
 

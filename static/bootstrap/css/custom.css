@@ -382,7 +382,11 @@ a.article:hover {
 }
 
 .card {
-	background-color: #f5f3f3;
+	background-color: #fff;
+}
+
+.card-header{
+    background-color: #f5f3f3;
 }
 
 .img-card {
@@ -402,7 +406,7 @@ a.article:hover {
 
 .btn {
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
  }   
@@ -411,9 +415,9 @@ a.article:hover {
   width: 30px;
   height: 30px;
   text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
+  padding: 2px 0;
+  font-size: 15px;
+  /*line-height: 1.428571429;*/
   border-radius: 15px;
 }
 

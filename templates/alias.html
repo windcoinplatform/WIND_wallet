@@ -6,27 +6,63 @@
 
 {% endblock %}
 {% block content %}
-    <h3>Create aliases</h3>
-    <form id="alias_form"><h2>Lease:</h2>
-         <p>Fees: <input required id="alias_fee" maxlength="35"
-                        minlength="35" value="{{ (1000000000 + extra_fees)/100000000 }}">  $TN
-        </p>
-        <p>Alias: <input required id="alias_create_input" maxlength="40"
-                                    minlength="4"  ></p>
-        <p>
-            <button id="create_alias_button" type="button">Create Alias
-            </button>
-        </p>
+
+
+
+ <div class="container-fluid">
+
+    <div class="col-md-4"><h2><em class="fas fa-users-cog"></em>CREATE ALIASES</h2></div>
+
+
+    <form id="alias_form">
+
+        <!--<div class="col-md-4"><h2>Lease:</h2></div>-->
+
+
+    <div class="row">
+
+         <div class="col-md-4"><p>Fees: <input required id="alias_fee" maxlength="35"
+                        minlength="35" value="{{ (1000000000 + extra_fees)/100000000 }}">$TN </p></div>
+
+
+        <div class="col-md-4 offset-md-4"><p>Alias: <input required id="alias_create_input" maxlength="40"
+                                    minlength="4"  ></p></div>
+       </div>
+
+
+
+
+           <div class="col-md-4"><p><button id="create_alias_button" type="button">Create Alias
+            </button></p></div>
+
     </form>
-    <h3>Aliases linked to account</h3>
-    <button data-addr={{ address }} id="alias_load">Show Aliases</button>
+
+<br></br>
+
+
+    <div class="col-9"><h3>Aliases linked to this account</h3></div>
+
+
+    <div class="col-md-4"><button data-addr={{ address }} id="alias_load">Show Aliases</button></div>
 
     <div class="collapse" id="alias_collapse_div"></div>
 
-    <h3>Find aliases from address</h3>
-    <label for="alias_other">Address:</label><input required id="alias_other" maxlength="35"
-                                                 minlength="35"/>
-    <button id="alias_load_other">Find Aliases</button>
+
+<br></br>
+
+
+    <div class="col-9"><h3>Find aliases from addresses</h3></div>
+
+    <div class="col-md-4"><label for="alias_other">Address:</label><input required id="alias_other" maxlength="35"
+                                                 minlength="35"/></div>
+
+
+   <div class="col-md-4"><button id="alias_load_other">Find Aliases</button></div>
+
         <div class="collapse" id="alias_other_collapse_div"></div>
+
+</div>
+
+</div>
 
 {% endblock %}
