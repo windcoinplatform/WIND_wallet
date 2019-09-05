@@ -182,6 +182,7 @@ def test_login_explorer_logout(test_client):
     assert response.status_code == 200
     assert b'Log in' in response.data
 
+
 def test_login_alias_logout(test_client):
     response = login(test_client, 'a', '')
     assert response.status_code == 200
