@@ -7,7 +7,7 @@ Windows build status: [![Build Status](https://dev.azure.com/BlackTurtleBVBA/Tur
 SonarCloud status: [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=T3&metric=alert_status)](https://sonarcloud.io/dashboard?id=T3)
 
 To run tests:
-pytest test --doctest-modules --junitxml=junit/test-results.xml
+pytest tests --doctest-modules --junitxml=junit/test-results.xml
 
 
 To build the app:
