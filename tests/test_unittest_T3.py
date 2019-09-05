@@ -12,6 +12,10 @@ class BasicTestsT3(unittest.TestCase):
     def test_t3_logger(self):
         self.assertNotEqual(T3.logger, None)
 
+    def test_t3_url_ok_false(self):
+        self.assertNotEqual(T3.url_ok('127.0.0.1', 4200), True)
+        self.assertEqual(T3.url_ok('127.0.0.1', 4200), False)
+
     def test_t3_create_webview(self):
         webview = T3.create_webview()
         self.assertNotEqual(webview, None)
