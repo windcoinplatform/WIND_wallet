@@ -26,7 +26,7 @@ def url_ok(url, port):
 def create_webview():
     return webview.create_window('T3-ALPHA(NON PRODUCTION) - Turtle Network Wallet', 'http://127.0.0.1:' + str(PORT),
                                  text_select=True,
-                                 confirm_close=True, min_size=(1500, 600))
+                                 confirm_close=True, min_size=(1024, 600))
 
 
 def set_up():
