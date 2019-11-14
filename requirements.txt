@@ -60,6 +60,6 @@ soupsieve==1.9.2
 typing-extensions==3.7.4
 urllib3>=1.25.3
 websocket==0.2.1
-Werkzeug==0.15.2
+Werkzeug==0.15.3
 wsproto==0.14.1
 zeep==3.4.0
