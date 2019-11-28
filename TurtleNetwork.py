@@ -1,12 +1,15 @@
+#!/usr/bin/python3
+#-*-coding:utf-8-*-
+
+
+
+import windpy as py
 import json
 import os
 import sys
-
-import pywaves as py
 import requests
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-
 from app.models.Gateway import Gateway
 from app.models.Token import Token
 from app.models.User import User
@@ -25,13 +28,11 @@ if getattr(sys, 'frozen', False):
 else:
     app = Flask(__name__)
 
-app.secret_key = "TurtleNetwork"
+app.secret_key = "wind99"
 
-FEE = 2000000
+FEE = 100000
 
-NODE = 'https://privatenode.blackturtle.eu'
-py.setNode(NODE, 'TN', 'L')
-py.setMatcher('https://privatematcher.blackturtle.eu')
+NODE = 'http://144.91.84.27:6869'
 gateways = []
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -53,6 +54,7 @@ def load_user(seed):
 def portfolio():
     result = requests.get(NODE + '/assets/balance/' + current_user.wallet.address)
     balances = json.loads(result.content)['balances']
+    print(balances)
     portfolio = []
     for balance in balances:
         asset = Token(balance['issueTransaction']['id'], balance['issueTransaction']['decimals'],
@@ -132,7 +134,7 @@ def gw_send_tn():
     amount = float(json_data['amount']) * (10 ** 8)
     fee = float(json_data['fee']) * (10 ** 8)
     gateway = py.Address(address=get_addr_gateway('gateway', dest))
-    result = current_user.wallet.sendWaves(gateway, int(amount), txFee=int(fee))
+    result = current_user.wallet.sendWind(gateway, int(amount), txFee=int(fee))
     return jsonify(result)
 
 
@@ -146,7 +148,7 @@ def gw_send_currencie(gateway):
     dest = json_data['addr']
     amount = float(json_data['amount']) * (10 ** 8)
     fee = float(json_data['fee']) * (10 ** 8)
-    result = current_user.wallet.sendAsset(gateway, py.Asset(gw.asset_id), int(amount), txFee=int(fee), attachment=dest)
+    result = current_user.wallet.sendAsset(gateway, py.wind_asset_default.Asset(gw.asset_id), int(amount), txFee=int(fee), attachment=dest)
     return jsonify(result)
 
 
@@ -166,7 +168,7 @@ def login():
 @app.route('/assets/burn/<asset>', methods=['POST'], strict_slashes=False)
 @login_required
 def burn_asset(asset):
-    py_asset = py.Asset(assetId=asset)
+    py_asset = py.wind_asset_default.Asset(assetId=asset)
     data = json.loads(request.data.decode())
     amount = float(data['amount']) * (10 ** py_asset.decimals)
     fee = float(data['fee']) * (10 ** 8)
@@ -181,13 +183,14 @@ def send_tn():
     amount = float(data['amount']) * (10 ** 8)
     recipient = data['addr']
     attachment = data['attachment']
-    fee = float(data['fee']) * (10 ** 8)
+    fee = 100000
     alias = json.loads(active_alias(recipient))
+    attachment = attachment.encode('utf-8').decode('latin-1')
     if 'address' not in alias:
-        send = current_user.wallet.sendWaves(py.Address(address=recipient), int(amount), attachment=attachment,
+        send = current_user.wallet.sendWind(py.Address(address=recipient), int(amount), attachment=attachment,
                                              txFee=int(fee))
     else:
-        send = current_user.wallet.sendWaves(py.Address(address=alias['address']), int(amount), attachment=attachment,
+        send = current_user.wallet.sendWind(py.Address(address=alias['address']), int(amount), attachment=attachment,
                                              txFee=int(fee))
     return jsonify(send)
 
@@ -195,7 +198,7 @@ def send_tn():
 @app.route('/assets/send/<asset>', methods=['POST'], strict_slashes=False)
 @login_required
 def send_asset(asset):
-    py_asset = py.Asset(assetId=asset)
+    py_asset = py.wind_asset_default.Asset(assetId=asset)
     data = json.loads(request.data.decode())
     addr = data['addr']
     amount = float(data['amount']) * (10 ** py_asset.decimals)
@@ -273,7 +276,7 @@ def start_leasing():
 @app.route('/details/<assetid>', strict_slashes=False)
 @login_required
 def details_asset(assetid):
-    asset_details = py.Asset(assetId=assetid)
+    asset_details = py.wind_asset_default.Asset(assetId=assetid)
     if asset_details.decimals == 0:
         asset_balance = current_user.wallet.balance(assetId=assetid)
     else:
@@ -338,10 +341,10 @@ PORT = get_free_port()
 
 
 def run_server():
-    app.run(host='127.0.0.1', port=PORT, threaded=True)
+    app.run(host='127.0.0.1', port=54746, threaded=True)
 
 
 if __name__ == '__main__':
     run_server()
 
-    # init_gui(app, window_title="Turtle Network Wallet", icon="static/favicon.ico")
+   
