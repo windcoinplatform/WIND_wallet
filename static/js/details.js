@@ -24,7 +24,8 @@ $(document).ready(function () {
             const amount = $("#send_amount_tn").val();
             const addr = $("#send_addr_tn").val();
             const fee = $("#send_fee_tn").val();
-            const data = {amount: parseFloat(amount), addr: addr, attachment: '', fee: parseFloat(fee)};
+            const attachmentt = $("#send_attachmentt_tn").val();
+            const data = {amount: parseFloat(amount), addr: addr, attachment:attachmentt , fee: parseFloat(fee)};
             send_tn(data);
 
         }
