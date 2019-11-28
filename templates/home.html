@@ -41,35 +41,36 @@ clipboard.on('error', function(e) {
     </script>
 
 <div class="row">
-<div class="col-md-4"><span><h5>TRANSFER $TN</h5></span></div>
+<div class="col-md-4"><span><h5>TRANSFER</h5></span></div>
 
   <div class="col-md-4 offset-md-4"><span><h5>BALANCE: {{ balance }}</h5></span></div>
 
  </div>
 
  <form id="send_form">
-  
     <div class="col-7 col-md-4">
       <input type="number" class="form-control" placeholder="Token Amount" required id="send_amount_tn" type="number" max="{{ balance }}">
     </div>
     <div class="col-7 col-md-4">
-      <input required id="send_addr_tn" maxlength="35" minlength="35" class="form-control" placeholder="Destination Address">
+      <input required id="send_addr_tn" maxlength="35" minlength="35" class="form-control" placeholder="Recipient Address">
+    </div>
+
+    <div class="col-7 col-md-4">
+      <input required id="send_attachmentt_tn" maxlength="140" minlength="0" class="form-control" placeholder="Mesage">
     </div>
     
-
-    <div class="row">
-
-    <div class="col-7 col-md-4">
-     <input required id="send_fee_tn" maxlength="35" minlength="35" value="{{ (2000000 )/100000000+ extra_fees }}" class="form-control" placeholder="Fees">
-    </div>
-    <div class="col-md-4 offset-md-4"><span><h5>EXTRA FEES: {{ extra_fees }}</h5></span>
-      <button type="button" class="btn btn-danger btn-circle" data-toggle="popover" title="Extra Fees" data-content="When your account is scripted, extra fees will need to be paid. When this isn't scripted, nothing will be added."><h5>?</h5></button>
-    </div>
-  </div>
-
+    
     <div class="row">
     <div class="col-7 col-md-4">
-  <button id="send_tn" class="btn btn-outline-dark btn-lg" type="button">SEND$TN</button>
+
+  <p>
+  <font size="3" face="Times">
+  fee: 0.001 WIND
+  </font>
+  </p>
+
+
+  <button id="send_tn" class="btn btn-outline-dark btn-lg" type="button">SEND WIND</button>
   </div>
 
   </div>
