@@ -32,17 +32,18 @@ $(document).ready(function () {
         }).done(function (data) {
             let tablecontents = "";
             tablecontents = '<table>';
-            tablecontents += '<tr><th>Type</th><th>Id</th><th>Sender</th><th>Amount</th><th>Asset Id</th><th>Recipient</th><th>Height</th></tr>';
+           
+            tablecontents += '<tr><th>Type</th><th>Height</th><th>Id</th></tr>';
+            
             $.each(data[0], function (index, value) {
 
                 tablecontents += "<tr class='tr'>";
                 tablecontents += "<td>" + value["type"] + "</td>";
-                tablecontents += "<td><a href='https://explorer.turtlenetwork.eu/tx/" + value["id"] + "'>" + value["id"] + "</a></td>";
-                tablecontents += "<td>" + value["sender"] + "</td>";
-                tablecontents += "<td>" + value["amount"] + "</td>";
-                tablecontents += "<td>" + value["assetId"] + "</td>";
-                tablecontents += "<td>" + value["recipient"] + "</td>";
                 tablecontents += "<td>" + value["height"] + "</td>";
+                tablecontents += "<td><a href='http://144.91.84.27:8080/tx/" + value["id"] + "'>" + value["id"] + "</a></td>";
+                
+             
+                
                 tablecontents += "</tr>";
             });
             tablecontents += '</table>';
@@ -71,7 +72,7 @@ $(document).ready(function () {
 
                 tablecontents += "<tr class='tr'>";
                 tablecontents += "<td>" + value["type"] + "</td>";
-                tablecontents += "<td><a href='https://explorer.turtlenetwork.eu/tx/" + value["id"] + "'>" + value["id"] + "</a></td>";
+                tablecontents += "<td><a href='http://144.91.84.27:8080/tx/" + value["id"] + "'>" + value["id"] + "</a></td>";
                 tablecontents += "<td>" + value["sender"] + "</td>";
                 tablecontents += "<td>" + value["amount"] + "</td>";
                 tablecontents += "<td>" + value["recipient"] + "</td>";
@@ -123,3 +124,4 @@ $(document).ready(function () {
     }
 })
 ;
+
