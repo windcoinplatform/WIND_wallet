@@ -1,4 +1,4 @@
-import pywaves as py
+import windpy as py
 import requests
 from flask_login import UserMixin
 
