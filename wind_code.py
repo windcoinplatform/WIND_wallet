@@ -99,7 +99,7 @@ def data_overview():
 
 @app.route('/asset/create')
 @login_required
-def asset_create():
+def iasset_overview():
     return render_template('asset_create.html')
 
 
@@ -212,6 +212,7 @@ def send_asset(asset):
     return jsonify(send)
 
 
+
 @app.route('/state/transactions/<addr>/<amount>')
 def history_tx(addr, amount):
     r = requests.get(NODE + "/transactions/address/" + addr + "/limit/" + amount)
@@ -246,18 +247,36 @@ def active_alias(alias):
     return r.content.decode()
 
 
+
+@app.route('/asset/create', methods=['POST'], strict_slashes=False)
+@login_required
+def asset_create():
+    data = json.loads(request.data.decode())
+    name = data['name']
+    description = data['description']
+    decimals = int(data['decimal'])
+    
+    quantity = int(data['quantity'])*(10 ** decimals)
+    reissuable= False
+    fee = 100000000
+    name  = name.encode('utf-8').decode('latin-1')
+    description  = description.encode('utf-8').decode('latin-1')
+
+    data = current_user.wallet.issueAsset( name = name, description = description , quantity = quantity, decimals = decimals, reissuable= reissuable, txFee=int(fee))
+    return jsonify(data)
+   
+
+
 @app.route('/state/leases/<addr>')
 def active_leasing(addr):
     r = requests.get(NODE + "/leasing/active/" + addr)
     return r.content.decode()
-
 
 @app.route('/state/leases/cancel/<id>')
 @login_required
 def cancel_active_leasing(id):
     send = current_user.wallet.leaseCancel(leaseId=id, txFee=FEE)
     return jsonify(send)
-
 
 @app.route('/state/leases/start', methods=['POST'], strict_slashes=False)
 @login_required
@@ -341,10 +360,14 @@ PORT = get_free_port()
 
 
 def run_server():
+    #app.run(host='127.0.0.1', port=54746, threaded=True)
     app.run(host='173.212.251.111', port=60863, threaded=True)
 
 
 if __name__ == '__main__':
     run_server()
+
+   
+
 
    
