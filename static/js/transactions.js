@@ -67,13 +67,13 @@ $(document).ready(function () {
         }).done(function (data) {
             let tablecontents = "";
             tablecontents = '<table>';
-            tablecontents += '<tr><th>Type</th><th>Id</th><th>Sender</th><th>Amount</th><th>Recipient</th><th>Height</th><th>Cancel</th></tr>';
+            tablecontents += '<tr><th>Id</th><th>Amount</th><th>Recipient</th><th>Height</th><th>Cancel</th></tr>';
             $.each(data, function (index, value) {
 
                 tablecontents += "<tr class='tr'>";
-                tablecontents += "<td>" + value["type"] + "</td>";
+               
                 tablecontents += "<td><a href='http://144.91.84.27:8080/tx/" + value["id"] + "'>" + value["id"] + "</a></td>";
-                tablecontents += "<td>" + value["sender"] + "</td>";
+                
                 tablecontents += "<td>" + value["amount"] + "</td>";
                 tablecontents += "<td>" + value["recipient"] + "</td>";
                 tablecontents += "<td>" + value["height"] + "</td>";
@@ -124,4 +124,3 @@ $(document).ready(function () {
     }
 })
 ;
-
