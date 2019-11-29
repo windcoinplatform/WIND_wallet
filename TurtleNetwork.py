@@ -171,7 +171,7 @@ def burn_asset(asset):
     py_asset = py.wind_asset_default.Asset(assetId=asset)
     data = json.loads(request.data.decode())
     amount = float(data['amount']) * (10 ** py_asset.decimals)
-    fee = float(data['fee']) * (10 ** 8)
+    fee = 100000
     burn = current_user.wallet.burnAsset(py_asset, int(amount), txFee=int(fee))
     return jsonify(burn)
 
@@ -202,7 +202,7 @@ def send_asset(asset):
     data = json.loads(request.data.decode())
     addr = data['addr']
     amount = float(data['amount']) * (10 ** py_asset.decimals)
-    fee = float(data['fee']) * (10 ** 8)
+    fee = 100000
     alias = json.loads(active_alias(addr))
     if 'address' not in alias:
         send = current_user.wallet.sendAsset(py.Address(addr), py_asset, int(amount), txFee=int(fee))
@@ -229,7 +229,7 @@ def address_data(addr):
 def create_alias():
     data = json.loads(request.data.decode())
     alias = data['alias']
-    fee = float(data['fee']) * (10 ** 8)
+    fee = 100000
     data = current_user.wallet.createAlias(alias, txFee=int(fee))
     return jsonify(data)
 
@@ -341,7 +341,7 @@ PORT = get_free_port()
 
 
 def run_server():
-    app.run(host='173.212.251.111', port=60863, threaded=True)
+    app.run(host='127.0.0.1', port=54746, threaded=True)
 
 
 if __name__ == '__main__':
