@@ -49,26 +49,28 @@
                 
                 <div class="col-9"><h5>Fees: <input required id="send_fee" maxlength="35"
                                 minlength="35" value="{{ (2000000 + extra_fees+ 4000000)/100000000  }}">$TN</h5>
-            </div>
-
-
-            {% else %}
-                <div class="col-9"><h5>Fees: <input required id="send_fee" maxlength="35"
-                                minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}"> $TN</h5>
-            </div>
+    
 
 
             {% endif %}
-            <div class="col-9"><h5>Amount of ${{ asset_details['name'].decode('utf-8') }} <input required id="send_amount"type="number" max="{{ asset_balance }}" placeholder="To Send"></h5>
+            <div class="col-9"><h5>Amount of {{ asset_details['name'].decode('utf-8') }} <input required id="send_amount"type="number" max="{{ asset_balance }}" placeholder="To Send"></h5>
         </div>
 
-            <div class="col-9"><h5>Destination <input required id="send_addr" maxlength="35"
+            <div class="col-9"><h5>Recipient <input required id="send_addr" maxlength="35"
                                         minlength="35" placeholder="Address"></h5>
             </div>
 
                 <div class="col-md-4">
 
-                    <button id="send" class="btn btn-outline-dark btn-lg" type="button" data-asset="{{ asset_details['assetId'] }}"><h5>Send ${{ asset_details['name'].decode('utf-8') }}</h5></button>
+
+                    <p>
+                    <font size="3" face="Times">
+                    fee: 0.001 WIND
+                    </font>
+                    </p>
+
+
+                    <button id="send" class="btn btn-outline-dark btn-lg" type="button" data-asset="{{ asset_details['assetId'] }}"><h5>Send {{ asset_details['name'].decode('utf-8') }}</h5></button>
             </div>
         </form>
     </div>
@@ -86,42 +88,30 @@
                 
                 <div class="col-9"><h5>Fees: <input required id="burn_fee" maxlength="35"
                                 minlength="35" value="{{ (2000000 + extra_fees+ 4000000)/100000000  }}"> $TN</h5>
-            </div>
-
-
-            {% else %}
-                <div class="col-9"><h5>Fees: <input required id="burn_fee" maxlength="35"
-                            minlength="35" value="{{ (2000000 + extra_fees)/100000000 }}"> $TN</h5>
-            </div>
+        
 
 
             {% endif %}
-            <div class="col-9"><h5>Amount of ${{ asset_details['name'].decode('utf-8') }} <input required id="burn_amount"type="number" max="{{ asset_balance }}" placeholder="To Burn"></h5>
+            <div class="col-9"><h5>Amount of {{ asset_details['name'].decode('utf-8') }} <input required id="burn_amount"type="number" max="{{ asset_balance }}" placeholder="To Burn"></h5>
         </div>
 
             
                 <div class="col-md-4">
-                    <button id="burn" class="btn btn-outline-dark btn-lg" type="button" data-asset="{{ asset_details['assetId'] }}"><h5>Burn ${{ asset_details['name'].decode('utf-8') }}</h5></button></div>
+
+                    <p>
+                    <font size="3" face="Times">
+                    fee: 0.001 WIND
+                    </font>
+                    </p>
+
+                
+                    <button id="burn" class="btn btn-outline-dark btn-lg" type="button" data-asset="{{ asset_details['assetId'] }}"><h5>Burn {{ asset_details['name'].decode('utf-8') }}</h5></button></div>
         </form>
     </div>
 
 
 
-<br></br>
 
-
-    <div class="container-fluid">
-        <div class="col-md-4"><h5>Mass Transfer:</h5></div>
-</div>
-
-
-<br></br>
-
-
-    <div class="container-fluid">
-        <div class="col-md-4"><h5>Reissue:</h5></div>
-</div>
 
 
 {% endblock %}
-
