@@ -19,6 +19,17 @@ function get(url) {
 
 $(document).ready(function () {
 
+    
+    $("#issue_tn").click(function () {
+            const name = $("#send_name_tn").val();
+            const description = $("#send_description_tn").val();
+            const decimal = $("#send_decimals_tn").val();
+            const quantity = $("#send_quantity_tn").val();
+            const data = {name: name,description: description, decimal: decimal, quantity: quantity};
+            issue_tn(data);
+
+        }                    
+    );
 
     $("#send_tn").click(function () {
             const amount = $("#send_amount_tn").val();
@@ -83,6 +94,11 @@ $(document).ready(function () {
 
     function send_tn(sendData) {
         tx(sendData, '/tn/send/')
+    
+    }
+
+    function issue_tn(sendData) {
+        tx(sendData, '/asset/create/')
     }
 
     function send_tx(sendData, asset) {
