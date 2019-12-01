@@ -29,7 +29,7 @@ else:
     app = Flask(__name__)
 
 app.secret_key = "wind99"
-
+API_KEY = 'md264365'
 FEE = 100000
 
 NODE = 'http://144.91.84.27:6869'
