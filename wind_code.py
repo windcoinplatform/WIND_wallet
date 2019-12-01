@@ -114,6 +114,52 @@ def explorer():
 def lease_overview():
     return render_template('lease.html', address=current_user.wallet.address, extra_fees=current_user.extra_fees)
 
+@app.route('/rich')
+@login_required
+def rich():
+
+    parser = argparse.ArgumentParser(description='Waves Rich List')
+    parser.add_argument('-t', '--top', type=int, help='lists only the specified top positions')
+
+    args = parser.parse_args()
+    if args.top:
+        top = args.top
+    else:
+        top = -1
+
+    states = requests.get('%s/debug/state' % NODE, headers={"X-API-Key": API_KEY}).json()
+
+
+    listea = []
+    listeb = []
+    listen = []
+    n = 0
+    total_balance = 0
+    for i in sorted(states.items(), key=lambda x: -x[1]):
+        balance = i[1]
+        if len(i[0]) == 35 and balance > 0:
+            address = i[0]
+            total_balance += balance
+            n += 1
+            listea = listea + [address]
+            listeb = listeb + [balance]
+            listen = listen + [n]
+            if n == top:
+                break
+
+
+    #return jsonify(states)
+    return render_template('rich.html', listea = listea, listeb = listeb, listen = listen , n = n, tb = total_balance )
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/gateway/<gateway>')
 @login_required
