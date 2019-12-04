@@ -246,6 +246,48 @@ def send_asset(asset):
 
     return jsonify(send)
 
+@app.route('/atc')
+@login_required
+def atc():
+    limit = 300
+    #addr_atc = "3MMAjvJc2LkqcqPKAzKVwT41fsc4NmkFzQH"
+    addr_atc = current_user.wallet.address
+    r = requests.get(NODE + "/transactions/address/" + addr_atc + "/limit/" + str(limit))
+    r = r.text
+    r = json.loads(r)
+    r = r[0]
+
+    atc = []
+    sender_atc = []
+    height_atc = []
+    n =0
+    for i in r:
+        if i['type'] == 4 and i['attachment'] != "" and i["recipient"] == addr_atc:
+            atc1 =i['attachment']
+
+
+            atc1 = base58.b58decode(atc1)
+
+
+            atc1 =  atc1.decode("utf8", errors="ignore")
+
+
+
+
+
+            atc = atc + [atc1]
+            sender_atc = sender_atc+ [(i["sender"])]
+            height_atc =height_atc + [(i["height"])]
+            n += 1
+    return render_template('atc.html', height_atc=height_atc, sender_atc=sender_atc, atc=atc, n=n, addr_atc=addr_atc)
+
+
+
+
+
+
+
+
 
 
 @app.route('/state/transactions/<addr>/<amount>')
