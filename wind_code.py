@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #-*-coding:utf-8-*-
 
-
+import base58
 import argparse
 import windpy as py
 import json
