@@ -74,7 +74,7 @@ $(document).ready(function () {
                
                 tablecontents += "<td><a href='http://144.91.84.27:8080/tx/" + value["id"] + "'>" + value["id"] + "</a></td>";
                 
-                tablecontents += "<td>" + value["amount"] + "</td>";
+                tablecontents += "<td>" + value["amount"]/100000000 + "</td>";
                 tablecontents += "<td>" + value["recipient"] + "</td>";
                 tablecontents += "<td>" + value["height"] + "</td>";
                 tablecontents += "<td> <button class='cancel_lease' data-id='"+value["id"]+"'>Cancel Lease</button></td>";
