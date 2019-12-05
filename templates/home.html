@@ -15,11 +15,9 @@
  
  <div class="col-md-4"><span><h2 style="text-align:center"><em class="fas fa-wallet"></em>WALLET ADDRESS</h2></span></div>
 
- <div class="col-9">
+ <div class="col-7">
 <div class="badge badge-secondary"><span><h5>{{ address }}</span></h5></div>
-<button class="btn btn-outline-dark" data-clipboard-text="{{ address }}"><em class="fas fa-copy"></em>
-    Copy Address
-</button>
+<button class="btn btn-outline-dark" data-clipboard-text="{{ address }}"><em class="fas fa-copy"></em>Copy</button>
 </div>
 
 
@@ -41,67 +39,46 @@ clipboard.on('error', function(e) {
     </script>
 
 <div class="row">
-<div class="col-md-4"><span><h5>TRANSFER</h5></span></div>
-
-  <div class="col-md-4 offset-md-4"><span><h5>BALANCE: {{ balance }}</h5></span></div>
-
+  <div class="col-md-4 offset-md-4"><span>BALANCE: <h4>{{ balance }}</h4></span></div>
  </div>
+
 
  <form id="send_form">
     <div class="col-7 col-md-4">
-      <input type="number" class="form-control" placeholder="Token Amount" required id="send_amount_tn" type="number" max="{{ balance }}">
+      <input required id="send_addr_tn" maxlength="35" minlength="35" class="form-control" placeholder="Recipient Address">
     </div>
     <div class="col-7 col-md-4">
-      <input required id="send_addr_tn" maxlength="35" minlength="35" class="form-control" placeholder="Recipient Address">
+      <input type="number" class="form-control" placeholder="Token Amount" required id="send_amount_tn" type="number" max="{{ balance }}">
     </div>
 
     <div class="col-7 col-md-4">
       <input required id="send_attachmentt_tn" maxlength="140" minlength="0" class="form-control" placeholder="Mesage">
     </div>
-    
-    
     <div class="row">
     <div class="col-7 col-md-4">
 
-  <p>
-  <font size="3" face="Times">
-  fee: 0.001 WIND
-  </font>
-  </p>
-
-
-  <button id="send_tn" class="btn btn-outline-dark btn-lg" type="button">SEND WIND</button>
+  <button id="send_tn" class="btn btn-outline-dark btn-lg" type="button">SEND WIND </button>
+   <font size="1" face="Times">fee: 0.001 WIND</font>
   </div>
 
   </div>
-</form>      
+</form>
+
     </div>
-   
 
-
-
-
-<br></br>
-
-<!--    ----------------------------------------------------------------------------------------------------------------------------> 
-
-
+<!--    ---------------------------------------------------------------------------------------------------------------------------->
 <div class=container-fluid>
 
 <div class="card border-light mb-3" style="max-width: 55rem">
-  <div class="card-header" class="img-card" alt="Responsive image"><em class="fas fa-history"></em><h5>TRANSACTION HISTORY</h5></div>
   <div class="card-body">
     <h5 class="card-title"></h5>
     <button href="#" class="btn btn-outline-dark btn-lg" type="button" data-addr={{ address }} id="tx_load">Show tx history</button>
+
      <div class="collapse" id="tx_collapse_div"></div>
       </div>
 </div>
-   
 
 </div>
 
-<!--    ----------------------------------------------------------------------------------------------------------------------------> 
-
-    
-    
+<!--    ---------------------------------------------------------------------------------------------------------------------------->
 {% endblock %}
