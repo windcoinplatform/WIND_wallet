@@ -32,7 +32,7 @@ app.secret_key = "wind99"
 API_KEY = '12345678'
 FEE = 100000
 
-NODE = 'http://144.91.84.27:6869'
+NODE = 'http://164.68.117.2:6869'
 gateways = []
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -250,7 +250,7 @@ def send_asset(asset):
 @login_required
 def atc():
     limit = 300
-    #addr_atc = "3MMAjvJc2LkqcqPKAzKVwT41fsc4NmkFzQH"
+    
     addr_atc = current_user.wallet.address
     r = requests.get(NODE + "/transactions/address/" + addr_atc + "/limit/" + str(limit))
     r = r.text
@@ -437,10 +437,8 @@ PORT = get_free_port()
 
 
 def run_server():
-    #app.run(host='127.0.0.1', port=54746, threaded=True)
-    app.run(host='173.212.251.111', port=60863, threaded=True)
-
-
+    #app.run(host='127.0.0.1', port=60863, threaded=True)
+    app.run(host='	164.68.117.2', port=60863, threaded=True)
 if __name__ == '__main__':
     run_server()
 
