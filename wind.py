@@ -150,14 +150,6 @@ def explorer():
 def lease_overview():
     return render_template('lease.html', address=current_user.wallet.address, extra_fees=current_user.extra_fees)
 
-@app.route('/gateway/<gateway>')
-@login_required
-def gateways_detail(gateway):
-    gw: Gateway = next((x for x in gateways if x.name.lower() == gateway.lower()), None)
-    index = gateways.index(gw)
-    gw.set_personal_wallet(get_addr_gateway(gw.url, current_user.wallet.address))
-    gateways[index] = gw
-    return json.dumps(gw.__dict__)
 
 
 @app.route('/gw/send/tn', methods=['POST'], strict_slashes=False)
@@ -173,18 +165,7 @@ def gw_send_tn():
     return jsonify(result)
 
 
-@app.route('/gw/send/<gateway>', methods=['POST'], strict_slashes=False)
-@login_required
-def gw_send_currencie(gateway):
-    gw: Gateway = next((x for x in gateways if x.name.lower() == gateway.lower()), None)
-    data = request.data
-    gateway = py.Address(address=gw.general_addr)
-    json_data = json.loads(data.decode())
-    dest = json_data['addr']
-    amount = float(json_data['amount']) * (10 ** 8)
-    fee = float(json_data['fee']) * (10 ** 8)
-    result = current_user.wallet.sendAsset(gateway, py.wind_asset_default.Asset(gw.asset_id), int(amount), txFee=int(fee), attachment=dest)
-    return jsonify(result)
+
 
 
 @app.route('/logout', methods=['GET'], strict_slashes=False)
