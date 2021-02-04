@@ -32,7 +32,7 @@ app.secret_key = "wind99"
 API_KEY = '12345678'
 FEE = 100000
 
-NODE = 'http://164.68.117.2:6869'
+NODE = 'http://161.97.178.27:6869'
 gateways = []
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -438,7 +438,7 @@ PORT = get_free_port()
 
 def run_server():
     #app.run(host='127.0.0.1', port=60863, threaded=True)
-    app.run(host='164.68.117.2', port=60863, threaded=True)
+    app.run(host='161.97.178.27', port=60863, threaded=True)
 if __name__ == '__main__':
     run_server()
 
