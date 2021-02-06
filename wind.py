@@ -33,6 +33,8 @@ API_KEY = '12345678'
 FEE = 100000
 
 NODE = 'http://161.97.178.27:6869'
+CHAIN = 'custom'
+CHAIN_ID = 'H'
 gateways = []
 login_manager = LoginManager()
 login_manager.init_app(app)
