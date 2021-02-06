@@ -34,7 +34,7 @@ ADDRESS_HASH_LENGTH = 20
 ADDRESS_LENGTH = 1 + 1 + ADDRESS_CHECKSUM_LENGTH + ADDRESS_HASH_LENGTH
 
 CHAIN = 'custom'
-CHAIN_ID = 'R'
+CHAIN_ID = 'H'
 
 class PyWindException(ValueError):
     pass
