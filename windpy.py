@@ -3,7 +3,7 @@
 
 import wind_asset_default
 import math
-import python-axolotl-curve25519 as curve
+import axolotl_curve25519 as curve
 import os
 import crypto as crypto
 import time
