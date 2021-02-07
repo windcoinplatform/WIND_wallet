@@ -1,6 +1,6 @@
 import hashlib
 import pyblake2
-import axolotl_curve25519 as curve
+import python-axolotl-curve25519 as curve
 import base58
 import os
 from math import log
